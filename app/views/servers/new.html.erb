@@ -1,0 +1,6 @@
+<h1>New server</h1>
+<%=  bootstrap_form_for @server do |f| %>
+  <%= f.text_field :name %>
+  <%= f.text_field :ip %>
+  <%= f.submit "Create server" %>
+<% end %>

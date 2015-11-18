@@ -1,0 +1,7 @@
+example:
+  name: Example
+  ip: "127.0.0.1"
+
+local:
+  name: Local server
+  ip: "127.0.0.1"

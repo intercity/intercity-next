@@ -7,6 +7,7 @@ gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 gem "jquery-turbolinks"
 gem "bootstrap-sass", "~> 3.3.5"
+gem "bootstrap_form"
 gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "sidekiq", "~> 3.2.5"
@@ -38,6 +39,9 @@ group :test do
   gem "timecop"
   gem "shoulda"
   gem "mocha"
+  gem "launchy"
+  gem "poltergeist"
+  gem "database_cleaner"
 end
 
 group :staging, :production do
