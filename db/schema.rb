@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118094542) do
+ActiveRecord::Schema.define(version: 20151118132808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "apps", force: :cascade do |t|
+    t.integer  "server_id"
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "apps", ["server_id"], name: "index_apps_on_server_id", using: :btree
 
   create_table "servers", force: :cascade do |t|
     t.string   "name"
@@ -25,4 +34,5 @@ ActiveRecord::Schema.define(version: 20151118094542) do
     t.text     "rsa_key_private"
   end
 
+  add_foreign_key "apps", "servers"
 end

@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   resources :servers, only: [:new, :create] do
     get :ssh_key, on: :member
     post :test, on: :member
+    resources :apps, only: [:index, :new, :create]
   end
 end

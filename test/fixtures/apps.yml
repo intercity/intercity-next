@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+example:
+  server: example
+  name: Example app
+
+local_app:
+  server: local
+  name: Local app

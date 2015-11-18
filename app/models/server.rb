@@ -1,4 +1,6 @@
 class Server < ActiveRecord::Base
+  has_many :apps
+
   before_create :create_rsa_key
 
   private

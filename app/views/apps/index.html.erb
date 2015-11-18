@@ -1,0 +1,5 @@
+<h1>Apps for <%= @server.name %></h1>
+<div class="apps">
+  <%= render @server.apps %>
+</div>
+<%= link_to "Add new app", new_server_app_path(@server)  %>
