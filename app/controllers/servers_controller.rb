@@ -17,6 +17,10 @@ class ServersController < ApplicationController
     end
   end
 
+  def ssh_key
+    @server = Server.find(params[:id])
+  end
+
   private
 
   def server_params

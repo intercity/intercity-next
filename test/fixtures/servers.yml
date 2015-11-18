@@ -1,7 +1,11 @@
 example:
   name: Example
   ip: "127.0.0.1"
+  rsa_key_public: "Public ssh key"
+  rsa_key_private: "Private ssh key"
 
 local:
   name: Local server
   ip: "127.0.0.1"
+  rsa_key_public: "Public ssh key local server"
+  rsa_key_private: "Private ssh key local server"
