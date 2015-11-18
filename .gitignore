@@ -13,3 +13,4 @@
 /tags
 /tmp/*
 passenger.*
+.vagrant/

@@ -5,6 +5,7 @@
 //= require fastclick
 //= require nprogress
 //= require nprogress-turbolinks
+//= require server_test
 //= require turbolinks
 
 $(function() {

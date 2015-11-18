@@ -14,6 +14,9 @@ gem "sidekiq", "~> 3.2.5"
 gem "redis", "~> 3.1.0"
 gem "redis-namespace", "~> 1.5.1"
 gem "nprogress-rails", "~> 0.1.6"
+gem "net-ssh"
+gem "sshkey", "~> 1.5.1"
+gem "font-awesome-sass", "~> 4.4.0"
 
 group :development do
   gem "spring"

@@ -1,3 +1,9 @@
 <%= content_tag :div, id: dom_id(server), class: "server" do %>
-  <%= server.name %> - <%= server.ip %> - <%= link_to "Show public SSH key", ssh_key_server_path(server) %>
+  <%= server.name %> - <%= server.ip %> - 
+  <%= link_to "Show public SSH key", ssh_key_server_path(server) %> - 
+  <%= link_to "Test server connection", "#", data: { behaviour: "test-server",
+                                                     test_url: test_server_path(server) } %>
+  <span data-server-status="testing" class="label label-default hidden"><%= icon "circle-o-notch fa-spin" %> Testing</span>
+  <span data-server-status="connected" class="label label-success hidden">Connection successfull</span>
+  <span data-server-status="error" class="label label-danger hidden">Could not connect</span>
 <% end %>

@@ -18,6 +18,10 @@ Minitest::Reporters.use!(
 
 DatabaseCleaner.strategy = :transaction
 
+# Requires supporting ruby files with custom matchers and macros, etc,
+# in test/support/ and its subdirectories.
+Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
+
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
@@ -56,7 +60,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def wait_for_ajax
-    Timeout.timeout(Capybara.default_wait_time) do
+    Timeout.timeout(Capybara.default_max_wait_time) do
       loop until finished_all_ajax_requests?
     end
   end

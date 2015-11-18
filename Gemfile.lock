@@ -93,6 +93,8 @@ GEM
       railties (~> 4.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    font-awesome-sass (4.4.0)
+      sass (>= 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
@@ -224,6 +226,7 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    sshkey (1.5.1)
     sshkit (1.7.1)
       colorize (>= 0.7.0)
       net-scp (>= 1.1.2)
@@ -265,6 +268,7 @@ DEPENDENCIES
   daemon_controller
   database_cleaner
   dotenv-rails
+  font-awesome-sass (~> 4.4.0)
   jquery-rails
   jquery-turbolinks
   launchy
@@ -272,6 +276,7 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters
   mocha
+  net-ssh
   nprogress-rails (~> 0.1.6)
   passenger
   pg
@@ -286,6 +291,7 @@ DEPENDENCIES
   shoulda
   sidekiq (~> 3.2.5)
   spring
+  sshkey (~> 1.5.1)
   timecop
   turbolinks
   uglifier

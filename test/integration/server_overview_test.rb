@@ -14,11 +14,12 @@ class ServerOverviewTest < ActionDispatch::IntegrationTest
     visit root_path
 
     server = Server.first
+    ssh_key = SSHKey.new(server.rsa_key_private)
 
     within "#server_#{server.id}" do
       click_link "Show public SSH key"
     end
 
-    assert page.has_content?(server.rsa_key_public), "Page should show the public SSH key"
+    assert page.has_content?(ssh_key.ssh_public_key), "Page should show the public SSH key"
   end
 end

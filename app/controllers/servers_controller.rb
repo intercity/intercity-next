@@ -19,6 +19,18 @@ class ServersController < ApplicationController
 
   def ssh_key
     @server = Server.find(params[:id])
+    @ssh_key = SSHKey.new(@server.rsa_key_private, comment: "Intercity Dokku")
+  end
+
+  def test
+    @server = Server.find(params[:id])
+    begin
+      output = SshExecution.new(@server).execute(command: "sudo ls")
+      @connected = true
+    rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
+      Errno::ECONNREFUSED
+      @connected = false
+    end
   end
 
   private
