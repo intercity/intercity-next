@@ -1,6 +1,6 @@
 class ServersController < ApplicationController
   def index
-    @servers = Server.all
+    @servers = Server.all.order(created_at: :asc)
   end
 
   def new
@@ -26,6 +26,7 @@ class ServersController < ApplicationController
     @server = Server.find(params[:id])
     begin
       output = SshExecution.new(@server).execute(command: "sudo ls")
+      @server.update(connected: true)
       @connected = true
     rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
       Errno::ECONNREFUSED

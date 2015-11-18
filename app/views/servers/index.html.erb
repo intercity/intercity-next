@@ -1,6 +1,19 @@
 <h1>Your servers</h1>
 
-<div class="servers">
-  <%= render @servers %>
+<div>
+  Below you find a list of all your servers. In order to use all the functionality you need to make sure we can connect to your server.<br/>
+  Before you run the test, please make sure you have added the public SSH key to your root user on the server.<br/>
+  You can check the connection by pressing <b>Check connection</b>.
 </div>
+<table class="table table-hover table-striped servers">
+  <thead>
+    <th>Name</th>
+    <th>IP</th>
+    <th></th>
+    <th></th>
+  </thead>
+  <tbody>
+    <%= render @servers %>
+  </tbody>
+</table>
 <%= link_to "New server", new_server_path %>

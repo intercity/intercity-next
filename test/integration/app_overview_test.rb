@@ -7,7 +7,7 @@ class AppOverviewTest < ActionDispatch::IntegrationTest
     server = servers(:example)
 
     within "#server_#{server.id}" do
-      click_link "View apps"
+      click_link "Apps"
     end
 
     within ".apps" do

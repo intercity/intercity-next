@@ -7,7 +7,7 @@ class CreateNewAppTest < ActionDispatch::IntegrationTest
     server = servers(:example)
 
     within "#server_#{server.id}" do
-      click_link "View apps"
+      click_link "Apps"
     end
 
     click_link "Add new app"

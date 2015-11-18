@@ -3,6 +3,7 @@ example:
   ip: "127.0.0.1"
   rsa_key_public: "<%= File.read("test/support/public_key.pem") %>"
   rsa_key_private: "<%= File.read("test/support/private_key.pem") %>"
+  connected: true
 
 
 local:

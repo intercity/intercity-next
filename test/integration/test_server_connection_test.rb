@@ -6,12 +6,12 @@ class TestServerConnectionTest < ActionDispatch::IntegrationTest
 
     visit root_path
 
-    server = servers(:example)
+    server = servers(:local)
 
     SshExecution.any_instance.stubs(:run_ssh).returns("works")
 
     within "#server_#{server.id}" do
-      click_link "Test server connection"
+      find("a[data-behaviour='test-server']").click
       assert page.has_content?("Connection successfull"), "Page should say the connection was successfull"
     end
   end
@@ -21,12 +21,12 @@ class TestServerConnectionTest < ActionDispatch::IntegrationTest
 
     visit root_path
 
-    server = servers(:example)
+    server = servers(:local)
 
     SshExecution.any_instance.stubs(:ssh_timeout).returns(1)
 
     within "#server_#{server.id}" do
-      click_link "Test server connection"
+      find("a[data-behaviour='test-server']").click
       assert page.has_content?("Could not connect"), "Page should say the connection was successfull"
     end
   end
