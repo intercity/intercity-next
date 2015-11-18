@@ -10,6 +10,7 @@ class AppsController < ApplicationController
   def create
     @app = App.new(server_params)
     if @app.save
+      CreateAppJob.perform_later(@app)
       redirect_to server_apps_path(server)
     else
       render :new

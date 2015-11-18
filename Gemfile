@@ -17,6 +17,7 @@ gem "nprogress-rails", "~> 0.1.6"
 gem "net-ssh"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
+gem 'sinatra', :require => nil
 
 group :development do
   gem "spring"

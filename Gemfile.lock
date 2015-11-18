@@ -161,6 +161,8 @@ GEM
     quiet_assets (1.1.0)
       railties (>= 3.1, < 5.0)
     rack (1.6.4)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (4.2.4)
@@ -219,6 +221,10 @@ GEM
       json
       redis (>= 3.0.6)
       redis-namespace (>= 1.3.1)
+    sinatra (1.4.6)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
     spring (1.4.0)
     sprockets (3.4.0)
       rack (> 1, < 3)
@@ -290,6 +296,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   shoulda
   sidekiq (~> 3.2.5)
+  sinatra
   spring
   sshkey (~> 1.5.1)
   timecop
