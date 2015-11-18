@@ -1,0 +1,71 @@
+AllCops:
+  Include:
+    - "Gemfile"
+  Exclude:
+    - "db/**/*"
+    - "config/**/*"
+    - "script/**/*"
+    - "test/**/*"
+    - "vendor/**/*"
+    - "bin/**/*"
+    - "**/Rakefile"
+    - "**/config.ru"
+  RunRailsCops: true
+  DisplayCopNames: true
+  StyleGuideCopsOnly: false
+Style/AndOr:
+  EnforcedStyle: always
+  Enabled: true
+Style/CommentAnnotation:
+  Keywords:
+    - TODO
+    - FIXME
+    - OPTIMIZE
+    - HACK
+    - REVIEW
+Style/DotPosition:
+  EnforcedStyle: trailing
+Style/For:
+  EnforcedStyle: each
+  SupportedStyles:
+    - for
+    - each
+  Enabled: true
+Style/IndentationWidth:
+  Width: 2
+Style/NonNilCheck:
+  IncludeSemanticChanges: true
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+  SupportedStyles:
+    - single_quotes
+    - double_quotes
+Style/TrailingBlankLines:
+  EnforcedStyle: final_newline
+  SupportedStyles:
+    - final_newline
+    - final_blank_line
+Metrics/LineLength:
+  Max: 110
+  AllowURI: true
+  URISchemes:
+    - http
+    - https
+Metrics/MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 40
+Metrics/AbcSize:
+  Max: 25
+Style/Next:
+  Enabled: false
+Lint/AssignmentInCondition:
+  Enabled: false
+Style/Documentation:
+  Description: Document classes and non-namespace modules.
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Rails/TimeZone:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: true
