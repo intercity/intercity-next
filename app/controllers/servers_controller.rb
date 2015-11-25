@@ -25,11 +25,11 @@ class ServersController < ApplicationController
   def test
     @server = Server.find(params[:id])
     begin
-      output = SshExecution.new(@server).execute(command: "sudo ls")
+      SshExecution.new(@server).execute(command: "sudo ls")
       @server.update(connected: true)
       @connected = true
     rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
-      Errno::ECONNREFUSED
+           Errno::ECONNREFUSED
       @connected = false
     end
   end

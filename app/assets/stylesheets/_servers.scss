@@ -1,0 +1,16 @@
+.servers {
+  @extend .row;
+
+  .server, .add-server {
+    @extend .col-md-3;
+    .panel {
+      min-height: 130px;
+    }
+  }
+
+  .add-server {
+    text-align: center;
+    line-height: 120px;
+    font-size: 20px;
+  }
+}

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151118141457) do
+ActiveRecord::Schema.define(version: 20151125090402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20151118141457) do
     t.text     "rsa_key_public"
     t.text     "rsa_key_private"
     t.boolean  "connected",       default: false
+    t.integer  "status",          default: 0
   end
 
   add_foreign_key "apps", "servers"

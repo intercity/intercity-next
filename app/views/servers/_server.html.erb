@@ -1,27 +1,12 @@
-<%= content_tag :tr, id: dom_id(server), class: "server" do %>
-  <td><%= server.name %></td>
-  <td><%= server.ip %></td>
-  <td>
-    <% unless server.connected? %>
-      <%= link_to "Show public SSH key", ssh_key_server_path(server), data: { role: "show-public-key" } %>
-      <%= link_to "#", data: { behaviour: "test-server", test_url: test_server_path(server) } do%>
-        <span data-server-status="not-checked" class="label label-default"><%= icon "warning" %> Check connection</span>
-      <% end %>
-      <span data-server-status="testing" class="label label-default hidden"><%= icon "circle-o-notch fa-spin" %> Testing</span>
-      <span data-server-status="connected" class="label label-success hidden">Connection successfull</span>
-      <span data-server-status="error" class="label label-danger hidden">Could not connect</span>
-    <% else %>
-      <span class="label label-success">Connection successfull</span>
-    <% end %>
-  </td>
-  <td>
-    <div class="btn-group <%= "hidden" unless server.connected? %>" data-role="server-actions">
-      <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        Action <span class="caret"></span>
-      </button>
-      <ul class="dropdown-menu">
-        <li><%= link_to "Apps", server_apps_path(server) %></li>
-      </ul>
+<%= content_tag :div, id: dom_id(server), class: "server" do %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= link_to server.name, server_path(server) %></h3>
     </div>
-  </td>
+    <div class="panel-body">
+      <p><strong>IP:</strong> <%= server.ip %></p>
+      <p><strong>Status:</strong>
+      <%= render "status", server: server %>
+    </div>
+  </div>
 <% end %>

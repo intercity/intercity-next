@@ -3,6 +3,8 @@ class Server < ActiveRecord::Base
 
   before_create :create_rsa_key
 
+  enum status: { setup: 0, up: 1, down: 2 }
+
   private
 
   def create_rsa_key

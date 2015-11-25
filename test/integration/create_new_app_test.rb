@@ -2,6 +2,7 @@ require 'test_helper'
 
 class CreateNewAppTest < ActionDispatch::IntegrationTest
   test "User should be able to create a new app on a given server" do
+    skip "We this will be enabled later on"
     visit root_path
 
     server = servers(:example)
