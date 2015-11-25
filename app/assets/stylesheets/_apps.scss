@@ -1,0 +1,29 @@
+.apps {
+  margin-top: 20px;
+  @extend .row;
+
+  .app {
+    @extend .col-md-4;
+    .panel {
+      min-height: 200px;
+      position: relative;
+      .panel-body {
+        margin-bottom: 20px;
+      }
+
+      .panel-footer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+      }
+    }
+  }
+
+  .add-app {
+    @extend .col-md-4;
+    min-height: 100px;
+    text-align: center;
+    line-height: 100px;
+    font-size: 20px;
+  }
+}

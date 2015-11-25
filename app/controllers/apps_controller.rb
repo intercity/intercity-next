@@ -17,6 +17,15 @@ class AppsController < ApplicationController
     end
   end
 
+  def destroy
+    @app = App.find(params[:id])
+    # TODO: Find a way to actually remove this app on the server
+    # For now, lets just remove it from the dashboard
+    # RemoveAppJob.perform_later(server, @app.name)
+    @app.destroy
+    redirect_to server_apps_path(server)
+  end
+
   private
 
   def server
@@ -24,7 +33,7 @@ class AppsController < ApplicationController
   end
 
   def server_params
-    params.require(:app).permit(:name).tap do |p|
+    params.require(:app).permit(:name, :domain).tap do |p|
       p[:server] = server
     end
   end

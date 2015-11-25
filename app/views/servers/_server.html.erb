@@ -5,8 +5,11 @@
     </div>
     <div class="panel-body">
       <p><strong>IP:</strong> <%= server.ip %></p>
+      <p><strong>Apps:</strong> <%= server.apps.count %></p>
       <p><strong>Status:</strong>
       <%= render "status", server: server %>
+      <%= link_to icon("trash"), server_path(server), method: :delete,
+        data: { confirm: "You're about to remove this server, are you REALLY sure?" }, class: "pull-right" %>
     </div>
   </div>
 <% end %>

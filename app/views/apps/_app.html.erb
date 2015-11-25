@@ -1,3 +1,19 @@
 <%= content_tag :div, id: dom_id(app), class: "app" do %>
-  <%= app.name %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= app.name %></h3>
+    </div>
+    <div class="panel-body">
+      <p><strong>Domain:</strong> <%= app.domain %></p>
+      <p><strong>Deploy URL:</strong> dokku@<%= app.server.ip %>:<%= app.clean_name %></p>
+      <p><strong>Services:</strong>
+      <span class="label label-primary">Postgresql</span>
+      <span class="label label-primary">Persisted Storage</span>
+      <span class="label label-primary">Redis</span>
+    </div>
+    <div class="panel-footer">
+      <%= link_to "Remove app", server_app_path(app.server, app),
+        data: { confirm: "Are you REALLY sure?" }, class: "text-danger", method: :delete %>
+    </div>
+  </div>
 <% end %>

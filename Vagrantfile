@@ -5,6 +5,7 @@ BOX_NAME = ENV["BOX_NAME"] || "bento/ubuntu-14.04"
 BOX_MEMORY = ENV["BOX_MEMORY"] || "1024"
 DOKKU_DOMAIN = ENV["DOKKU_DOMAIN"] || "dokku.me"
 DOKKU_IP = ENV["DOKKU_IP"] || "10.0.0.3"
+CLEAN_IP = ENV["DOKKU_IP"] || "10.0.0.4"
 FORWARDED_PORT = (ENV["FORWARDED_PORT"] || '8080').to_i
 PUBLIC_KEY_PATH = "#{Dir.home}/.ssh/id_rsa.pub"
 
@@ -22,15 +23,13 @@ Vagrant::configure("2") do |config|
   end
 
   config.vm.define "dokku", primary: true do |vm|
-    vm.vm.synced_folder File.dirname(__FILE__), "/root/dokku"
     vm.vm.network :forwarded_port, guest: 80, host: FORWARDED_PORT
-    vm.vm.hostname = "#{DOKKU_DOMAIN}"
     vm.vm.network :private_network, ip: DOKKU_IP
     vm.vm.provision :shell, inline: "wget https://raw.githubusercontent.com/progrium/dokku/v0.4.4/bootstrap.sh && sudo DOKKU_TAG=v0.4.4 bash bootstrap.sh"
   end
 
-  if Pathname.new(PUBLIC_KEY_PATH).exist?
-    config.vm.provision :file, source: PUBLIC_KEY_PATH, destination: '/tmp/id_rsa.pub'
-    config.vm.provision :shell, :inline => "rm -f /root/.ssh/authorized_keys && mkdir -p /root/.ssh && sudo cp /tmp/id_rsa.pub /root/.ssh/authorized_keys"
+  config.vm.define "clean" do |vm|
+    vm.vm.hostname = "clean.#{DOKKU_DOMAIN}"
+    vm.vm.network :private_network, ip: CLEAN_IP
   end
 end

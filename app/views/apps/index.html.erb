@@ -1,5 +1,13 @@
-<h1>Apps for <%= @server.name %></h1>
+<h1>Server: <%= @server.name %></h1>
+<ul class="nav nav-tabs">
+  <li role="presentation" class="active"><a href="#">Apps</a></li>
+  <li class="disabled"><a href="#">Services</a></li>
+</ul>
 <div class="apps">
-  <%= render @server.apps %>
+  <%= render @server.apps.order(created_at: :desc) %>
+  <div class="add-app">
+    <div class="panel panel-default">
+      <%= link_to "#{icon "plus"} New app".html_safe, new_server_app_path(@server) %>
+    </div>
+  </div>
 </div>
-<%= link_to "Add new app", new_server_app_path(@server)  %>

@@ -1,4 +1,7 @@
 <% if @server.setup? %>
+    <% if @error.present? %>
+      $("[data-server-status~=checking]").find(".hint").html("<%= @error %>").removeClass("hidden");
+    <% end %>
     new ServerPoller("<%= test_server_path(@server) %>").poll();
 <% elsif @server.up? %>
   $("[data-server-status~=checking]").addClass("hidden");

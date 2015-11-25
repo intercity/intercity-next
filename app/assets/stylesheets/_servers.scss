@@ -4,13 +4,13 @@
   .server, .add-server {
     @extend .col-md-3;
     .panel {
-      min-height: 130px;
+      min-height: 160px;
     }
   }
 
   .add-server {
     text-align: center;
-    line-height: 120px;
+    line-height: 150px;
     font-size: 20px;
   }
 }
