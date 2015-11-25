@@ -6,6 +6,7 @@
 //= require nprogress
 //= require nprogress-turbolinks
 //= require server_test
+//= require server_poller
 //= require turbolinks
 
 $(function() {

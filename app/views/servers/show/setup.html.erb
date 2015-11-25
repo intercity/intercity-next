@@ -1,0 +1,17 @@
+<h1>Setup for <%= @server.name %></h1>
+<p>You need to add the following public SSH key to the "root" user of the server</p>
+<pre><%= @ssh_key %></pre>
+<div class="well text-center <%= "hidden" if @server.up? %>" data-server-status="checking">
+  <i class="fa fa-circle-o-notch fa-spin"></i> Testing for connection
+</div>
+<div class="well text-center <%= "hidden" unless @server.up? %>" data-server-status="up">
+  <p>Server is up, Docker is installed and we can connect!</p>
+  <%= link_to "Add your first app", server_path(@server), class: "btn btn-primary" %>
+</div>
+
+<script>
+  <% if @server.setup? %>
+    var poller = new ServerPoller("<%= test_server_path(@server) %>");
+    poller.poll();
+  <% end %>
+</script>

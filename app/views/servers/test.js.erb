@@ -1,12 +1,6 @@
-<% if @connected %>
-  $("#server_<%= @server.id %>").find("[data-server-status~=error]").addClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-server-status~=connected]").removeClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-role~=show-public-key]").addClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-server-status~=testing]").addClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-role~=server-actions]").removeClass("hidden")
-<% else %>
-  $("#server_<%= @server.id %>").find("[data-server-status~=error]").removeClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-server-status~=connected]").addClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-server-status~=testing]").addClass("hidden")
-  $("#server_<%= @server.id %>").find("[data-behaviour~=test-server]").removeClass("hidden")
+<% if @server.setup? %>
+    new ServerPoller("<%= test_server_path(@server) %>").poll();
+<% elsif @server.up? %>
+  $("[data-server-status~=checking]").addClass("hidden");
+  $("[data-server-status~=up]").removeClass("hidden");
 <% end %>
