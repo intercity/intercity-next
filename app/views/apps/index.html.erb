@@ -1,8 +1,4 @@
-<h1>Server: <%= @server.name %></h1>
-<ul class="nav nav-tabs">
-  <li role="presentation" class="active"><a href="#">Apps</a></li>
-  <li class="disabled"><a href="#">Services</a></li>
-</ul>
+<%= render "servers/heading", server: @server, tab: "apps" %>
 <div class="apps">
   <%= render @server.apps.order(created_at: :desc) %>
   <div class="add-app">

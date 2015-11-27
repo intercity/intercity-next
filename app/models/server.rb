@@ -7,6 +7,10 @@ class Server < ActiveRecord::Base
 
   enum status: { setup: 0, up: 1, down: 2 }
 
+  def has_service?(service)
+    services.include?(service)
+  end
+
   private
 
   def create_rsa_key

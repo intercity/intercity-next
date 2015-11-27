@@ -1,8 +1,4 @@
-<h1>Server: <%= @server.name %></h1>
-<ul class="nav nav-tabs">
-  <li role="presentation"><a href="#">Apps</a></li>
-  <li class="active"><a href="#">Services</a></li>
-</ul>
+<%= render "servers/heading", server: @server, tab: "services" %>
 <div class="services">
   <%= render @available_services, server: @server %>
 </div>

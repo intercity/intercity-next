@@ -1,0 +1,21 @@
+.services {
+  margin-top: 20px;
+  @extend .row;
+
+  .service {
+    @extend .col-md-3;
+    .panel {
+      min-height: 230px;
+      position: relative;
+      .panel-body {
+        text-align: center;
+      }
+
+      .panel-footer {
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+      }
+    }
+  }
+}
