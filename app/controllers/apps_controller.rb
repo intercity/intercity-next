@@ -21,7 +21,7 @@ class AppsController < ApplicationController
     @app = App.find(params[:id])
     # TODO: Find a way to actually remove this app on the server
     # For now, lets just remove it from the dashboard
-    # RemoveAppJob.perform_later(server, @app.name)
+    RemoveAppJob.perform_later(server, @app.name)
     @app.destroy
     redirect_to server_apps_path(server)
   end
