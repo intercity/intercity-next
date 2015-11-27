@@ -1,0 +1,8 @@
+<%= content_tag :div, id: dom_id(service), class: "service" do %>
+  <%= service.name %><br/>
+  <% if server.services.include?(service) %>
+    <span class="label label-success">Installed</span>
+  <% else %>
+    <%= link_to "Install", server_service_path(server, service), method: :post %>
+  <% end %>
+<% end %>

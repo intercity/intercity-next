@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+redis_example:
+  service: redis
+  server: example
+
+postgres_example:
+  service: postgres
+  server: example

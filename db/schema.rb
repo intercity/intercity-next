@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151125142947) do
+ActiveRecord::Schema.define(version: 20151127105338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_services", force: :cascade do |t|
+    t.integer  "service_id"
+    t.integer  "server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "active_services", ["server_id"], name: "index_active_services_on_server_id", using: :btree
+  add_index "active_services", ["service_id"], name: "index_active_services_on_service_id", using: :btree
 
   create_table "apps", force: :cascade do |t|
     t.integer  "server_id"
@@ -38,5 +48,16 @@ ActiveRecord::Schema.define(version: 20151125142947) do
     t.integer  "status",          default: 0
   end
 
+  create_table "services", force: :cascade do |t|
+    t.string   "name"
+    t.string   "git_url"
+    t.boolean  "active",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.json     "commands"
+  end
+
+  add_foreign_key "active_services", "servers"
+  add_foreign_key "active_services", "services"
   add_foreign_key "apps", "servers"
 end

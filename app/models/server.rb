@@ -1,5 +1,7 @@
 class Server < ActiveRecord::Base
   has_many :apps, dependent: :destroy
+  has_many :active_services
+  has_many :services, through: :active_services
 
   before_create :create_rsa_key
 

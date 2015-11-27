@@ -8,5 +8,8 @@ Rails.application.routes.draw do
     get :ssh_key, on: :member
     get :test, on: :member
     resources :apps, only: [:index, :new, :create, :destroy]
+    resources :services, only: [:index] do
+      post :create, on: :member
+    end
   end
 end
