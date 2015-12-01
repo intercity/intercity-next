@@ -3,5 +3,6 @@ class AddServiceToServerJob < ActiveJob::Base
 
   def perform(server, service)
     SshExecution.new(server).execute(command: service.commands["install"])
+    server.service(service).update(status: "installed")
   end
 end

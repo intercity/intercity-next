@@ -7,6 +7,15 @@
     .panel {
       min-height: 230px;
       position: relative;
+      &.service-new {
+        @extend .panel-default;
+      }
+      &.service-installing {
+        @extend .panel-warning;
+      }
+      &.service-installed {
+        @extend .panel-success;
+      }
       .panel-body {
         text-align: center;
       }

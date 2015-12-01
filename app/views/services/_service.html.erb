@@ -1,15 +1,25 @@
 <%= content_tag :div, id: dom_id(service), class: "service" do %>
-  <div class="panel panel-<%= server.has_service?(service) ? "success" : "default" %>">
+<div class="panel <%= "service-#{server.service_status(service)}" %>">
     <div class="panel-heading">
       <h3 class="panel-title"><%= service.name %></h3>
     </div>
     <div class="panel-body">
         <%= image_tag "services/#{service.name.downcase}.png", width: 100, height: 100 %>
-        <% if server.services.include?(service) %>
-          <p><span class="label label-success">Installed</span></p>
-        <% else %>
-          <p><%= link_to "Install #{service.name}", server_service_path(server, service), method: :post, class: "btn btn-primary" %></p>
-        <% end %>
+        <p class="<%= "hidden" unless server.service_status(service) == "installed" %>" data-service-status="installed">
+          <span class="label label-success">Installed</span>
+        </p>
+        <p class="<%= "hidden" unless server.service_status(service) == "installing" %>" data-service-status="installing">
+          <span class="label label-warning">Installing</span>
+        </p>
+        <p class="<%= "hidden" unless server.service_status(service) == "new" %>" data-service-status="new">
+          <%= link_to "Install #{service.name}", server_service_path(server, service), method: :post, class: "btn btn-primary" %>
+        </p>
     </div>
   </div>
 <% end %>
+
+<script>
+<% if server.service_status(service) == "installing" %>
+  new ServerPoller("<%= status_server_service_path(server, service) %>").poll();
+<% end %>
+</script>

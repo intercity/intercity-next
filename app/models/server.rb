@@ -11,6 +11,18 @@ class Server < ActiveRecord::Base
     services.include?(service)
   end
 
+  def service(service)
+    active_services.find_by!(service: service)
+  end
+
+  def service_status(service)
+    if has_service?(service)
+      service(service).status
+    else
+      "new"
+    end
+  end
+
   private
 
   def create_rsa_key

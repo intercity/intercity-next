@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :apps, only: [:index, :new, :create, :destroy]
     resources :services, only: [:index] do
       post :create, on: :member
+      get :status, on: :member
     end
   end
 end

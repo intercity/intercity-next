@@ -20,4 +20,25 @@ class ServerTest < ActiveSupport::TestCase
     server.services << redis
     assert server.has_service?(redis), "Server should have redis"
   end
+
+  test "#service(service) gets the given service type" do
+    server = servers(:example)
+    redis = services(:redis)
+    redis_example = active_services(:redis_example)
+
+    assert_equal redis_example, server.service(redis)
+  end
+
+  test "#service_status(service) returns a status code for the service" do
+    server = servers(:example).tap { |s| s.services.destroy_all }
+    redis = services(:redis)
+
+    assert_equal "new", server.service_status(redis)
+
+    server.services << redis
+    assert_equal "installing", server.service_status(redis)
+
+    ActiveService.find_by(server: server, service: redis).update(status: "installed")
+    assert_equal "installed", server.service_status(redis)
+  end
 end
