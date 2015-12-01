@@ -9,7 +9,8 @@
           <span class="label label-success">Installed</span>
         </p>
         <p class="<%= "hidden" unless server.service_status(service) == "installing" %>" data-service-status="installing">
-          <span class="label label-warning">Installing</span>
+          <span class="label label-warning">Installing</span><br/>
+          <i class="fa fa-circle-o-notch fa-spin warning-text"></i>
         </p>
         <p class="<%= "hidden" unless server.service_status(service) == "new" %>" data-service-status="new">
           <%= link_to "Install #{service.name}", server_service_path(server, service), method: :post, class: "btn btn-primary" %>
