@@ -1,0 +1,9 @@
+admin:
+  name: Admin
+  key: "<%= File.read("test/support/id_rsa.pub") %>"
+  server: example
+
+user:
+  name: user
+  key: "<%= File.read("test/support/id_rsa.pub") %>"
+  server: example

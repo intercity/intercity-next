@@ -16,5 +16,6 @@ Rails.application.routes.draw do
       post :create, on: :member
       get :status, on: :member
     end
+    resources :deploy_keys, only: [:index, :new, :create]
   end
 end

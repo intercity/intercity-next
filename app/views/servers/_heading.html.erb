@@ -4,5 +4,7 @@
   <ul class="nav nav-tabs">
     <li class="<%= "active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %>
     <li class="<%= "active" if tab == "services" %>"><%= link_to "Services", server_services_path(server) %>
+    <li class="<%= "active" if tab == "deploy_keys" %>"><%= link_to "Deploy keys", server_deploy_keys_path(server) %>
   </ul>
 </div>
+<%= render "flashes" -%>

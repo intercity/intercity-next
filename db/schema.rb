@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151201153416) do
+ActiveRecord::Schema.define(version: 20151204141724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,16 @@ ActiveRecord::Schema.define(version: 20151201153416) do
   end
 
   add_index "apps", ["server_id"], name: "index_apps_on_server_id", using: :btree
+
+  create_table "deploy_keys", force: :cascade do |t|
+    t.string   "name"
+    t.text     "key"
+    t.integer  "server_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "deploy_keys", ["server_id"], name: "index_deploy_keys_on_server_id", using: :btree
 
   create_table "linked_services", force: :cascade do |t|
     t.integer  "app_id"
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 20151201153416) do
   add_foreign_key "active_services", "servers"
   add_foreign_key "active_services", "services"
   add_foreign_key "apps", "servers"
+  add_foreign_key "deploy_keys", "servers"
   add_foreign_key "linked_services", "apps"
   add_foreign_key "linked_services", "services"
 end
