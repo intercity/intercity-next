@@ -1,6 +1,8 @@
-<%= link_to "Server list", root_path %>
-<h1>Server: <%= server.name %></h1>
-<ul class="nav nav-tabs">
-  <li class="<%= "active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %>
-  <li class="<%= "active" if tab == "services" %>"><%= link_to "Services", server_services_path(server) %>
-</ul>
+<div class="heading">
+  <%= link_to "Server list", root_path %>
+  <h1>Server: <%= server.name %></h1>
+  <ul class="nav nav-tabs">
+    <li class="<%= "active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %>
+    <li class="<%= "active" if tab == "services" %>"><%= link_to "Services", server_services_path(server) %>
+  </ul>
+</div>

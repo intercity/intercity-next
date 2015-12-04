@@ -1,0 +1,16 @@
+<%= content_tag :div, id: dom_id(service), class: "service" do %>
+  <div class="panel <%= "service-#{app.has_service?(service) ? "installed" : "new"}" %>">
+    <div class="panel-heading">
+      <h3 class="panel-title"><%= service.name %></h3>
+    </div>
+    <div class="panel-body">
+      <%= image_tag "services/#{service.name.downcase}.png", width: 100, height: 100 %>
+      <% if app.has_service?(service) %>
+        <p><span class="label label-success">Linked</span></p>
+      <% else %>
+        <p><%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
+          method: :post, class: "btn btn-primary" %></p>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="heading">
+  <h1><%= app.name %> running on <%= app.server.name %></h1>
+  <ul class="nav nav-tabs">
+    <li>
+      <%= link_to "#{icon("chevron-left")} Back to server".html_safe,
+        server_apps_path(app.server) %></li>
+    <li class="<%= "active" if tab == "info" %>">
+      <%= link_to "Info", server_apps_path(app.server) %></li>
+    <%# <li class="<%= "active" if tab == "Domains" %1>"> %>
+    <%#   <%= link_to "Domains", server_services_path(app.server) %1></li> %>
+    <li class="<%= "active" if tab == "services" %>">
+      <%= link_to "Linked services", server_app_services_path(app.server, app) %></li>
+    <%# <li class="<%= "active" if tab == "Environment variables" %1>"> %>
+    <%#   <%= link_to "Environment variables", server_services_path(app.server) %1></li> %>
+    <%# <li class="<%= "active" if tab == "Environment variables" %1>"> %>
+    <%#   <%= link_to "SSL", server_services_path(app.server) %1></li> %>
+  </ul>
+</div>

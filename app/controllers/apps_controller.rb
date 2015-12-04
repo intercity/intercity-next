@@ -17,10 +17,14 @@ class AppsController < ApplicationController
     end
   end
 
+  def show
+    @app = Server.find(params[:server_id]).apps.find(params[:id])
+
+  end
+
   def destroy
     @app = App.find(params[:id])
-    # TODO: Find a way to actually remove this app on the server
-    # For now, lets just remove it from the dashboard
+
     RemoveAppJob.perform_later(server, @app.name)
     @app.destroy
     redirect_to server_apps_path(server)

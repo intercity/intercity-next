@@ -1,7 +1,10 @@
 require 'test_helper'
 
 class AppTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  should belong_to :server
+  should have_many :linked_services
+  should have_many(:services).through(:linked_services)
+
+  should validate_presence_of :name
+  should validate_presence_of :domain
 end

@@ -8,4 +8,12 @@ class AppsControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "Show shuld be succesfull" do
+    app = apps(:example)
+
+    get :show, server_id: app.server, id: app
+
+    assert_response :success
+  end
 end

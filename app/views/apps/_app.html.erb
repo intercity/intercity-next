@@ -1,7 +1,7 @@
 <%= content_tag :div, id: dom_id(app), class: "app" do %>
   <div class="panel panel-default">
     <div class="panel-heading">
-      <h3 class="panel-title"><%= app.name %></h3>
+      <h3 class="panel-title"><%= link_to app.name, server_app_path(app.server, app) %></h3>
     </div>
     <div class="panel-body">
       <p><strong>Domain:</strong> <%= app.domain %></p>
