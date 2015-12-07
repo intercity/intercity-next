@@ -19,7 +19,7 @@
       </tr>
       <tr>
         <th>Active services</th>
-        <td><%= @app.name %></td>
+        <td><%= @app.services.map(&:name).join(", ").presence || "None" %></td>
         <td><%= link_to "Change", "#" %></td>
       </tr>
       <%# <tr> %>

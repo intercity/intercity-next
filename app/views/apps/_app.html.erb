@@ -7,9 +7,9 @@
       <p><strong>Domain:</strong> <%= app.domain %></p>
       <p><strong>Deploy URL:</strong> dokku@<%= app.server.ip %>:<%= app.clean_name %></p>
       <p><strong>Services:</strong>
-      <span class="label label-primary">Postgresql</span>
-      <span class="label label-primary">Persisted Storage</span>
-      <span class="label label-primary">Redis</span>
+      <% app.services.each do |service| %>
+        <span class="label label-primary"><%= service.name %></span>
+      <% end %>
     </div>
     <div class="panel-footer">
       <%= link_to "Remove app", server_app_path(app.server, app),

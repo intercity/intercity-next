@@ -5,7 +5,7 @@
       <%= link_to "#{icon("chevron-left")} Back to server".html_safe,
         server_apps_path(app.server) %></li>
     <li class="<%= "active" if tab == "info" %>">
-      <%= link_to "Info", server_apps_path(app.server) %></li>
+      <%= link_to "Info", server_app_path(app.server, app) %></li>
     <%# <li class="<%= "active" if tab == "Domains" %1>"> %>
     <%#   <%= link_to "Domains", server_services_path(app.server) %1></li> %>
     <li class="<%= "active" if tab == "services" %>">
