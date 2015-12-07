@@ -1,0 +1,4 @@
+$("tr#<%= dom_id(@env_var) %>").remove()
+<% unless @app.env_vars.any? %>
+  $('body').find("[data-role~=empty-table]").removeClass("hidden")
+<% end %>

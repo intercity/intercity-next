@@ -29,6 +29,7 @@ group :development do
   gem "passenger"
   gem "quiet_assets"
   gem "letter_opener"
+  gem "meta_request"
 end
 
 group :development, :test do

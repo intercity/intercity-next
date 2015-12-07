@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+username:
+  key: username
+  value: owner
+  app: example
+
+service_password:
+  key: service_password
+  value: super_secret
+  app: example

@@ -1,0 +1,7 @@
+<%= content_tag :tr, id: dom_id(env_var), class: "env-var" do %>
+  <td><%= env_var.key %></td>
+  <td><%= env_var.value %></td>
+  <td class="actions"><%= link_to "delete",
+    server_app_env_var_path(env_var.app.server, env_var.app, env_var),
+    remote: true, method: :delete %></td>
+<% end %>

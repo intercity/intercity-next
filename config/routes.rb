@@ -11,6 +11,7 @@ Rails.application.routes.draw do
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
       end
+      resources :env_vars, only: [:index, :create, :destroy]
     end
     resources :services, only: [:index] do
       post :create, on: :member

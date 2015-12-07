@@ -1,0 +1,7 @@
+<% if @env_var.persisted? %>
+  $('body').find('.env-vars tbody').append("<%= j render "env_var", env_var: @env_var %>")
+  $('body').find("[data-role~=form] form").trigger("reset")
+  $('body').find("[data-role~=empty-table]").addClass("hidden")
+<% else %>
+  $('body').find("[data-role~=form]").html("<%= j render "form" %>");
+<% end %>
