@@ -2,7 +2,7 @@ class DeployKeysController < ApplicationController
   def index
     @server = Server.find(params[:server_id])
     @deploy_keys = @server.deploy_keys
-    @deploy_key = @server.deploy_keys.new
+    @deploy_key = DeployKey.new
   end
 
   def create
@@ -16,6 +16,14 @@ class DeployKeysController < ApplicationController
       flash[:error] = "Not all fields are filled in."
       redirect_to server_deploy_keys_path(@server)
     end
+  end
+
+  def destroy
+    @server = Server.find(params[:server_id])
+    deploy_key = @server.deploy_keys.find(params[:id])
+    DeleteDeployKeyJob.perform_later(@server, deploy_key.name)
+    deploy_key.destroy
+    redirect_to server_deploy_keys_path(@server)
   end
 
   private
