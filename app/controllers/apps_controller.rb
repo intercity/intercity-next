@@ -19,7 +19,6 @@ class AppsController < ApplicationController
 
   def show
     @app = Server.find(params[:server_id]).apps.find(params[:id])
-
   end
 
   def destroy

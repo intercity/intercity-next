@@ -6,3 +6,6 @@ rvm:
   - 2.2.3
 before_script:
   - bundle exec rake db:test:prepare
+script:
+  - bundle exec rubocop
+  - bundle exec rake

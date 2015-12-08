@@ -8,7 +8,7 @@ class Server < ActiveRecord::Base
 
   enum status: { setup: 0, up: 1, down: 2 }
 
-  def has_service?(service)
+  def service?(service)
     services.include?(service)
   end
 
@@ -17,7 +17,7 @@ class Server < ActiveRecord::Base
   end
 
   def service_status(service)
-    if has_service?(service)
+    if service?(service)
       service(service).status
     else
       "new"

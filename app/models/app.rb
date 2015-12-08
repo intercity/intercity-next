@@ -11,7 +11,7 @@ class App < ActiveRecord::Base
     name.parameterize
   end
 
-  def has_service?(service)
+  def service?(service)
     services.include?(service)
   end
 end

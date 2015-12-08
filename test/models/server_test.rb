@@ -12,14 +12,14 @@ class ServerTest < ActiveSupport::TestCase
     refute_nil server.rsa_key_private
   end
 
-  test "#has_service?(service) tells if a server has a specific service installed" do
+  test "#service?(service) tells if a server has a specific service installed" do
     server = servers(:example).tap { |s| s.services.destroy_all }
     redis = services(:redis)
 
-    refute server.has_service?(redis), "Server should not have redis"
+    refute server.service?(redis), "Server should not have redis"
 
     server.services << redis
-    assert server.has_service?(redis), "Server should have redis"
+    assert server.service?(redis), "Server should have redis"
   end
 
   test "#service(service) gets the given service type" do
