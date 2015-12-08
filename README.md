@@ -1,5 +1,7 @@
 # Intercity Next
 
+[![Build Status](https://travis-ci.org/intercity/intercity-next.svg)](https://travis-ci.org/intercity/intercity-next)
+
 ## Warning
 
 This is still in very early development. Please do **not** use in production.
