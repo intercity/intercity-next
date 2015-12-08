@@ -30,11 +30,6 @@ class ServersController < ApplicationController
     end
   end
 
-  def ssh_key
-    @server = Server.find(params[:id])
-    @ssh_key = SSHKey.new(@server.rsa_key_private, comment: "Intercity Dokku")
-  end
-
   def test
     @server = Server.find(params[:id])
     begin

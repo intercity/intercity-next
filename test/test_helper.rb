@@ -9,7 +9,6 @@ require "mocha/mini_test"
 require "minitest/rails/capybara"
 require "minitest/reporters"
 require "database_cleaner"
-require "capybara/poltergeist"
 
 Sidekiq::Testing.fake!
 Minitest::Reporters.use!(
@@ -23,8 +22,15 @@ DatabaseCleaner.strategy = :transaction
 Dir[Rails.root.join("test/support/**/*.rb")].each { |f| require f }
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
+
+  def setup
+    DatabaseCleaner.start
+  end
+
+  def teardown
+    DatabaseCleaner.clean
+  end
 
   def self.check_for_valid_fixtures(name)
     Object.const_get(name.to_s.camelize).all.each do |obj|
@@ -36,37 +42,17 @@ end
 class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, js_errors: false, window_size: [1920, 1024])
-  end
-  Capybara.javascript_driver = :poltergeist
+  use_transactional_fixtures = false
+
+  Capybara.javascript_driver = :webkit
 
   setup do
     DatabaseCleaner.strategy = :truncation
-    DatabaseCleaner.start
   end
 
   teardown do
-    DatabaseCleaner.clean
     Capybara.reset_sessions!
     Capybara.use_default_driver
-  end
-
-  def login_as(user)
-    visit login_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "secret"
-    click_button "Sign in"
-  end
-
-  def wait_for_ajax
-    Timeout.timeout(Capybara.default_max_wait_time) do
-      loop until finished_all_ajax_requests?
-    end
-  end
-
-  def finished_all_ajax_requests?
-    page.evaluate_script('jQuery.active').zero?
   end
 
   def use_javascript

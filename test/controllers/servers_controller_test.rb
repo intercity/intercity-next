@@ -10,9 +10,4 @@ class ServersControllerTest < ActionController::TestCase
     get :new
     assert_response :success
   end
-
-  test "GET ssh_key should be successfull" do
-    get :ssh_key, id: servers(:example)
-    assert_response :success
-  end
 end

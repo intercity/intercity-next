@@ -5,7 +5,6 @@ Rails.application.routes.draw do
   root to: "servers#index"
 
   resources :servers, only: [:new, :create, :show, :destroy] do
-    get :ssh_key, on: :member
     get :test, on: :member
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
       resources :services, controller: "app_services", only: :index do

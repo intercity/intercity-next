@@ -3,7 +3,8 @@
   <%= render @server.apps.order(created_at: :desc) %>
   <div class="add-app">
     <div class="panel panel-default">
-      <%= link_to "#{icon "plus"} New app".html_safe, new_server_app_path(@server) %>
+      <%= link_to "#{icon "plus"} New app".html_safe, new_server_app_path(@server),
+        data: { behaviour: "new-app" }%>
     </div>
   </div>
 </div>

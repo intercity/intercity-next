@@ -2,13 +2,12 @@ require 'test_helper'
 
 class AppOverviewTest < ActionDispatch::IntegrationTest
   test "User should see a list of all the apps for a given server" do
-    skip "Disabled for now"
     visit root_path
 
     server = servers(:example)
 
     within "#server_#{server.id}" do
-      click_link "Apps"
+      click_link "#{server.name}"
     end
 
     within ".apps" do

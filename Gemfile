@@ -45,7 +45,7 @@ group :test do
   gem "shoulda"
   gem "mocha"
   gem "launchy"
-  gem "poltergeist"
+  gem "capybara-webkit"
   gem "database_cleaner"
 end
 
