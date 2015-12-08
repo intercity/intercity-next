@@ -1,6 +1,6 @@
 development: &default
   adapter: postgresql
-  database: dokku-ui_development
+  database: intercity-next_development
   encoding: utf8
   host: localhost
   min_messages: warning
@@ -9,4 +9,4 @@ development: &default
 
 test:
   <<: *default
-  database: dokku-ui_test
+  database: intercity-next_test
