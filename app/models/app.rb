@@ -4,8 +4,9 @@ class App < ActiveRecord::Base
   has_many :linked_services, dependent: :destroy
   has_many :services, through: :linked_services
   has_many :env_vars
+  has_many :domains
 
-  validates :name, :domain, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: true
 
   def clean_name
     name.parameterize

@@ -8,7 +8,7 @@ class AppsController < ApplicationController
   end
 
   def create
-    @app = App.new(server_params)
+    @app = App.new(app_params)
     if @app.save
       CreateAppJob.perform_later(@app)
       redirect_to server_apps_path(server)
@@ -35,8 +35,8 @@ class AppsController < ApplicationController
     @server ||= Server.find(params[:server_id])
   end
 
-  def server_params
-    params.require(:app).permit(:name, :domain).tap do |p|
+  def app_params
+    params.require(:app).permit(:name).tap do |p|
       p[:server] = server
     end
   end

@@ -1,0 +1,9 @@
+<div class="panel panel-default">
+  <div class="panel-heading"><h3 class="panel-title">Add a new domain</h3></div>
+  <div class="panel-body">
+    <%= bootstrap_form_for [@app.server, @app, @domain], remote: true do |f| %>
+      <%= f.text_field :name, placeholder: "Domain name", hide_label: true %>
+      <%= f.submit "Add", class: "btn btn-primary btn-block" %>
+    <% end %>
+  </div>
+</div>

@@ -5,7 +5,6 @@ class CreateAppJob < ActiveJob::Base
     @app = app
     app.update(busy: true)
     SshExecution.new(app.server).execute(command: "dokku apps:create #{app_name}")
-    SshExecution.new(app.server).execute(command: "dokku domains:add #{app_name} #{app.domain}")
     app.update(busy: false)
   end
 

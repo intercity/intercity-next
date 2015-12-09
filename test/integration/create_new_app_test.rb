@@ -14,7 +14,6 @@ class CreateNewAppTest < ActionDispatch::IntegrationTest
     find("a[data-behaviour~='new-app']").click
 
     fill_in "app[name]", with: "Example app test"
-    fill_in "app[domain]", with: "example.com"
 
     assert_difference "server.reload.apps.count" do
       click_button "Create app"

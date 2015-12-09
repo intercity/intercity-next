@@ -1,6 +1,5 @@
 <h1>Add new app to <%= @app.server.name %></h1>
 <%= bootstrap_form_for [@app.server, @app] do |f| %>
   <%= f.text_field :name %>
-  <%= f.text_field :domain %>
   <%= f.submit "Create app" %>
 <% end %>

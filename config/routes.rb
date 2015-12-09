@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         post :create, on: :member
       end
       resources :env_vars, only: [:index, :create, :destroy]
+      resources :domains, only: [:index, :create, :destroy]
     end
     resources :services, only: [:index] do
       post :create, on: :member
