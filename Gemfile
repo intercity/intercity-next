@@ -18,6 +18,7 @@ gem "net-ssh"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
 gem "sinatra", require: nil
+gem "sorcery", "~> 0.9.1"
 
 group :development do
   gem "spring"

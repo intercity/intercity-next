@@ -1,3 +1,5 @@
+User.create!(email: "user@example.com", password: "12345678")
+
 Service.create!(name: "Redis", active: true,
                 commands: { install: "sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis",
                             create: "dokku redis:create %app_name%_redis",

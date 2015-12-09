@@ -2,6 +2,7 @@ require 'test_helper'
 
 class AppOverviewTest < ActionDispatch::IntegrationTest
   test "User should see a list of all the apps for a given server" do
+    login_as users(:john)
     visit root_path
 
     server = servers(:example)

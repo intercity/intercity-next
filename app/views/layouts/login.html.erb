@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="ROBOTS" content="NOODP" />
+    <meta name="viewport" content="initial-scale=1" />
+    <title>Intercity</title>
+    <%= stylesheet_link_tag :application, media: "all" %>
+    <%= render "javascript" %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body class="login">
+    <div class="container">
+      <%= yield %>
+    </div>
+  </body>
+</html>

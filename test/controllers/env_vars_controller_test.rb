@@ -1,6 +1,10 @@
 require "test_helper"
 
 class EnvVarsControllerTest < ActionController::TestCase
+  setup do
+    login_user(users(:john))
+  end
+
   test "GET index should be successfull" do
     app = apps(:example)
 
