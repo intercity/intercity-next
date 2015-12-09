@@ -1,6 +1,7 @@
 # Intercity Next
 
 [![Build Status](https://semaphoreci.com/api/v1/projects/454e65b7-3f98-4c08-8ddb-7fea8ffa5227/628590/shields_badge.svg)](https://semaphoreci.com/jvanbaarsen/intercity-next)
+[![Code Climate](https://codeclimate.com/github/intercity/intercity-next/badges/gpa.svg)](https://codeclimate.com/github/intercity/intercity-next)
 
 ## Warning
 
