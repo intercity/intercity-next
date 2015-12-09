@@ -1,6 +1,10 @@
 require "test_helper"
 
 class DeployKeysControllerTest < ActionController::TestCase
+  setup do
+    login_user(users(:john))
+  end
+
   test "GET index should be succesfull" do
     server = servers(:example)
 

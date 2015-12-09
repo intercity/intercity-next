@@ -42,7 +42,12 @@ class ActiveSupport::TestCase
   end
 end
 
+class ActionController::TestCase
+  include Sorcery::TestHelpers::Rails::Controller
+end
+
 class ActionDispatch::IntegrationTest
+  include Sorcery::TestHelpers::Rails::Integration
   include Capybara::DSL
 
   use_transactional_fixtures = false
@@ -56,6 +61,13 @@ class ActionDispatch::IntegrationTest
   teardown do
     Capybara.reset_sessions!
     Capybara.use_default_driver
+  end
+
+  def login_as(user)
+    visit login_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: "secret"
+    click_button "Login"
   end
 
   def use_javascript

@@ -1,7 +1,12 @@
 require "test_helper"
 
 class AppsControllerTest < ActionController::TestCase
+  setup do
+    login_user(users(:john))
+  end
+
   test "index should be succesfull" do
+
     server = servers(:example)
 
     get :index, server_id: server
