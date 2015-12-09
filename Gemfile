@@ -47,6 +47,7 @@ group :test do
   gem "launchy"
   gem "capybara-webkit"
   gem "database_cleaner"
+  gem "codeclimate-test-reporter", require: nil
 end
 
 group :staging, :production do
