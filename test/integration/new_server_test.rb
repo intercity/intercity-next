@@ -13,6 +13,6 @@ class NewServerTest < ActionDispatch::IntegrationTest
       click_button "Create server"
     end
 
-    assert_equal root_path, current_path
+    assert_equal server_path(Server.last), current_path
   end
 end

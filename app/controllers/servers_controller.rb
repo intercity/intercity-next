@@ -24,7 +24,7 @@ class ServersController < ApplicationController
     @server = Server.new(server_params)
     if @server.save
       flash[:success] = "Your new server is added to your dashboard"
-      redirect_to root_path
+      redirect_to server_path(@server)
     else
       render :new
     end
