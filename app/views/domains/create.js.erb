@@ -1,0 +1,7 @@
+<% if @domain.persisted? %>
+  $('body').find('.domains tbody').append("<%= j render "domain", domain: @domain %>")
+  $('body').find("[data-role~=form] form").trigger("reset")
+  $('body').find("[data-role~=empty-table]").addClass("hidden")
+<% else %>
+  $('body').find("[data-role~=form]").html("<%= j render "form" %>");
+<% end %>

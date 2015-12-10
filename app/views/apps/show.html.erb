@@ -13,14 +13,14 @@
         <td></td>
       </tr>
       <tr>
-        <th>Domain</th>
-        <td><%= @app.domain %></td>
-        <td><%# link_to "Change", "#" %></td>
+        <th>Domain(s)</th>
+        <td><%= @app.domains.pluck(:name).join(", ").presence || "-" %></td>
+        <td><%= link_to "Change", server_app_domains_path(@app.server, @app) %></td>
       </tr>
       <tr>
         <th>Active services</th>
         <td><%= @app.services.map(&:name).join(", ").presence || "None" %></td>
-        <td><%= link_to "Change", "#" %></td>
+        <td><%= link_to "Change", server_app_services_path(@app.server, @app) %></td>
       </tr>
       <%# <tr> %>
       <%#   <th>SSL active</th> %>

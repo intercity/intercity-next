@@ -33,7 +33,6 @@ ActiveRecord::Schema.define(version: 20151209133744) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "busy",       default: false
-    t.string   "domain"
   end
 
   add_index "apps", ["server_id"], name: "index_apps_on_server_id", using: :btree
@@ -47,6 +46,13 @@ ActiveRecord::Schema.define(version: 20151209133744) do
   end
 
   add_index "deploy_keys", ["server_id"], name: "index_deploy_keys_on_server_id", using: :btree
+
+  create_table "domains", force: :cascade do |t|
+    t.integer "app_id"
+    t.string  "name"
+  end
+
+  add_index "domains", ["app_id"], name: "index_domains_on_app_id", using: :btree
 
   create_table "env_vars", force: :cascade do |t|
     t.string   "key"
@@ -101,6 +107,7 @@ ActiveRecord::Schema.define(version: 20151209133744) do
   add_foreign_key "active_services", "services"
   add_foreign_key "apps", "servers"
   add_foreign_key "deploy_keys", "servers"
+  add_foreign_key "domains", "apps"
   add_foreign_key "env_vars", "apps"
   add_foreign_key "linked_services", "apps"
   add_foreign_key "linked_services", "services"

@@ -1,0 +1,6 @@
+<%= content_tag :tr, id: dom_id(domain), class: "domain" do %>
+  <td><%= domain.name %></td>
+  <td class="actions"><%= link_to "delete",
+    server_app_domain_path(domain.app.server, domain.app, domain),
+    remote: true, method: :delete %></td>
+<% end %>
