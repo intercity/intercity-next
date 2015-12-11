@@ -4,9 +4,12 @@ Rails.application.routes.draw do
 
   root to: "servers#index"
 
+  get "welcome" => "onboarding#index", as: "welcome"
+  post "welcome" => "onboarding#create"
   get "login" => "sessions#new", as: "login"
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy", as: "logout"
+
 
   resources :servers, only: [:new, :create, :show, :destroy] do
     get :test, on: :member

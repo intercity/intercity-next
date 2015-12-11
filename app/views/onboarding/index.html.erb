@@ -1,0 +1,18 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Welcome to Intercity</h3>
+    </div>
+    <%= bootstrap_form_for @user, url: welcome_path do |f| %>
+      <div class="panel-body">
+        <p>Since this is the first time you start the app,
+        we ask you to create the first user account. After you have created your account, this page will be gone</p>
+          <%= f.text_field :email %>
+          <%= f.password_field :password %>
+      </div>
+      <div class="panel-footer">
+        <%= f.submit "Create first account", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
