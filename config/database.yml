@@ -10,3 +10,8 @@ development: &default
 test:
   <<: *default
   database: intercity-next_test
+
+production:
+  <<: *default
+  database: intercity
+  host: <%= ENV["DB_SOCKET"] %>
