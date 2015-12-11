@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  require 'sidekiq/web'
-  mount Sidekiq::Web => '/sidekiq'
+  require "sidekiq/web"
+  require "user_constraint"
+
+  mount Sidekiq::Web => "/sidekiq", constraints: UserConstraint.new
 
   root to: "servers#index"
 
