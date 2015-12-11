@@ -19,6 +19,7 @@ gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
 gem "sinatra", require: nil
 gem "sorcery", "~> 0.9.1"
+gem "puma", "~> 2.15"
 
 group :development do
   gem "spring"
@@ -27,7 +28,6 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rails-console"
   gem "daemon_controller"
-  gem "passenger"
   gem "quiet_assets"
   gem "letter_opener"
   gem "meta_request"
