@@ -4,15 +4,17 @@
       <div class="panel-heading">
         <h3 class="panel-title">Login</h3>
       </div>
-      <div class="panel-body">
-        <%= render "flashes" %>
-        <%= bootstrap_form_for :login, url: login_path do |f| %>
+      <%= bootstrap_form_for :login, url: login_path do |f| %>
+        <div class="panel-body">
           <%= f.text_field :email %>
           <%= f.password_field :password %>
-          <%= f.submit "Login" %>
-        <% end %>
-      </div>
+        </div>
+        <div class="panel-footer">
+          <%= f.submit "Login", class: "btn btn-primary" %>
+        </div>
+      <% end %>
     </div>
+    <%= flash_messages %>
   </div>
 </div>
 

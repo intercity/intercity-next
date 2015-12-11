@@ -10,10 +10,31 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Intercity</a>
+      </div>
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><%= link_to "#{icon "server"} Servers".html_safe, root_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li><%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %></li>
+          <li><%= link_to "Logout", logout_path, method: :delete %></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
   <div class="container">
     <div class="row">
       <div class="col-md-12 text-right">
-        <%= link_to "Logout", logout_path, method: :delete %>
       </div>
     </div>
     <%= yield %>
