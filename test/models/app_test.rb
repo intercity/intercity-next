@@ -4,8 +4,8 @@ class AppTest < ActiveSupport::TestCase
   should belong_to :server
   should have_many :linked_services
   should have_many(:services).through(:linked_services)
-  should have_many :env_vars
-  should have_many :domains
+  should have_many(:env_vars).dependent(:destroy)
+  should have_many(:domains).dependent(:destroy)
 
   should validate_presence_of :name
 end
