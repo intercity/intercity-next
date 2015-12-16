@@ -22,15 +22,15 @@ Vagrant::configure("2") do |config|
     vb.customize ["modifyvm", :id, "--memory", BOX_MEMORY]
   end
 
-  config.vm.define "dokku", primary: true do |vm|
-    vm.vm.network :forwarded_port, guest: 80, host: FORWARDED_PORT
-    vm.vm.network :private_network, ip: DOKKU_IP
-    vm.vm.provision :shell, inline: "wget https://raw.githubusercontent.com/progrium/dokku/v0.4.4/bootstrap.sh && sudo DOKKU_TAG=v0.4.4 bash bootstrap.sh"
-  end
-
-  config.vm.define "clean" do |vm|
+  config.vm.define "clean", primary: true do |vm|
     vm.vm.network :forwarded_port, guest: 80, host: FORWARDED_PORT
     vm.vm.hostname = "clean.#{DOKKU_DOMAIN}"
     vm.vm.network :private_network, ip: CLEAN_IP
+  end
+
+  config.vm.define "dokku" do |vm|
+    vm.vm.network :forwarded_port, guest: 80, host: FORWARDED_PORT
+    vm.vm.network :private_network, ip: DOKKU_IP
+    vm.vm.provision :shell, inline: "wget https://raw.githubusercontent.com/progrium/dokku/v0.4.4/bootstrap.sh && sudo DOKKU_TAG=v0.4.4 bash bootstrap.sh"
   end
 end
