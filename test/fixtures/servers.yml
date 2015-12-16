@@ -4,7 +4,7 @@ example:
   rsa_key_public: "<%= File.read("test/support/public_key.pem") %>"
   rsa_key_private: "<%= File.read("test/support/private_key.pem") %>"
   connected: true
-  status: 1
+  status: 30
 
 
 local:

@@ -1,0 +1,16 @@
+<h1>Setup for <%= @server.name %></h1>
+<p>We are installing your server. This can take around 10 minutes</p>
+<div class="well text-center <%= "hidden" if @server.up? %>" data-server-status="checking">
+  <p><i class="fa fa-circle-o-notch fa-spin"></i> Testing for connection</p>
+</div>
+<div class="well text-center <%= "hidden" unless @server.up? %>" data-server-status="connected">
+  <p>The server is installed and ready to go!</p>
+  <%= link_to "Add your first app", server_path(@server), class: "btn btn-primary" %>
+</div>
+
+<script>
+  <% if @server.installing? %>
+    var poller = new ServerPoller("<%= check_installation_server_path(@server) %>");
+    poller.poll();
+  <% end %>
+</script>

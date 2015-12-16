@@ -1,0 +1,6 @@
+<% if @server.up? %>
+  $("[data-server-status~=checking]").addClass("hidden");
+  $("[data-server-status~=connected]").removeClass("hidden");
+<% else %>
+  new ServerPoller("<%= check_installation_server_path(@server) %>").poll();
+<% end %>

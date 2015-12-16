@@ -6,7 +6,7 @@ class Server < ActiveRecord::Base
 
   before_create :create_rsa_key
 
-  enum status: { setup: 0, up: 1, down: 2 }
+  enum status: { fresh: 0, connected: 10, installing: 20, up: 30, down: 40 }
 
   def service?(service)
     services.include?(service)
