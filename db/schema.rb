@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209133744) do
+ActiveRecord::Schema.define(version: 20151216144008) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20151209133744) do
     t.text     "rsa_key_private"
     t.boolean  "connected",       default: false
     t.integer  "status",          default: 0
+    t.string   "dokku_version"
   end
 
   create_table "services", force: :cascade do |t|

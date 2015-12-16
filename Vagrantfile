@@ -29,6 +29,7 @@ Vagrant::configure("2") do |config|
   end
 
   config.vm.define "clean" do |vm|
+    vm.vm.network :forwarded_port, guest: 80, host: FORWARDED_PORT
     vm.vm.hostname = "clean.#{DOKKU_DOMAIN}"
     vm.vm.network :private_network, ip: CLEAN_IP
   end

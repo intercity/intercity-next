@@ -10,9 +10,11 @@ class ServersController < ApplicationController
   def show
     @server = Server.find(params[:id])
     case @server.status
-    when "setup"
+    when "fresh", "connected"
       @ssh_key = SSHKey.new(@server.rsa_key_private, comment: "Intercity").ssh_public_key
-      render "servers/show/setup"
+      render "servers/show/add_ssh"
+    when "installing"
+      render "servers/show/installing"
     when "up"
       redirect_to server_apps_path(@server)
     when "down"
@@ -23,27 +25,40 @@ class ServersController < ApplicationController
   def create
     @server = Server.new(server_params)
     if @server.save
-      flash[:success] = "Your new server is added to your dashboard"
       redirect_to server_path(@server)
     else
       render :new
     end
   end
 
-  def test
+  def test_ssh
     @server = Server.find(params[:id])
     begin
-      output = SshExecution.new(@server).execute(command: "sudo dokku")
-      if output =~ /Usage: dokku/
-        @server.update(status: "up")
-        @connected = true
+      output = SshExecution.new(@server).execute(command: "sudo ls")
+      if output =~ /sudo/
+        @error = "We can connect, but don't have sudo access"
+        @connected = false
       else
-        @error = "We can connect, but Dokku seems not to be installed"
+        @connected = true
+        @server.update(status: "connected")
       end
     rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
            Errno::ECONNREFUSED, Errno::EHOSTDOWN
       @connected = false
     end
+  end
+
+  def check_installation
+    @server = Server.find(params[:id])
+  end
+
+  def start_installation
+    @server = Server.find(params[:id])
+    if @server.connected?
+      InstallServerJob.perform_later(@server)
+      @server.update(status: "installing")
+    end
+    redirect_to server_path(@server)
   end
 
   def destroy
