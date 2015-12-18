@@ -1,7 +1,7 @@
 class ServicesController < ApplicationController
   def index
     @server = Server.find(params[:server_id])
-    @available_services = Service.where(active: true)
+    @available_services = Service.where(active: true).order(name: :asc)
     @services = @server.services
   end
 
