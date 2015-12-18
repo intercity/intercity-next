@@ -77,8 +77,6 @@ GEM
     capybara-webkit (1.7.1)
       capybara (>= 2.3.0, < 2.6.0)
       json
-    celluloid (0.15.2)
-      timers (~> 1.1.0)
     codeclimate-test-reporter (0.4.5)
       simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.0)
@@ -89,6 +87,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     colorize (0.7.7)
+    concurrent-ruby (1.0.0)
     connection_pool (2.2.0)
     daemon_controller (1.2.0)
     database_cleaner (1.5.0)
@@ -210,9 +209,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
-    redis (3.1.0)
-    redis-namespace (1.5.2)
-      redis (~> 3.0, >= 3.0.4)
+    redis (3.2.2)
     rubocop (0.34.2)
       astrolabe (~> 1.3)
       parser (>= 2.2.2.5, < 3.0)
@@ -233,12 +230,11 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
-    sidekiq (3.2.6)
-      celluloid (= 0.15.2)
-      connection_pool (>= 2.0.0)
-      json
-      redis (>= 3.0.6)
-      redis-namespace (>= 1.3.1)
+    sidekiq (4.0.1)
+      concurrent-ruby (~> 1.0)
+      connection_pool (~> 2.2, >= 2.2.0)
+      json (~> 1.0)
+      redis (~> 3.2, >= 3.2.1)
     simplecov (0.10.0)
       docile (~> 1.1.0)
       json (~> 1.8)
@@ -268,7 +264,6 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.1)
     timecop (0.8.0)
-    timers (1.1.0)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -316,12 +311,11 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.2)
   rails-assets-fastclick!
-  redis (~> 3.1.0)
-  redis-namespace (~> 1.5.1)
+  redis (~> 3.2.0)
   rubocop
   sass-rails (~> 5.0)
   shoulda
-  sidekiq (~> 3.2.5)
+  sidekiq (~> 4.0)
   sinatra
   sorcery (~> 0.9.1)
   spring
