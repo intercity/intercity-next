@@ -19,6 +19,7 @@ gem "font-awesome-sass", "~> 4.4.0"
 gem "sinatra", require: nil
 gem "sorcery", "~> 0.9.1"
 gem "puma", "~> 2.15"
+gem "whenever", "~> 0.9"
 
 group :development do
   gem "spring"
