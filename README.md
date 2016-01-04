@@ -14,6 +14,10 @@ This is still in very early development. Please do **not** use in production.
 1. Run `bin/setup`
 1. Start the app with `foreman start`
 
+## Support
+
+You can use [Github Issues][gh-issues], or join us on [freenode in #intercity][irc]
+
 ## Contributing
 
 We encourage you to contribute to Intercity! Join us!
@@ -22,3 +26,5 @@ Everyone interacting in Intercity and its sub-projects' codebases, issue tracker
 chat rooms, and mailing lists is expected to follow the [Intercity code of conduct][coc].
 
 [coc]: https://github.com/intercity/intercity-next/blob/master/CODE_OF_CONDUCT.md
+[gh-issues]: https://github.com/intercity/intercity-next/issues
+[irc]: https://webchat.freenode.net/?channels=#intercity
