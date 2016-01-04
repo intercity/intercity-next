@@ -7,6 +7,11 @@
 
 This is still in very early development. Please do **not** use in production.
 
+## Requirements
+
+* Ruby 2.3
+* Postgresql 9.3+
+
 ## Set up your Dev environment
 
 1. Make sure you have Postgresql installed
