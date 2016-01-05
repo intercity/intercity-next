@@ -14,7 +14,6 @@ gem "sidekiq", "~> 4.0"
 gem "redis", "~> 3.2.0"
 gem "nprogress-rails", "~> 0.1.6"
 gem "net-ssh"
-gem "net-scp"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
 gem "sinatra", require: nil

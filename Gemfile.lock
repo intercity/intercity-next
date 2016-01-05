@@ -307,7 +307,6 @@ DEPENDENCIES
   minitest-rails-capybara
   minitest-reporters
   mocha
-  net-scp
   net-ssh
   nprogress-rails (~> 0.1.6)
   pg
