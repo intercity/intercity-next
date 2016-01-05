@@ -1,8 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-redis_example:
-  app: example
-  service: redis
-postgres_example:
-  app: example
+example_backup:
+  filename: example_backup
   service: postgres
+  app: example
+  backup_type: 0

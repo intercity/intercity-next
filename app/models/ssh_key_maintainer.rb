@@ -34,7 +34,7 @@ class SshKeyMaintainer
   end
 
   def key_filename
-    "#{server.id}_#{apply_stamp}_key"
+    @key_filename ||= "#{server.id}_#{apply_stamp}_key_#{SecureRandom.hex(5)}"
   end
 
   def apply_stamp

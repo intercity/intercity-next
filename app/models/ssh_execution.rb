@@ -9,6 +9,14 @@ class SshExecution
     end
   end
 
+  def scp(from:, to:)
+    ssh_key_maintainer.create_key_for_connection
+    cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
+    system(cmd)
+  ensure
+    ssh_key_maintainer.delete_ssh_key_for_connection
+  end
+
   def execute_with_block
     ssh_key_maintainer.create_key_for_connection
     Net::SSH.start(@server.ip, "root",

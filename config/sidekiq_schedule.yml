@@ -1,0 +1,5 @@
+schedule_automated_backups:
+  cron: "0 */1 * * *"
+  class: "ScheduleAutomatedBackupsJob"
+  queue: default
+  active_job: true

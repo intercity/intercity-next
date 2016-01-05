@@ -1,0 +1,5 @@
+<% if @backup.running? %>
+  new ServerPoller("<%= status_server_app_backup_path(@backup.app.server, @backup.app, @backup) %>").poll();
+<% else %>
+  $("#<%= dom_id(@backup) %>").replaceWith("<%= j render "backups/backup", backup: @backup %>");
+<% end %>

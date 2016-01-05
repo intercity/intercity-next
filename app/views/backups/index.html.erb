@@ -1,0 +1,36 @@
+<%= render "apps/heading", app: @app, tab: "backups" %>
+<div class="row">
+  <div class="col-md-8">
+    <table class="table table-hover domains">
+      <thead>
+        <tr>
+          <th>Service</th>
+          <th>Backup date</th>
+          <th>Type</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= render(@backups) || render("no_backups") %>
+      </tbody>
+    </table>
+  </div>
+  <div data-role="form" class="col-md-4">
+    <div class="panel panel-default">
+      <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
+      <div class="panel-body">
+        <% if @app.backups_enabled? %>
+          <%= link_to "Run backup now", server_app_backups_path, method: :post,
+            class: "btn btn-success btn-block" %>
+        <% else %>
+          <div class="alert alert-dismissible alert-warning">
+            <h4>Warning!</h4>
+            <p>You currently don't have backups enabled. We strongly recommend you do so!</p>
+          </div>
+          <%= link_to "Enable backups", enable_server_app_backups_path, method: :post,
+            class: "btn btn-success btn-block" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
