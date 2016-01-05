@@ -114,8 +114,10 @@ ActiveRecord::Schema.define(version: 20160106115246) do
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "activation_token"
   end
 
+  add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
 
   add_foreign_key "active_services", "servers"

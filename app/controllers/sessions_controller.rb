@@ -6,7 +6,8 @@ class SessionsController < ApplicationController
   end
 
   def create
-    if login(params[:login][:email], params[:login][:password])
+    user = User.find_by(email: params[:login][:email], activation_token: nil)
+    if user && login(params[:login][:email], params[:login][:password])
       redirect_back_or_to root_path
     else
       flash.now[:error] = "Login failed"

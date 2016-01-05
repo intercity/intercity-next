@@ -1,0 +1,16 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Please choose a password</h3>
+    </div>
+    <%= bootstrap_form_for @user, url: activate_users_path(token: @user.activation_token) do |f| %>
+      <div class="panel-body">
+        <p>After you've choosen a password your account will be done.</p>
+          <%= f.password_field :password %>
+      </div>
+      <div class="panel-footer">
+        <%= f.submit "Finish your account", class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>
