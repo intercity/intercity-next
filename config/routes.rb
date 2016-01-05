@@ -23,6 +23,10 @@ Rails.application.routes.draw do
       end
       resources :env_vars, only: [:index, :create, :destroy]
       resources :domains, only: [:index, :create, :destroy]
+      resources :backups, only: [:index, :create] do
+        post :enable, on: :collection
+        get :status, on: :member
+      end
     end
     resources :services, only: [:index] do
       post :create, on: :member

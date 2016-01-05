@@ -3,7 +3,15 @@
 redis:
   name: Redis
   active: true
+  commands: <%= { install: "sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis",
+    create: "dokku redis:create %app_name%_redis",
+    link: "dokku redis:link %app_name%_redis %app_name%",
+    backup: false }.to_json %>
 
 postgres:
   name: Postgres
-  active: false
+  active: true
+  commands: <%= { install: "sudo dokku plugin:install https://github.com/dokku/dokku-postgres.git postgres",
+  create: "dokku postgres:create %app_name%_postgres",
+  link: "dokku postgres:link %app_name%_postgres %app_name%",
+  backup: "dokku postgres:export %app_name%_postgres" }.to_json %>

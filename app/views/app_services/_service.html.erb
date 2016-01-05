@@ -7,6 +7,7 @@
       <%= image_tag "services/#{service.name.downcase}.png", width: 100, height: 100 %>
       <% if app.service?(service) %>
         <p><span class="label label-success">Linked</span></p>
+        <%= link_to "Backup now", "#", class: "btn btn-default btn-xs" %>
       <% else %>
         <p><%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
           method: :post, class: "btn btn-primary" %></p>

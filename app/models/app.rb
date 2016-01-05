@@ -5,6 +5,7 @@ class App < ActiveRecord::Base
   has_many :services, through: :linked_services
   has_many :env_vars, dependent: :destroy
   has_many :domains, dependent: :destroy
+  has_many :backups, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 

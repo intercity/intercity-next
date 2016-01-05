@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216144008) do
+ActiveRecord::Schema.define(version: 20160105114048) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,12 +30,25 @@ ActiveRecord::Schema.define(version: 20151216144008) do
   create_table "apps", force: :cascade do |t|
     t.integer  "server_id"
     t.string   "name"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
-    t.boolean  "busy",       default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+    t.boolean  "busy",            default: false
+    t.boolean  "backups_enabled", default: false
   end
 
   add_index "apps", ["server_id"], name: "index_apps_on_server_id", using: :btree
+
+  create_table "backups", force: :cascade do |t|
+    t.string   "filename"
+    t.integer  "service_id"
+    t.integer  "app_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "running",    default: false
+  end
+
+  add_index "backups", ["app_id"], name: "index_backups_on_app_id", using: :btree
+  add_index "backups", ["service_id"], name: "index_backups_on_service_id", using: :btree
 
   create_table "deploy_keys", force: :cascade do |t|
     t.string   "name"
@@ -107,6 +120,8 @@ ActiveRecord::Schema.define(version: 20151216144008) do
   add_foreign_key "active_services", "servers"
   add_foreign_key "active_services", "services"
   add_foreign_key "apps", "servers"
+  add_foreign_key "backups", "apps"
+  add_foreign_key "backups", "services"
   add_foreign_key "deploy_keys", "servers"
   add_foreign_key "domains", "apps"
   add_foreign_key "env_vars", "apps"
