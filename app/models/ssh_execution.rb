@@ -11,7 +11,7 @@ class SshExecution
 
   def scp(from:, to:)
     ssh_key_maintainer.create_key_for_connection
-    cmd = "scp -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
+    cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
     system(cmd)
   ensure
     ssh_key_maintainer.delete_ssh_key_for_connection

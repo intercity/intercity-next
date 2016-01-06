@@ -5,7 +5,7 @@ BOX_NAME = ENV["BOX_NAME"] || "bento/ubuntu-14.04"
 BOX_MEMORY = ENV["BOX_MEMORY"] || "1024"
 DOKKU_DOMAIN = ENV["DOKKU_DOMAIN"] || "dokku.me"
 DOKKU_IP = ENV["DOKKU_IP"] || "10.0.0.3"
-CLEAN_IP = ENV["DOKKU_IP"] || "10.0.0.4"
+CLEAN_IP = ENV["DOKKU_IP"] || "10.0.0.2"
 FORWARDED_PORT = (ENV["FORWARDED_PORT"] || '8080').to_i
 PUBLIC_KEY_PATH = "#{Dir.home}/.ssh/id_rsa.pub"
 
