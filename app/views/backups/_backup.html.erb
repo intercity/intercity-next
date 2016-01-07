@@ -1,0 +1,16 @@
+<%= content_tag :tr, id: dom_id(backup), class: "backup" do %>
+  <% if backup.running? %>
+    <td><%= backup.service.name %></td>
+    <td colspan="3"><i class="fa fa-circle-o-notch fa-spin"></i> Running</td>
+  <% else %>
+    <td><%= backup.service.name %></td>
+    <td><%= backup.created_at %></td>
+    <td><%= backup.backup_type %></td>
+    <td class="actions"></td>
+  <% end %>
+<% end %>
+<script>
+  <% if backup.running? %>
+    new ServerPoller("<%= status_server_app_backup_path(backup.app.server, backup.app, backup) %>").poll();
+  <% end %>
+</script>

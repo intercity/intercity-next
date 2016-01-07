@@ -14,3 +14,5 @@
 /tmp/*
 passenger.*
 .vagrant/
+/backups/
+/keys/
