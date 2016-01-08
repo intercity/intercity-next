@@ -1,10 +1,10 @@
 <%= render "apps/heading", app: @app, tab: "services" %>
-<% if @app.server.services.empty? %>
+<% if @app.server.linkable_services.empty? %>
   <p>This server does not have any services installed.</p>
   <p><%= link_to "Install a service", server_services_path(@app.server), class: "btn btn-default" %>
 <% else %>
   <div class="services">
-    <%= render partial: "app_services/service", collection: @app.server.services,
+    <%= render partial: "app_services/service", collection: @app.server.linkable_services,
       locals: { app: @app } %>
   </div>
 <% end %>

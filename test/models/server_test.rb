@@ -42,4 +42,17 @@ class ServerTest < ActiveSupport::TestCase
     ActiveService.find_by(server: server, service: redis).update(status: "installed")
     assert_equal "installed", server.service_status(redis)
   end
+
+  test "#linkable_services returns all services that can link to an app" do
+    server = servers(:example).tap { |s| s.services.destroy_all }
+
+    linkable = services(:redis)
+    non_linkable = services(:non_linkable)
+
+    server.services << [ linkable, non_linkable ]
+
+    assert_equal 1, server.linkable_services.count
+    assert_includes server.linkable_services, linkable
+    refute_includes server.linkable_services, non_linkable
+  end
 end
