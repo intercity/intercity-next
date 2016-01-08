@@ -7,3 +7,7 @@ redis_example:
 postgres_example:
   service: postgres
   server: example
+
+nonlinkeable_example:
+  service: non_linkeable
+  server: example

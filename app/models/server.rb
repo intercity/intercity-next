@@ -24,6 +24,10 @@ class Server < ActiveRecord::Base
     end
   end
 
+  def linkable_services
+    services.where(linkable: true)
+  end
+
   private
 
   def create_rsa_key
