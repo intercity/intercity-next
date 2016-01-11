@@ -1,6 +1,6 @@
 class InstallServerJob < ActiveJob::Base
   queue_as :default
-  DOKKU_VERSION = "v0.4.6"
+  DOKKU_VERSION = "v0.4.11"
 
   def perform(server)
     server.update(dokku_version: DOKKU_VERSION)
@@ -27,7 +27,10 @@ class InstallServerJob < ActiveJob::Base
   private
 
   def install_dokku
-    "wget https://raw.githubusercontent.com/dokku/dokku/#{DOKKU_VERSION}/bootstrap.sh &&
-      sudo DOKKU_TAG=#{DOKKU_VERSION} bash bootstrap.sh"
+    "sudo echo 'dokku dokku/web_config boolean false' | debconf-set-selections && "\
+      "sudo echo 'dokku dokku/vhost_enable boolean false' | debconf-set-selections && " \
+      "sudo echo 'dokku dokku/skip_key_file boolean true' | debconf-set-selections && " \
+      "wget https://raw.githubusercontent.com/dokku/dokku/#{DOKKU_VERSION}/bootstrap.sh && "\
+      "sudo DOKKU_TAG=#{DOKKU_VERSION} bash bootstrap.sh"
   end
 end
