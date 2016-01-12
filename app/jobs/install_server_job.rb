@@ -4,7 +4,23 @@ class InstallServerJob < ActiveJob::Base
 
   def perform(server)
     server.update(dokku_version: DOKKU_VERSION)
-    SshExecution.new(server).execute(command: install_dokku)
+    SshExecution.new(server).execute_with_block do |ssh|
+      ssh.open_channel do |channel|
+        channel.exec install_dokku do |exec_channel, _|
+          exec_channel.on_data do |_, data|
+            if data =~ /Initial apt-get update/
+              server.update(install_step: 1)
+            elsif data =~ /Installing docker/
+              server.update(install_step: 2)
+            elsif data =~ /Installing dokku/
+              server.update(install_step: 3)
+            elsif data =~ /Importing herokuish into docker/
+              server.update(install_step: 4)
+            end
+          end
+        end
+      end
+    end
     server.update(status: "up")
   end
 

@@ -2,7 +2,7 @@
 <p>You need to add the following public SSH key to the "root" user of the server</p>
 <pre><%= @ssh_key %></pre>
 <div class="well text-center <%= "hidden" if @server.connected? %>" data-server-status="checking">
-  <p><i class="fa fa-circle-o-notch fa-spin"></i> Testing for connection</p>
+  <p><i class="fa fa-circle-o-notch fa-spin"></i> Checking for the SSH key</p>
   <p class="hint hidden"></p>
 </div>
 <div class="well text-center <%= "hidden" unless @server.connected? %>" data-server-status="connected">
