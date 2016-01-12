@@ -1,7 +1,28 @@
 <h1>Setup for <%= @server.name %></h1>
 <p>We are installing your server. This can take around 10 minutes</p>
-<div class="well text-center <%= "hidden" if @server.up? %>" data-server-status="checking">
-  <p><i class="fa fa-circle-o-notch fa-spin"></i> Testing for connection</p>
+<div class="well <%= "hidden" if @server.up? %>" data-server-status="checking">
+  <div class="row">
+    <div class="col-md-4 col-md-offset-4">
+      <table class="table">
+        <tr class="step1 info">
+          <td class="actions"><%= icon "circle-o-notch fa-spin" %></td>
+          <td class="text-center">Updating packages</td>
+        </tr>
+        <tr class="step2">
+          <td><%= icon "square-o" %></td>
+          <td class="text-center">Installing Docker</td>
+        </tr>
+        <tr class="step3">
+          <td><%= icon "square-o" %></td>
+          <td class="text-center">Installing Dokku</td>
+        </tr>
+        <tr class="step4">
+          <td><%= icon "square-o" %></td>
+          <td class="text-center">Importing base image</td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
 <div class="well text-center <%= "hidden" unless @server.up? %>" data-server-status="connected">
   <p>The server is installed and ready to go!</p>
