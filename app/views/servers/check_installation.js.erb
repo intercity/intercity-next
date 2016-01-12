@@ -2,20 +2,9 @@
   $("[data-server-status~=checking]").addClass("hidden");
   $("[data-server-status~=connected]").removeClass("hidden");
 <% else %>
-  <% if @server.install_step == 1 %>
-    $(".step1").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
-  <% elsif @server.install_step == 2 %>
-    $(".step1").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step2").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
-  <% elsif @server.install_step == 3 %>
-    $(".step1").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step2").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step3").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
-  <% elsif @server.install_step == 4 %>
-    $(".step1").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step2").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step3").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
-    $(".step4").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
+  <% for n in 1...@server.install_step %>
+    $(".step<%= n %>").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
   <% end %>
+  $(".step<%= @server.install_step %>").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
   new ServerPoller("<%= check_installation_server_path(@server) %>").poll();
 <% end %>
