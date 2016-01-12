@@ -11,5 +11,4 @@ john:
 
 jane:
   email: "jane@example.com"
-  salt: <%= salt = "asdasdastr4325234324sdfds" %>
-  crypted_password: <%= Sorcery::CryptoProviders::BCrypt.encrypt("secret", salt) %>
+  activation_token: "secret_token"

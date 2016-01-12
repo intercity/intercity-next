@@ -19,6 +19,16 @@ class SessionsControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "POST create should re-render when access token present" do
+    user = users(:john)
+    user.generate_activation_token
+    user.skip_password_validation = true
+    user.save!
+    post :create, login: { email: "john@example.com",
+                           password: "secret" }
+    assert_response :success
+  end
+
   test "DELETE destroy session should redirect to login path" do
     login_user users(:john)
     delete :destroy
