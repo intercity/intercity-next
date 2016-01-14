@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3 text-center" data-server-status="down">
+    <h1>Server <%= @server.name %> seems to be down</h1>
+    <p>We could not connect to your server during the last healthcheck.</p>
+    <p>Please check if the server is still online and accepting connections</p>
+    <p>We keep checking this server every 30 minutes to see if it comes online.</p>
+    <div class="well">
+      <%= link_to "Force healthcheck", server_health_check_path(@server), method: :post, remote: true,
+        class: "btn btn-default", data: { behaviour: "perform-health-check" } %>
+      <p data-behaviour="performing-health-check" class="hidden"><%= icon "circle-o-notch fa-spin" %> Performing healthcheck</p>
+    </div>
+  </div>
+  <div class="col-md-6 col-md-offset-3 text-center hidden" data-server-status="up">
+    <h1>Server <%= @server.name %> is back online!</h1>
+    <div class="well">
+      <%= link_to "Go to server", server_path(@server), class: "btn btn-default" %>
+    </div>
+  </div>
+</div>
+

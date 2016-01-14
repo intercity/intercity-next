@@ -1,0 +1,7 @@
+<% if @server.down? %>
+  $("[data-behaviour~=perform-health-check]").removeClass("hidden");
+  $("[data-behaviour~=performing-health-check]").addClass("hidden");
+<% else %>
+  $("[data-server-status~=down]").addClass("hidden");
+  $("[data-server-status~=up]").removeClass("hidden");
+<% end %>
