@@ -103,10 +103,11 @@ ActiveRecord::Schema.define(version: 20160112144254) do
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "active",     default: false
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.boolean  "active",          default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.json     "commands"
+    t.boolean  "install_default", default: false
   end
 
   create_table "users", force: :cascade do |t|
