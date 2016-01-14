@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
   validates :email, uniqueness: true, email_format: true, if: -> { email.present? }
   validates :password, presence: true, unless: -> { skip_password_validation }
+  validates :password, length: { minimum: 8 }, if: -> { password.present? }
 
   def email=(value)
     self[:email] = value.downcase unless value.nil?

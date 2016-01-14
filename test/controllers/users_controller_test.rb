@@ -31,7 +31,7 @@ class UsersControllerTest < ActionController::TestCase
 
   test "POST confirm should be successfull" do
     user = users(:jane)
-    patch :confirm, token: user.activation_token, user: { password: "1234" }
+    patch :confirm, token: user.activation_token, user: { password: "secret_password" }
 
     assert_response :redirect
   end
