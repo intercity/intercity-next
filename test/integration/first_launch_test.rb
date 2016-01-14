@@ -7,7 +7,7 @@ class FirstLaunchTest < ActionDispatch::IntegrationTest
     visit root_path
 
     fill_in "user[email]", with: "user@example.com"
-    fill_in "user[password]", with: "secret"
+    fill_in "user[password]", with: "secret_password"
     click_button "Create first account"
 
     assert_equal root_path, current_path

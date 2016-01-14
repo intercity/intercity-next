@@ -7,6 +7,7 @@ class UserTest < ActiveSupport::TestCase
   should allow_value("john@example.nl").for(:email)
   should allow_value("john+doe@example.com").for(:email)
   should allow_value("john@example.city").for(:email)
+  should validate_length_of(:password).is_at_least(8)
 
   test "It lowercases the email in the setter" do
     user = User.new(email: "John@example.com")

@@ -19,7 +19,7 @@ class OnboardingControllerTest < ActionController::TestCase
     User.destroy_all
 
     assert_difference "User.count" do
-      post :create, user: { email: "user@example.com", password: "secret" }
+      post :create, user: { email: "user@example.com", password: "secret_password" }
     end
 
     assert_response :redirect

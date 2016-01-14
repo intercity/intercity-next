@@ -5,7 +5,7 @@ class UserLoginTest < ActionDispatch::IntegrationTest
     user = users(:jane)
     visit activate_users_path(token: user.activation_token)
 
-    fill_in "user[password]", with: "secret"
+    fill_in "user[password]", with: "secret_password"
     click_button "Finish your account"
 
     assert_equal login_path, current_path
