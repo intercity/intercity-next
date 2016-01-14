@@ -3,6 +3,10 @@ require 'test_helper'
 class UserTest < ActiveSupport::TestCase
   should validate_presence_of :email
   should validate_uniqueness_of :email
+  should_not allow_value("hi").for(:email)
+  should allow_value("john@example.nl").for(:email)
+  should allow_value("john+doe@example.com").for(:email)
+  should allow_value("john@example.city").for(:email)
 
   test "It lowercases the email in the setter" do
     user = User.new(email: "John@example.com")
