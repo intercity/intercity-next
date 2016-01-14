@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     get :test_ssh, on: :member
     get :check_installation, on: :member
     post :start_installation, on: :member
+    resource :health_check, only: [:create]
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member

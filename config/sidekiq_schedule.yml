@@ -3,3 +3,8 @@ schedule_automated_backups:
   class: "ScheduleAutomatedBackupsJob"
   queue: default
   active_job: true
+schedule_health_checks:
+  cron: "0,30 * * * *"
+  class: "ScheduleHealthChecks"
+  queue: health_checks
+  active_job: true
