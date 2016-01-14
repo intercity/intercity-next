@@ -280,6 +280,8 @@ GEM
     uglifier (2.7.2)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    validates_email_format_of (1.6.3)
+      i18n
     web-console (3.0.0)
       activemodel (>= 4.2)
       debug_inspector
@@ -334,6 +336,7 @@ DEPENDENCIES
   timecop
   turbolinks
   uglifier
+  validates_email_format_of (~> 1.6)
   web-console
   whenever (~> 0.9)
 

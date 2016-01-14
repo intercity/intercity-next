@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   attr_accessor :skip_password_validation
 
   validates :email, presence: true
-  validates :email, uniqueness: true, if: -> { email.present? }
+  validates :email, uniqueness: true, email_format: true, if: -> { email.present? }
   validates :password, presence: true, unless: -> { skip_password_validation }
 
   def email=(value)

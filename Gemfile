@@ -21,6 +21,7 @@ gem "sinatra", require: nil
 gem "sorcery", "~> 0.9.1"
 gem "puma", "~> 2.15"
 gem "whenever", "~> 0.9"
+gem "validates_email_format_of", "~> 1.6"
 
 group :development do
   gem "spring"
