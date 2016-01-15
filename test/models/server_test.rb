@@ -42,4 +42,14 @@ class ServerTest < ActiveSupport::TestCase
     ActiveService.find_by(server: server, service: redis).update(status: "installed")
     assert_equal "installed", server.service_status(redis)
   end
+
+  test "#up_to_date? checks if the server is up to date with current dokku version" do
+    outdated = Server.new(dokku_version: "v0.4.8")
+    outdated.stubs(:latest_dokku_version).returns("v0.4.10")
+    refute outdated.up_to_date?, "Server should be marked as not up to date"
+
+    up_to_date = Server.new(dokku_version: "v0.4.10")
+    up_to_date.stubs(:latest_dokku_version).returns("v0.4.10")
+    assert up_to_date.up_to_date?, "Server should be marked as up to date"
+  end
 end

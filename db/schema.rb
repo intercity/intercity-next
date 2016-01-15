@@ -99,6 +99,7 @@ ActiveRecord::Schema.define(version: 20160112144254) do
     t.integer  "status",          default: 0
     t.string   "dokku_version"
     t.integer  "install_step",    default: 1
+    t.boolean  "updating",        default: false
   end
 
   create_table "services", force: :cascade do |t|

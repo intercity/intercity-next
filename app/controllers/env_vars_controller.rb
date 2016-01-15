@@ -1,4 +1,4 @@
-class EnvVarsController < ApplicationController
+class EnvVarsController < ServerBaseController
   def index
     @app = App.find_by!(id: params[:app_id], server: params[:server_id])
     @env_var = EnvVar.new

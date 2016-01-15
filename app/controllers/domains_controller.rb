@@ -1,4 +1,4 @@
-class DomainsController < ApplicationController
+class DomainsController < ServerBaseController
   def index
     @app = App.find_by!(id: params[:app_id], server: params[:server_id])
     @domain = Domain.new

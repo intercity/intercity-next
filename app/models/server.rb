@@ -24,6 +24,14 @@ class Server < ActiveRecord::Base
     end
   end
 
+  def up_to_date?
+    VersionParser.parse(dokku_version) == VersionParser.parse(latest_dokku_version)
+  end
+
+  def latest_dokku_version
+    "v0.4.11".freeze
+  end
+
   private
 
   def create_rsa_key

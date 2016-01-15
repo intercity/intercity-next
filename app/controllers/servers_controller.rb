@@ -61,6 +61,28 @@ class ServersController < ApplicationController
     redirect_to server_path(@server)
   end
 
+  def start_update
+    @server = Server.find(params[:id])
+    if VersionParser.parse(@server.dokku_version) < VersionParser.parse("v0.4.11")
+      redirect_to manual_update_server_path(@server)
+    else
+      unless @server.updating?
+        UpdateServerJob.perform_later(@server)
+        @server.update(updating: true)
+      end
+
+      redirect_to updating_server_path(@server)
+    end
+  end
+
+  def updating
+    @server = Server.find(params[:id])
+  end
+
+  def manual_update
+    @server = Server.find(params[:id])
+  end
+
   def destroy
     @server = Server.find(params[:id])
     @server.destroy
