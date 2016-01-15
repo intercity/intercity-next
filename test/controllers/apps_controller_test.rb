@@ -21,4 +21,12 @@ class AppsControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "Redirects to ServerUpdatingPath if server is busy updating" do
+    server = servers(:example).tap { |s| s.update(updating: true) }
+
+    get :index, server_id: server
+
+    assert_response :redirect
+  end
 end

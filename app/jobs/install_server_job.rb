@@ -1,9 +1,10 @@
 class InstallServerJob < ActiveJob::Base
   queue_as :default
-  DOKKU_VERSION = "v0.4.11"
 
   def perform(server)
-    server.update(dokku_version: DOKKU_VERSION)
+    @server = server
+    server.update(dokku_version: server.latest_dokku_version)
+    logger.info "========= START SERVER INSTALLATION"
     SshExecution.new(server).execute_with_block do |ssh|
       ssh.open_channel do |channel|
         channel.exec install_dokku do |exec_channel, _|
@@ -17,20 +18,24 @@ class InstallServerJob < ActiveJob::Base
             elsif data =~ /Importing herokuish into docker/
               server.update(install_step: 4)
             end
+            logger.info data
           end
         end
       end
     end
+    logger.info "========= END SERVER INSTALLATION"
     server.update(status: "up")
   end
 
   private
 
+  attr_reader :server
+
   def install_dokku
     "sudo echo 'dokku dokku/web_config boolean false' | debconf-set-selections && "\
       "sudo echo 'dokku dokku/vhost_enable boolean false' | debconf-set-selections && " \
       "sudo echo 'dokku dokku/skip_key_file boolean true' | debconf-set-selections && " \
-      "wget https://raw.githubusercontent.com/dokku/dokku/#{DOKKU_VERSION}/bootstrap.sh && "\
-      "sudo DOKKU_TAG=#{DOKKU_VERSION} bash bootstrap.sh"
+      "wget https://raw.githubusercontent.com/dokku/dokku/#{server.latest_dokku_version}/bootstrap.sh && "\
+      "sudo DOKKU_TAG=#{server.latest_dokku_version} bash bootstrap.sh"
   end
 end

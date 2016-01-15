@@ -1,4 +1,4 @@
-class AppsController < ApplicationController
+class AppsController < ServerBaseController
   def index
     @server = Server.includes(:apps).find(params[:server_id])
   end
@@ -30,10 +30,6 @@ class AppsController < ApplicationController
   end
 
   private
-
-  def server
-    @server ||= Server.find(params[:server_id])
-  end
 
   def app_params
     params.require(:app).permit(:name).tap do |p|

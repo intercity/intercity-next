@@ -7,4 +7,5 @@
     <li class="<%= "active" if tab == "deploy_keys" %>"><%= link_to "Deploy keys", server_deploy_keys_path(server) %></li>
   </ul>
 </div>
+<%= render("servers/outdated", server: server) unless server.up_to_date? %>
 <%= render "flashes" -%>

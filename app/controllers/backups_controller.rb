@@ -1,4 +1,4 @@
-class BackupsController < ApplicationController
+class BackupsController < ServerBaseController
   def index
     @app = App.find_by!(id: params[:app_id], server: params[:server_id])
     @backups = @app.backups.order(created_at: :desc)

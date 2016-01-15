@@ -1,6 +1,6 @@
-class AppServicesController < ApplicationController
+class AppServicesController < ServerBaseController
   def index
-    @app = Server.find(params[:server_id]).apps.find(params[:app_id])
+    @app = server.apps.find(params[:app_id])
   end
 
   def create

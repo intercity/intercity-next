@@ -1,4 +1,4 @@
-class DeployKeysController < ApplicationController
+class DeployKeysController < ServerBaseController
   def index
     @server = Server.find(params[:server_id])
     @deploy_keys = @server.deploy_keys
