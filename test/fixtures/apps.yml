@@ -3,7 +3,9 @@
 example:
   server: example
   name: Example app
+  backups_enabled: true
 
 local_app:
   server: local
   name: Local app
+  backups_enabled: false
