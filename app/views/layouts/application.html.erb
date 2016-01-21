@@ -25,6 +25,7 @@
         <ul class="nav navbar-nav">
           <li class="<%= "active" if @active_menu.blank? %>"><%= link_to "#{icon "server"} Servers".html_safe, root_path %></li>
           <li class="<%= "active" if @active_menu == "users" %>"><%= link_to "#{icon "users"} Users".html_safe, users_path %></li>
+          <li class="<%= "active" if @active_menu == "help" %>"><%= link_to "#{icon "book"} Documentation".html_safe, help_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <li><%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %></li>
