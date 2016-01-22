@@ -13,7 +13,7 @@ class BackupsControllerTest < ActionController::TestCase
   end
 
   test "POST enable should mark the app as backup enabled" do
-    app = apps(:example)
+    app = apps(:example).tap { |app| app.update(backups_enabled: false) }
 
     refute app.backups_enabled?, "App should have backups disabled"
 
