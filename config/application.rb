@@ -28,6 +28,6 @@ module IntercityNext
     config.generators.assets = false
     config.generators.helper = false
 
-    config.autoload_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join("lib")
   end
 end

@@ -8,8 +8,10 @@
 //= require server_test
 //= require server_poller
 //= require health_check
+//= require highlight
 //= require turbolinks
 
 $(function() {
   FastClick.attach(document.body);
+  hljs.initHighlightingOnLoad();
 });

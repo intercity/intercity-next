@@ -41,4 +41,8 @@ Rails.application.routes.draw do
     end
     resources :deploy_keys, only: [:index, :new, :create, :destroy]
   end
+
+  # Help
+  get 'help'                  => 'help#index'
+  get 'help/:category/:file'  => 'help#show', as: :help_page, constraints: { category: /.*/, file: /[^\/\.]+/ }
 end

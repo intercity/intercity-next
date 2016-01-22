@@ -209,6 +209,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.0.0)
     rake (10.4.2)
+    redcarpet (3.3.3)
     redis (3.2.2)
     redis-namespace (1.5.2)
       redis (~> 3.0, >= 3.0.4)
@@ -323,6 +324,7 @@ DEPENDENCIES
   quiet_assets
   rails (~> 4.2)
   rails-assets-fastclick!
+  redcarpet
   redis (~> 3.2.0)
   rubocop
   sass-rails (~> 5.0)
