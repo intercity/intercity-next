@@ -13,10 +13,8 @@ Rails.application.routes.draw do
   post "login" => "sessions#create"
   delete "logout" => "sessions#destroy", as: "logout"
 
-  resources :users, only: [:index, :create] do
-    get ":token" => "users#activate", as: :activate, on: :collection
-    patch ":token" => "users#confirm", on: :collection
-  end
+  resources :user_activation, only: [:edit, :update]
+  resources :users, only: [:index, :create]
 
   resources :servers, only: [:new, :create, :show, :destroy] do
     get :test_ssh, on: :member

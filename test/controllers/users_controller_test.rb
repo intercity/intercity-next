@@ -21,18 +21,4 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_response :success
   end
-
-  test "GET activate should be successfull" do
-    user = users(:jane)
-    get :activate, token: user.activation_token
-
-    assert_response :success
-  end
-
-  test "POST confirm should be successfull" do
-    user = users(:jane)
-    patch :confirm, token: user.activation_token, user: { password: "secret_password" }
-
-    assert_response :redirect
-  end
 end
