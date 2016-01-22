@@ -21,4 +21,15 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "POST resend_activation_mail should resend the activation mail" do
+    login_user(users(:john))
+    perform_enqueued_jobs do
+      xhr :post, :resend_activation_mail, id: users(:jane).id
+      delivered_email = ActionMailer::Base.deliveries.last
+      assert_includes delivered_email.to, users(:jane).email
+    end
+
+    assert_response :success
+  end
 end
