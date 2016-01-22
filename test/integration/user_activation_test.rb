@@ -1,9 +1,9 @@
 require "test_helper"
 
-class UserLoginTest < ActionDispatch::IntegrationTest
+class UserActivationTest < ActionDispatch::IntegrationTest
   test "User activation should be successfull" do
     user = users(:jane)
-    visit activate_users_path(token: user.activation_token)
+    visit edit_user_activation_path(user.activation_token)
 
     fill_in "user[password]", with: "secret_password"
     click_button "Finish your account"

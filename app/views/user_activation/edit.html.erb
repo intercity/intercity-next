@@ -3,7 +3,7 @@
     <div class="panel-heading">
       <h3 class="panel-title">Please choose a password</h3>
     </div>
-    <%= bootstrap_form_for @user, url: activate_users_path(token: @user.activation_token) do |f| %>
+    <%= bootstrap_form_for @user, url: user_activation_path(@user.activation_token) do |f| %>
       <div class="panel-body">
         <p>After you've choosen a password your account will be done.</p>
           <%= f.password_field :password %>
