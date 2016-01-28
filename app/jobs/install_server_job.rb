@@ -34,6 +34,7 @@ class InstallServerJob < ActiveJob::Base
   def install_dokku
     "sudo echo 'dokku dokku/web_config boolean false' | debconf-set-selections && "\
       "sudo echo 'dokku dokku/vhost_enable boolean false' | debconf-set-selections && " \
+      "sudo echo 'dokku dokku/hostname string intercity.dokku' | debconf-set-selections && " \
       "sudo echo 'dokku dokku/skip_key_file boolean true' | debconf-set-selections && " \
       "wget https://raw.githubusercontent.com/dokku/dokku/#{server.latest_dokku_version}/bootstrap.sh && "\
       "sudo DOKKU_TAG=#{server.latest_dokku_version} bash bootstrap.sh"
