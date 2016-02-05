@@ -1,3 +1,5 @@
 <%= content_tag :tr, id: dom_id(user), class: "user" do %>
   <td><%= user.email %></td>
+  <td class="actions"><%= link_to "Resend activation mail",
+    resend_activation_mail_user_path(user), remote: true, method: :post if user.activation_token.present? %></td>
 <% end %>

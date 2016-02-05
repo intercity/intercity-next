@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   delete "logout" => "sessions#destroy", as: "logout"
 
   resources :user_activation, only: [:edit, :update]
-  resources :users, only: [:index, :create]
+  resources :users, only: [:index, :create] do
+    post :resend_activation_mail, on: :member
+  end
 
   resources :servers, only: [:new, :create, :show, :destroy] do
     get :test_ssh, on: :member
