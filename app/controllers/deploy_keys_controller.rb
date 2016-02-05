@@ -11,11 +11,10 @@ class DeployKeysController < ServerBaseController
     if @deploy_key.save
       CreateDeployKeyJob.perform_later(@server, @deploy_key)
       flash[:success] = "Deploy key has been added"
-      redirect_to server_deploy_keys_path(@server)
     else
       flash[:error] = "Not all fields are filled in."
-      redirect_to server_deploy_keys_path(@server)
     end
+    redirect_to server_deploy_keys_path(@server)
   end
 
   def destroy

@@ -10,12 +10,16 @@ AllCops:
     - "bin/**/*"
     - "**/Rakefile"
     - "**/config.ru"
-  RunRailsCops: true
   DisplayCopNames: true
   StyleGuideCopsOnly: false
+  TargetRubyVersion: 2.3
+Rails:
+  Enabled: true
 Style/AndOr:
   EnforcedStyle: always
   Enabled: true
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Style/CommentAnnotation:
   Keywords:
     - TODO
