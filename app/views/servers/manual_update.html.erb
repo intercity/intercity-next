@@ -1,13 +1,8 @@
-<div class="text-center">
-    <h1>Can't automaticly update</h1>
-    <p>We can automaticly update your Dokku instance as of version <b>v0.4.11</b>, 
-    however you run version <b><%= @server.dokku_version %></b>.</p>
-    <p>To update your server, you need to manually SSH into the server, and run the following command:</p>
-    <p>
-      <pre>
+<h1>Can't automaticly update</h1>
+<p>To update your server, you need to manually SSH into the server, and run the following command:</p>
+<p>
+  <pre>
 sudo echo 'dokku dokku/web_config boolean false' | debconf-set-selections && sudo echo 'dokku dokku/vhost_enable boolean false' | debconf-set-selections && sudo echo 'dokku dokku/skip_key_file boolean true' | debconf-set-selections && sudo apt-get install -qq -y dokku
-      </pre>
-    </p>
-    <p>After you updated the server, it can take up to 30 minutes for Intercity to pick
-      up the updated version.</p>
-</div>
+  </pre>
+</p>
+<p>After you updated the server, it can take up to 30 minutes for Intercity to pick up the updated version.</p>
