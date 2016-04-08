@@ -1,6 +1,10 @@
+require "sidekiq/web"
+require 'sidekiq/cron/web'
 require "user_constraint"
 
 Rails.application.routes.draw do
+
+  mount Sidekiq::Web => "/sidekiq", constraints: UserConstraint.new
   root to: "servers#index"
 
   get "welcome" => "onboarding#index", as: "welcome"
@@ -43,4 +47,7 @@ Rails.application.routes.draw do
   # Help
   get 'help'                  => 'help#index'
   get 'help/:category/:file'  => 'help#show', as: :help_page, constraints: { category: /.*/, file: /[^\/\.]+/ }
+
+  # Serve websocket cable requests in-process
+  # mount ActionCable.server => '/cable'
 end

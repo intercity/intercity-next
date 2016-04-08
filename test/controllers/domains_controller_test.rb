@@ -8,7 +8,7 @@ class DomainsControllerTest < ActionController::TestCase
   test "GET index should be successfull" do
     app = apps(:example)
 
-    get :index, server_id: app.server, app_id: app.id
+    get :index, params: { server_id: app.server, app_id: app.id }
 
     assert_response :success
   end
@@ -18,7 +18,9 @@ class DomainsControllerTest < ActionController::TestCase
 
     assert_difference "app.domains.count" do
       AddDomainJob.expects(:perform_later)
-      xhr :post, :create, server_id: app.server, app_id: app.id, domain: { name: "example.org" }
+      post :create, xhr: true, params: { server_id: app.server,
+                                         app_id: app.id,
+                                         domain: { name: "example.org" }}
     end
 
     assert_response :success
@@ -30,7 +32,9 @@ class DomainsControllerTest < ActionController::TestCase
 
     assert_difference "app.domains.count", -1 do
       DeleteDomainJob.expects(:perform_later)
-      xhr :delete, :destroy, server_id: app.server, app_id: app, id: domain
+      delete :destroy, xhr: true, params: { server_id: app.server,
+                                             app_id: app,
+                                             id: domain }
     end
   end
 end

@@ -7,7 +7,7 @@ class BackupsControllerTest < ActionController::TestCase
 
   test "GET index should be successfull" do
     app = apps(:example)
-    get :index, server_id: app.server, app_id: app
+    get :index, params: { server_id: app.server, app_id: app }
 
     assert_response :success
   end
@@ -17,7 +17,7 @@ class BackupsControllerTest < ActionController::TestCase
 
     refute app.backups_enabled?, "App should have backups disabled"
 
-    post :enable, server_id: app.server, app_id: app
+    post :enable, params: { server_id: app.server, app_id: app }
 
     assert app.reload.backups_enabled?, "App should have backups enabled"
     assert_response :redirect
@@ -28,7 +28,7 @@ class BackupsControllerTest < ActionController::TestCase
 
     BackupScheduler.any_instance.expects(:execute)
 
-    post :create, server_id: app.server, app_id: app
+    post :create, params: { server_id: app.server, app_id: app }
 
     assert_response :redirect
   end

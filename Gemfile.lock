@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/jvanbaarsen/sinatra.git
+  revision: 4c7d38eb1b2cc02ce51029f28e0c3c34ca12ccfd
+  specs:
+    sinatra (2.0.0.pre.alpha)
+      rack (= 2.0.0.alpha)
+      rack-protection (~> 1.5)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -148,7 +157,7 @@ GEM
     multipart-post (2.0.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
-    net-ssh (3.1.1)
+    net-ssh (3.0.1)
     nio4r (1.2.1)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
@@ -171,6 +180,8 @@ GEM
       json
     rack-contrib (1.2.0)
       rack (>= 0.9.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0.beta3)
@@ -313,7 +324,7 @@ DEPENDENCIES
   meta_request
   minitest-reporters
   mocha
-  net-ssh
+  net-ssh (= 3.0.1)
   nprogress-rails (~> 0.1.6)
   pg (~> 0.18)
   puma (~> 3.4)
@@ -327,6 +338,7 @@ DEPENDENCIES
   shoulda
   sidekiq (~> 4.0)
   sidekiq-cron (~> 0.4.0)
+  sinatra!
   sorcery (~> 0.9.1)
   spring
   spring-watcher-listen (~> 2.0.0)

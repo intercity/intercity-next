@@ -5,9 +5,11 @@
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
   <title>Intercity</title>
-  <%= stylesheet_link_tag :application, media: "all" %>
-  <%= render "javascript" %>
   <%= csrf_meta_tags %>
+  <%= action_cable_meta_tag %>
+
+  <%= stylesheet_link_tag :application, media: "all", "data-turbolinks-track" => "reload" %>
+  <%= render "javascript" %>
 </head>
 <body>
   <nav class="navbar navbar-default">

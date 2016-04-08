@@ -14,10 +14,10 @@ gem "sidekiq", "~> 4.0"
 gem "sidekiq-cron", "~> 0.4.0"
 gem "redis", "~> 3.2.0"
 gem "nprogress-rails", "~> 0.1.6"
-gem "net-ssh"
+gem "net-ssh", "3.0.1"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
-# gem "sinatra", require: nil
+gem "sinatra", require: nil, github: "jvanbaarsen/sinatra"
 gem "sorcery", "~> 0.9.1"
 gem "puma", "~> 3.4"
 gem "whenever", "~> 0.9"
@@ -45,7 +45,6 @@ group :development, :test do
 end
 
 group :test do
-  # gem "minitest-rails-capybara"
   gem "minitest-reporters"
   gem "timecop"
   gem "shoulda"

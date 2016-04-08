@@ -8,7 +8,7 @@ class EnvVarsControllerTest < ActionController::TestCase
   test "GET index should be successfull" do
     app = apps(:example)
 
-    get :index, server_id: app.server, app_id: app.id
+    get :index, params: { server_id: app.server, app_id: app.id }
 
     assert_response :success
   end
@@ -18,8 +18,8 @@ class EnvVarsControllerTest < ActionController::TestCase
 
     assert_difference "app.env_vars.count" do
       AddEnvVarJob.expects(:perform_later)
-      xhr :post, :create, server_id: app.server, app_id: app.id,
-        env_var: { key: "example_key", value: "example_value" }
+      post :create, xhr: true, params: { server_id: app.server, app_id: app.id,
+        env_var: { key: "example_key", value: "example_value" } }
     end
 
     assert_response :success
@@ -31,7 +31,8 @@ class EnvVarsControllerTest < ActionController::TestCase
 
     assert_difference "app.env_vars.count", -1 do
       DeleteEnvVarJob.expects(:perform_later)
-      xhr :delete, :destroy, server_id: app.server, app_id: app, id: env_var
+      delete :destroy, xhr: true, params: { server_id: app.server, app_id: app,
+                                            id: env_var }
     end
   end
 end

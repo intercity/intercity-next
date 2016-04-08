@@ -9,13 +9,13 @@ class HelpControllerTest < ActionController::TestCase
 
   test "#show should be successfull" do
     login_user users(:john)
-    get :show, category: "deploy", file: "ruby_on_rails"
+    get :show, params: { category: "deploy", file: "ruby_on_rails" }
     assert_response :success
   end
 
   test "#show should render the root readme if going outside doc folder" do
     login_user users(:john)
-    get :show, category: "../../", file: "README"
+    get :show, params: { category: "../../", file: "README" }
     assert response.body =~ /How to deploy/
     assert_response :success
   end
