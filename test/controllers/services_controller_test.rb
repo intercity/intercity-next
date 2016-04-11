@@ -6,7 +6,7 @@ class ServicesControllerTest < ActionController::TestCase
   end
 
   test "GET index should be successfull" do
-    get :index, server_id: servers(:example)
+    get :index, params: { server_id: servers(:example) }
     assert_response :success
   end
 
@@ -15,7 +15,7 @@ class ServicesControllerTest < ActionController::TestCase
     service = services(:redis)
 
     assert_difference "server.reload.services.count" do
-      post :create, server_id: server, id: service
+      post :create, params: { server_id: server, id: service }
     end
   end
 end

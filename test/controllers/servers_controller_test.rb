@@ -17,7 +17,7 @@ class ServersControllerTest < ActionController::TestCase
 
   test "POST create should create a new server and then redirect to that server" do
     assert_difference "Server.count" do
-      post :create, server: { name: "test-server", ip: "127.0.0.1" }
+      post :create, params: { server: { name: "test-server", ip: "127.0.0.1" } }
     end
     assert_response :redirect
   end

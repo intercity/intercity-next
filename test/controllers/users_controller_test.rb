@@ -13,7 +13,7 @@ class UsersControllerTest < ActionController::TestCase
     login_user(users(:john))
     assert_difference "User.count" do
       perform_enqueued_jobs do
-        xhr :post, :create, user: { email: "example@mail.org" }
+        post :create, xhr: true, params: {  user: { email: "example@mail.org" } }
         delivered_email = ActionMailer::Base.deliveries.last
         assert_includes delivered_email.to, "example@mail.org"
       end
@@ -25,7 +25,7 @@ class UsersControllerTest < ActionController::TestCase
   test "POST resend_activation_mail should resend the activation mail" do
     login_user(users(:john))
     perform_enqueued_jobs do
-      xhr :post, :resend_activation_mail, id: users(:jane).id
+      post :resend_activation_mail, xhr: true, params: { id: users(:jane).id }
       delivered_email = ActionMailer::Base.deliveries.last
       assert_includes delivered_email.to, users(:jane).email
     end

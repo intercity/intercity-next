@@ -9,14 +9,14 @@ require "active_support/testing/setup_and_teardown"
 require "sidekiq/testing"
 require 'minitest/mock'
 require "mocha/mini_test"
-require "minitest/rails/capybara"
 require "minitest/reporters"
 require "database_cleaner"
 
 Sidekiq::Testing.fake!
-Minitest::Reporters.use!(
-  Minitest::Reporters::DefaultReporter.new(color: true),
-  ENV, Minitest.backtrace_filter)
+
+reporter_options = { color: true, slow_count: 5 }
+ENV["VIM"] = nil
+Minitest::Reporters.use!([Minitest::Reporters::DefaultReporter.new(reporter_options)], ENV)
 
 DatabaseCleaner.strategy = :transaction
 

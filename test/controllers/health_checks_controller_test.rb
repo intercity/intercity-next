@@ -7,7 +7,7 @@ class HealthChecksControllerTest < ActionController::TestCase
 
     HealthCheckJob.any_instance.expects(:perform_now)
 
-    xhr :post, :create, server_id: server
+    post :create, xhr: true, params: {  server_id: server }
 
     assert_response :success
   end

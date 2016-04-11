@@ -7,15 +7,15 @@ class SessionsControllerTest < ActionController::TestCase
   end
 
   test "POST create should be redirect when user exist" do
-    post :create, login: { email: "john@example.com",
-                           password: "secret" }
+    post :create, params: { login: { email: "john@example.com",
+                           password: "secret" } }
     assert_response :redirect
     refute_nil session["user_id"]
   end
 
   test "POST create should re-render when information is invalid" do
-    post :create, login: { email: "john@example.com",
-                           password: "invalid-secret" }
+    post :create, params: { login: { email: "john@example.com",
+                           password: "invalid-secret" } }
     assert_response :success
   end
 
@@ -24,8 +24,8 @@ class SessionsControllerTest < ActionController::TestCase
     user.generate_activation_token
     user.skip_password_validation = true
     user.save!
-    post :create, login: { email: "john@example.com",
-                           password: "secret" }
+    post :create, params: { login: { email: "john@example.com",
+                           password: "secret" }}
     assert_response :success
   end
 

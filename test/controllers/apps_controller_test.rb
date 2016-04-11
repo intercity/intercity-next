@@ -9,7 +9,7 @@ class AppsControllerTest < ActionController::TestCase
 
     server = servers(:example)
 
-    get :index, server_id: server
+    get :index, params: { server_id: server }
 
     assert_response :success
   end
@@ -17,7 +17,7 @@ class AppsControllerTest < ActionController::TestCase
   test "Show should be succesfull" do
     app = apps(:example)
 
-    get :show, server_id: app.server, id: app
+    get :show, params: { server_id: app.server, id: app }
 
     assert_response :success
   end
@@ -25,7 +25,7 @@ class AppsControllerTest < ActionController::TestCase
   test "Redirects to ServerUpdatingPath if server is busy updating" do
     server = servers(:example).tap { |s| s.update(updating: true) }
 
-    get :index, server_id: server
+    get :index, params: { server_id: server }
 
     assert_response :redirect
   end

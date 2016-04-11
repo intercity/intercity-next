@@ -1,8 +1,8 @@
 source "https://rubygems.org"
 
-gem "rails", "~> 4.2"
-gem "pg"
-gem "turbolinks"
+gem "rails", ">= 5.0.0.beta3", "< 5.1"
+gem "pg", "~> 0.18"
+gem "turbolinks", "~> 5.x"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 gem "jquery-turbolinks"
@@ -14,12 +14,12 @@ gem "sidekiq", "~> 4.0"
 gem "sidekiq-cron", "~> 0.4.0"
 gem "redis", "~> 3.2.0"
 gem "nprogress-rails", "~> 0.1.6"
-gem "net-ssh"
+gem "net-ssh", "3.0.1"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
-gem "sinatra", require: nil
+gem "sinatra", require: nil, github: "jvanbaarsen/sinatra"
 gem "sorcery", "~> 0.9.1"
-gem "puma", "~> 2.15"
+gem "puma", "~> 3.4"
 gem "whenever", "~> 0.9"
 gem "validates_email_format_of", "~> 1.6"
 gem "redcarpet"
@@ -34,6 +34,8 @@ group :development do
   gem "quiet_assets"
   gem "letter_opener"
   gem "meta_request"
+  gem "listen", "~> 3.0.5"
+  gem "spring-watcher-listen", "~> 2.0.0"
 end
 
 group :development, :test do
@@ -43,7 +45,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "minitest-rails-capybara"
   gem "minitest-reporters"
   gem "timecop"
   gem "shoulda"
