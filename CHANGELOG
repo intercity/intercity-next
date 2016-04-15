@@ -2,3 +2,4 @@ Please view this file on the master branch, on stable branches it's out of date.
 
 v 0.0.1 (unreleased)
 * Move generation of SECRET_KEY_TOKEN to an initializer (jvanbaarsen)
+* Update to Dokku 0.5.5 (jvanbaarsen)
