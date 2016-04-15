@@ -5,7 +5,7 @@
   .service {
     @extend .col-md-3;
     .panel {
-      min-height: 230px;
+      min-height: 235px;
       position: relative;
       &.service-new {
         @extend .panel-default;
