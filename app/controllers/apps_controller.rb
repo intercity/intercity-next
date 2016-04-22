@@ -1,6 +1,7 @@
 class AppsController < ServerBaseController
   def index
     @server = Server.includes(:apps).find(params[:server_id])
+    @apps = @server.apps.order(created_at: :desc)
   end
 
   def new

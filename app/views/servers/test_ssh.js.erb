@@ -1,9 +1,9 @@
 <% if @server.fresh? %>
     <% if @error.present? %>
-      $("[data-server-status~=checking]").find(".hint").html("<%= @error %>").removeClass("hidden");
+      $("[data-server-status~=checking]").find(".hint").html("<%= @error %>").removeClass("is-hidden");
     <% end %>
     new ServerPoller("<%= test_ssh_server_path(@server) %>").poll();
 <% elsif @server.connected? %>
-  $("[data-server-status~=checking]").addClass("hidden");
-  $("[data-server-status~=connected]").removeClass("hidden");
+  $("[data-server-status~=checking]").addClass("is-hidden");
+  $("[data-server-status~=connected]").removeClass("is-hidden");
 <% end %>

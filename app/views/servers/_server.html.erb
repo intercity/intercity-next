@@ -1,13 +1,17 @@
 <%= content_tag :div, id: dom_id(server), class: "server" do %>
-  <div class="box">
-    <h3 class="subtitle"><%= link_to server.name, server_path(server) %></h3>
-    <div class="panel-body">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title"><%= link_to server.name, server %></p>
+    </header>
+    <div class="card-content">
       <p><strong>IP:</strong> <%= server.ip %></p>
       <p><strong>Apps:</strong> <%= server.apps.count %></p>
       <p><strong>Status:</strong>
       <%= render "status", server: server %>
+    </div>
+    <div class="card-footer">
       <%= link_to icon("trash"), server_path(server), method: :delete,
-        data: { confirm: "You're about to remove this server, are you REALLY sure?" }, class: "pull-right" %>
+        data: { confirm: "You're about to remove this server, are you REALLY sure?" }, class: "card-footer-item" %>
     </div>
   </div>
 <% end %>

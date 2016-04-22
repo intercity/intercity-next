@@ -1,25 +1,25 @@
 <%= content_tag :div, id: dom_id(app), class: "app" do %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= link_to app.name, server_app_path(app.server, app) %></h3>
-    </div>
-    <div class="panel-body">
+  <div class="card">
+    <header class="card-header">
+      <p class="card-header-title"><%= link_to app.name, server_app_path(app.server, app) %></p>
+    </header>
+    <div class="card-content">
       <p><strong>Domain(s):</strong> <%= app.domains.pluck(:name).join(", ").presence || "-" %></p>
       <p><strong>Deploy URL:</strong> dokku@<%= app.server.ip %>:<%= app.clean_name %></p>
       <p><strong>Services:</strong>
       <% app.services.each do |service| %>
-        <span class="label label-primary"><%= service.name %></span>
+        <span class="tag label-primary"><%= service.name %></span>
       <% end %>
       <p><strong>Backups:</strong>
       <% if app.backups_enabled? %>
-        <span class="label label-success">Enabled</span></p>
+        <span class="tag is-success">Enabled</span></p>
       <% else %>
-        <span class="label label-danger">Disabled</span></p>
+        <span class="tag is-danger">Disabled</span></p>
       <% end %>
     </div>
-    <div class="panel-footer">
-      <%= link_to "Remove app", server_app_path(app.server, app),
-        data: { confirm: "Are you REALLY sure?" }, class: "text-danger", method: :delete %>
+    <div class="card-footer">
+      <%= link_to icon("trash"), server_app_path(app.server, app),
+        data: { confirm: "Are you REALLY sure?" }, class: "text-danger card-footer-item", method: :delete %>
     </div>
   </div>
 <% end %>

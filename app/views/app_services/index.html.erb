@@ -1,11 +1,15 @@
 <%= render "apps/heading", app: @app, tab: "services" %>
 <% if @app.server.services.empty? %>
-  <p>This server does not have any services installed.</p>
-  <p><%= link_to "Install a service", server_services_path(@app.server), class: "btn btn-default" %>
+  <div class="has-text-centered content">
+    <p>This server does not have any services installed.</p>
+    <p><%= link_to "Install a service", server_services_path(@app.server), class: "button is-primary" %>
+  </div>
 <% else %>
   <div class="services">
+    <div class="columns">
     <%= render partial: "app_services/service", collection: @app.server.services,
       locals: { app: @app } %>
+    </div>
   </div>
 <% end %>
 

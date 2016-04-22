@@ -1,16 +1,14 @@
 <%= content_tag :div, id: dom_id(service), class: "service" do %>
-  <div class="panel <%= "service-#{app.service?(service) ? "installed" : "new"}" %>">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= service.name %></h3>
-    </div>
-    <div class="panel-body">
+  <div class="box">
+    <h3 class="subtitle"><%= service.name %></h3>
+    <p class="has-text-centered">
       <%= image_tag "services/#{service.name.downcase}.png", width: 100, height: 100 %>
-      <% if app.service?(service) %>
-        <p><span class="label label-success">Linked</span></p>
-      <% else %>
-        <p><%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
-          method: :post, class: "btn btn-primary" %></p>
-      <% end %>
-    </div>
+    </p>
+    <% if app.service?(service) %>
+      <p class="has-text-centered"><span class="tag is-success">Linked</span></p>
+    <% else %>
+      <p class="has-text-centered"><%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
+        method: :post, class: "button is-primary" %></p>
+    <% end %>
   </div>
 <% end %>

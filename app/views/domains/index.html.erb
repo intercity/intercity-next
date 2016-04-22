@@ -1,7 +1,7 @@
 <%= render "apps/heading", app: @app, tab: "domains" %>
-<div class="row">
-  <div class="col-md-8">
-    <table class="table table-hover domains">
+<div class="columns">
+  <div class="column is-8">
+    <table class="table is-striped domains">
       <thead>
         <tr>
           <th>Domain</th>
@@ -10,13 +10,13 @@
       </thead>
       <tbody>
         <%= render @app.domains %>
-        <tr class="<%= "hidden" if @app.domains.any? %>" data-role="empty-table">
+        <tr class="<%= "is-hidden" if @app.domains.any? %>" data-role="empty-table">
           <td colspan="3" class="text-muted text-center">There are no domains</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div data-role="form" class="col-md-4">
+  <div data-role="form" class="column is-4">
     <%= render "form" %>
   </div>
 </div>

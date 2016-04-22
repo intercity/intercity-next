@@ -3,17 +3,14 @@
   .service {
     @extend .column;
     @extend .is-3;
-    .panel {
+    .box {
       min-height: 235px;
       position: relative;
       &.service-new {
-        @extend .panel;
       }
       &.service-installing {
-        @extend .panel;
       }
       &.service-installed {
-        @extend .panel;
       }
       .panel-body {
         text-align: center;

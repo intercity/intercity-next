@@ -11,12 +11,3 @@
 @import "services";
 @import "help";
 @import "highlight/github.min";
-
-html {
-  width: 100%;
-  height: 100%;
-  body {
-    min-height: 100%;
-    background: #fff;
-  }
-}

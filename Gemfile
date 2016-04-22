@@ -58,4 +58,5 @@ end
 
 source "https://rails-assets.org" do
   gem "rails-assets-fastclick"
+  gem "rails-assets-clipboard"
 end

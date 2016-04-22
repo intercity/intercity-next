@@ -6,4 +6,37 @@
       min-height: 180px;
     }
   }
+
+  .ssh-key {
+    @extend .box;
+    background: $grey-lighter;
+    pre {
+      padding: 20px;
+      width: 100%;
+      overflow-x: scroll;
+    }
+    .table {
+      background: $grey-lighter;
+    }
+  }
+
+  .installing {
+    .step {
+      @extend .hero;
+      @extend .columns;
+    }
+  }
+}
+
+.highlight {
+  position: relative;
+  .copy {
+    background: white;
+    border: solid $border;;
+    border-width: 0 0 1px 1px;
+    color: $text-light;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }

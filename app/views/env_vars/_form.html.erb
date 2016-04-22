@@ -1,10 +1,8 @@
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Add new env var</h3></div>
-  <div class="panel-body">
-    <%= form_for [@app.server, @app, @env_var], remote: true do |f| %>
-      <%= f.text_field :key, placeholder: "Key", hide_label: true %>
-      <%= f.text_field :value, placeholder: "Value", hide_label: true %>
-      <%= f.submit "Add", class: "btn btn-primary btn-block" %>
-    <% end %>
-  </div>
+<div class="box">
+  <h3 class="title">Add new env var</h3>
+  <%= form_for [@app.server, @app, @env_var], remote: true do |f| %>
+    <%= f.text_field :key, placeholder: "Key", hide_label: true, class: "input control" %>
+    <%= f.text_field :value, placeholder: "Value", hide_label: true, class: "input control" %>
+    <%= f.submit "Add", class: "button is-primary" %>
+  <% end %>
 </div>

@@ -15,3 +15,8 @@ table {
     width: 1%
   }
 }
+
+.header_section {
+  @extend .section;
+  padding: 0px;
+}

@@ -1,9 +1,9 @@
 <% if server.up? %>
-  <span class="label label-success">Server is up</span>
+  <span class="tag is-success">Server is up</span>
 <% elsif server.down? %>
-  <span class="label label-danger">Server is down</span>
+  <span class="tag is-danger">Server is down</span>
 <% elsif server.fresh? || server.installing? || server.connected? %>
-  <span class="label label-warning">Setup not finished</span>
+  <span class="tag is-warning">Setup not finished</span>
 <% else %>
-  <span class="label label-default">Status unknown</span>
+  <span class="tag">Status unknown</span>
 <% end %>

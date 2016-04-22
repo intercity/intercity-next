@@ -1,7 +1,13 @@
 <%= render "apps/heading", app: @app, tab: "backups" %>
-<div class="row">
-  <div class="col-md-8">
-    <table class="table table-hover domains">
+<% unless @app.backups_enabled? %>
+  <div class="message is-warning">
+    <h4 class="message-header">Warning!</h4>
+    <p class="message-body">You currently don't have backups enabled. We strongly recommend you do so!</p>
+  </div>
+<% end %>
+<div class="columns">
+  <div class="column is-8">
+    <table class="table is-striped domains">
       <thead>
         <tr>
           <th>Service</th>
@@ -15,20 +21,16 @@
       </tbody>
     </table>
   </div>
-  <div data-role="form" class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Actions</h3></div>
+  <div data-role="form" class="column is-4">
+    <div class="box">
+      <h3 class="title">Actions</h3>
       <div class="panel-body">
         <% if @app.backups_enabled? %>
           <%= link_to "Run backup now", server_app_backups_path, method: :post,
             class: "btn btn-success btn-block" %>
         <% else %>
-          <div class="alert alert-dismissible alert-warning">
-            <h4>Warning!</h4>
-            <p>You currently don't have backups enabled. We strongly recommend you do so!</p>
-          </div>
           <%= link_to "Enable backups", enable_server_app_backups_path, method: :post,
-            class: "btn btn-success btn-block" %>
+            class: "button is-primary is-fullwidth" %>
         <% end %>
       </div>
     </div>

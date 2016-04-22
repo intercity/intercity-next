@@ -6,9 +6,11 @@
 //= require server_poller
 //= require health_check
 //= require highlight
+//= require clipboard
 //= require turbolinks
 
 $(function() {
   FastClick.attach(document.body);
   hljs.initHighlightingOnLoad();
+  new Clipboard('.copy');
 });

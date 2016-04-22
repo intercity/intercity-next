@@ -1,6 +1,5 @@
 <div class="heading">
-  <%= link_to "#{icon("chevron-left")} Server list".html_safe, root_path, class: "is-right button" %><br/>
-  <h1 class="title is-center has-text-centered">Server: <%= server.name %></h1>
+  <h1 class="title is-center has-text-centered"><%= server.name %></h1>
   <div class="tabs is-centered">
     <ul>
       <li class="<%= "is-active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %></li>

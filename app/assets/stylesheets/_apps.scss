@@ -1,8 +1,7 @@
 .apps {
   margin-top: 20px;
-  @extend .columns;
-
   .app {
+    @extend .column;
     @extend .is-4;
     .panel {
       min-height: 220px;
