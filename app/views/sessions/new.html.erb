@@ -5,7 +5,7 @@
       <div class="panel-heading">
         <h3 class="panel-title">Login</h3>
       </div>
-      <%= bootstrap_form_for :login, url: login_path do |f| %>
+      <%= form_for :login, url: login_path do |f| %>
         <div class="panel-body">
           <%= f.text_field :email %>
           <%= f.password_field :password %>

@@ -1,4 +1,8 @@
 <%= render "servers/heading", server: @server, tab: "services" %>
 <div class="services">
-  <%= render @available_services, server: @server %>
+  <% @available_services.each_slice(4).each do |service| %>
+    <div class="columns">
+      <%= render service, server: @server %>
+    </div>
+  <% end %>
 </div>

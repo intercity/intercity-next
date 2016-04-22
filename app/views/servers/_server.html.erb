@@ -1,8 +1,6 @@
 <%= content_tag :div, id: dom_id(server), class: "server" do %>
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h3 class="panel-title"><%= link_to server.name, server_path(server) %></h3>
-    </div>
+  <div class="box">
+    <h3 class="subtitle"><%= link_to server.name, server_path(server) %></h3>
     <div class="panel-body">
       <p><strong>IP:</strong> <%= server.ip %></p>
       <p><strong>Apps:</strong> <%= server.apps.count %></p>

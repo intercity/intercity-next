@@ -1,5 +1,5 @@
 <%= content_tag :tr, id: dom_id(deploy_key), class: "deploy_key" do %>
   <td><%= deploy_key.name %></td>
-  <td class="actions"><%= link_to "Delete", server_deploy_key_path(deploy_key.server, deploy_key),
+  <td class="actions is-link"><%= link_to "Delete", server_deploy_key_path(deploy_key.server, deploy_key),
     method: :delete, data: { confirm: "Are you sure to delete this key?" } %></td>
 <% end %>

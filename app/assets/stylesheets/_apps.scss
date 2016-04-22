@@ -1,9 +1,9 @@
 .apps {
   margin-top: 20px;
-  @extend .row;
+  @extend .columns;
 
   .app {
-    @extend .col-md-4;
+    @extend .is-4;
     .panel {
       min-height: 220px;
       position: relative;
@@ -20,7 +20,7 @@
   }
 
   .add-app {
-    @extend .col-md-4;
+    @extend .is-4;
     min-height: 100px;
     text-align: center;
     line-height: 100px;

@@ -1,18 +1,22 @@
-<h1>Your servers</h1>
+<h1 class="title">Your servers</h1>
 
-<div>
-  <p>Below you find a list of all your servers and their status</p>
-  <p><span class="label label-success">Server is up</span> We tested the server within the last 30 minutes,
-  server was reachable</br/>
-  <span class="label label-warning">Setup not finished</span> You did not yet finish the setup process for this server</br>
-  <span class="label label-danger">Server is down</span> Server was unreachable in the last 30 minutes.</p>
+<div class="columns">
+  <div class="column is-8">
+    <p>Below you find a list of all your servers and their status</p>
+    <p><span class="label label-success">Server is up</span> We tested the server within the last 30 minutes,
+    server was reachable</br/>
+    <span class="label label-warning">Setup not finished</span> You did not yet finish the setup process for this server</br>
+    <span class="label label-danger">Server is down</span> Server was unreachable in the last 30 minutes.</p>
+  </div>
+  <div class="column is-4">
+    <%= link_to "Add a new server", new_server_path, class: "button is-large is-success is-outlined" %>
+  </div>
 </div>
 <hr/>
 <div class="servers">
-  <div class="add-server">
-    <div class="panel panel-default">
-      <%= link_to "#{icon "plus"} New server".html_safe, new_server_path %>
+  <% @servers.each_slice(4).each do |servers| %>
+    <div class="columns">
+    <%= render servers %>
     </div>
-  </div>
-  <%= render @servers %>
+  <% end %>
 </div>
