@@ -25,6 +25,10 @@ class AppsController < ServerBaseController
   def destroy
     @app = App.find(params[:id])
 
+    @app.services.each do |service|
+      RemoveServiceJob.perform_later(server, @app.clean_name, service)
+    end
+
     RemoveAppJob.perform_later(server, @app.name)
     @app.destroy
     redirect_to server_apps_path(server)
