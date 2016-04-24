@@ -1,9 +1,12 @@
-<div class="panel panel-default">
-  <div class="panel-heading"><h3 class="panel-title">Add a new user</h3></div>
-  <div class="panel-body">
-    <%= bootstrap_form_for @user, remote: true do |f| %>
-      <%= f.text_field :email, placeholder: "E-mail address", hide_label: true %>
-      <%= f.submit "Add", class: "btn btn-primary btn-block" %>
-    <% end %>
-  </div>
+<div class="box">
+  <h1 class="subtitle">Add a new user</h1>
+  <%= form_for @user, remote: true do |f| %>
+    <p class="control">
+      <%= f.text_field :email, placeholder: "E-mail address", hide_label: true,
+        class: "input is-medium #{"is-danger" if @user.errors.include?(:email)}" %>
+    </p>
+    <p class="control">
+    <%= f.submit "Add new user", class: "button is-primary" %>
+    </p>
+  <% end %>
 </div>

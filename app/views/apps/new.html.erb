@@ -1,5 +1,9 @@
-<h1>Add new app to <%= @app.server.name %></h1>
-<%= bootstrap_form_for [@app.server, @app] do |f| %>
-  <%= f.text_field :name %>
-  <%= f.submit "Create app" %>
-<% end %>
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <h1 class="title">Add new app to <%= @app.server.name %></h1>
+    <%= form_for [@app.server, @app] do |f| %>
+      <%= f.text_field :name, class: "input control", placeholder: "Name" %>
+      <%= f.submit "Create app", class: "button control is-primary" %>
+    <% end %>
+  </div>
+</div>

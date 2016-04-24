@@ -1,32 +1,36 @@
-<h1>Setup for <%= @server.name %></h1>
-<p>We are installing your server. This can take around 10 minutes</p>
-<div class="well <%= "hidden" if @server.up? %>" data-server-status="checking">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4">
-      <table class="table">
-        <tr class="step1 info">
-          <td class="actions"><%= icon "circle-o-notch fa-spin" %></td>
-          <td class="text-center">Updating packages</td>
-        </tr>
-        <tr class="step2">
-          <td><%= icon "square-o" %></td>
-          <td class="text-center">Installing Docker</td>
-        </tr>
-        <tr class="step3">
-          <td><%= icon "square-o" %></td>
-          <td class="text-center">Installing Dokku</td>
-        </tr>
-        <tr class="step4">
-          <td><%= icon "square-o" %></td>
-          <td class="text-center">Importing base image</td>
-        </tr>
-      </table>
+<div class="columns servers">
+  <div class="column is-8 is-offset-2">
+    <h1 class="title">Setup for <%= @server.name %></h1>
+    <div class="<%= "is-hidden" if @server.up? %>" data-server-status="checking">
+      <p>We are installing your server. This can take around 10 minutes</p>
+      <div class="box">
+        <div class="columns">
+          <div class="column is-half is-offset-one-quarter installing">
+            <div class="step step1 is-info">
+              <div class="column is-2"><%= icon "circle-o-notch fa-spin" %></div>
+              <div class="column auto">Updating packages</div>
+            </div>
+            <div class="step step2">
+              <div class="column is-2"><%= icon "square-o" %></div>
+              <div class="column auto">Installing Docker</div>
+            </div>
+            <div class="step step3">
+              <div class="column is-2"><%= icon "square-o" %></div>
+              <div class="column auto">Installing Dokku</div>
+            </div>
+            <div class="step step4">
+              <div class="column is-2"><%= icon "square-o" %></div>
+              <div class="column auto">Importing base image</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box has-text-centered <%= "is-hidden" unless @server.up? %>" data-server-status="connected">
+      <p>The server is installed and ready to go!</p>
+      <%= link_to "Add your first app", server_path(@server), class: "button is-primary" %>
     </div>
   </div>
-</div>
-<div class="well text-center <%= "hidden" unless @server.up? %>" data-server-status="connected">
-  <p>The server is installed and ready to go!</p>
-  <%= link_to "Add your first app", server_path(@server), class: "btn btn-primary" %>
 </div>
 
 <script>

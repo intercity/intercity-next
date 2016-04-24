@@ -1,18 +1,14 @@
-<div class="row">
-  <div class="col-md-4 col-md-offset-4">
+<div class="columns">
+  <div class="column is-4 is-offset-4">
     <%= flash_messages %>
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h3 class="panel-title">Login</h3>
-      </div>
-      <%= bootstrap_form_for :login, url: login_path do |f| %>
-        <div class="panel-body">
-          <%= f.text_field :email %>
-          <%= f.password_field :password %>
-        </div>
-        <div class="panel-footer">
-          <%= f.submit "Login", class: "btn btn-primary" %>
-        </div>
+    <div class="has-text-centered">
+    <%= image_tag "logo.svg" %>
+    </div>
+    <div class="">
+      <%= form_for :login, url: login_path do |f| %>
+        <%= f.text_field :email, class: "control input", placeholder: "Email" %>
+        <%= f.password_field :password, class: "control input", placeholder: "Password" %>
+        <%= f.submit "Login", class: "button is-primary is-fullwidth control" %>
       <% end %>
     </div>
   </div>

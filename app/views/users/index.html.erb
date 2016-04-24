@@ -1,9 +1,9 @@
 <% @active_menu = "users" %>
 
-<h1>Users</h1>
-<div class="row">
-  <div class="col-md-8">
-    <table class="table table-hover users">
+<h1 class="title">Users</h1>
+<div class="columns">
+  <div class="column is-8">
+    <table class="table is-striped users">
       <thead>
         <tr>
           <th>Email</th>
@@ -15,7 +15,7 @@
       </tbody>
     </table>
   </div>
-  <div data-role="form" class="col-md-4">
+  <div data-role="form" class="column is-4">
     <%= render "form" %>
   </div>
 </div>

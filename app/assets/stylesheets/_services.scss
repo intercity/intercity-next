@@ -1,20 +1,16 @@
 .services {
   margin-top: 20px;
-  @extend .row;
-
   .service {
-    @extend .col-md-3;
-    .panel {
+    @extend .column;
+    @extend .is-3;
+    .box {
       min-height: 235px;
       position: relative;
       &.service-new {
-        @extend .panel-default;
       }
       &.service-installing {
-        @extend .panel-warning;
       }
       &.service-installed {
-        @extend .panel-success;
       }
       .panel-body {
         text-align: center;

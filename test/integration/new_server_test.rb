@@ -5,7 +5,7 @@ class NewServerTest < ActionDispatch::IntegrationTest
     login_as users(:john)
     visit root_path
 
-    click_link "New server"
+    click_link "Add a new server"
 
     fill_in "server[name]", with: "Example server"
     fill_in "server[ip]", with: "127.0.0.1"

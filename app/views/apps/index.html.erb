@@ -1,10 +1,12 @@
 <%= render "servers/heading", server: @server, tab: "apps" %>
 <div class="apps">
-  <%= render @server.apps.order(created_at: :desc) %>
-  <div class="add-app">
-    <div class="panel panel-default">
-      <%= link_to "#{icon "plus"} New app".html_safe, new_server_app_path(@server),
-        data: { behaviour: "new-app" }%>
+  <% @apps.each_slice(3).each do |apps| %>
+    <div class="columns">
+      <%= render apps %>
     </div>
+  <% end %>
+  <div class="add-app">
+      <%= link_to "#{icon "plus"} New app".html_safe, new_server_app_path(@server),
+        data: { behaviour: "new-app" }, class: "button is-success is-large" %>
   </div>
 </div>

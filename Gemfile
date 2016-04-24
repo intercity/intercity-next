@@ -6,14 +6,12 @@ gem "turbolinks", "~> 5.x"
 gem "coffee-rails", "~> 4.1.0"
 gem "jquery-rails"
 gem "jquery-turbolinks"
-gem "bootstrap-sass", "~> 3.3.5"
-gem "bootstrap_form"
+gem "bulma-rails", "~> 0.0.23"
 gem "sass-rails", "~> 5.0"
 gem "uglifier"
 gem "sidekiq", "~> 4.0"
 gem "sidekiq-cron", "~> 0.4.0"
 gem "redis", "~> 3.2.0"
-gem "nprogress-rails", "~> 0.1.6"
 gem "net-ssh", "3.0.1"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
@@ -60,4 +58,5 @@ end
 
 source "https://rails-assets.org" do
   gem "rails-assets-fastclick"
+  gem "rails-assets-clipboard"
 end

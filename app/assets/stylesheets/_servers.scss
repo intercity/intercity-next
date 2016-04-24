@@ -1,16 +1,42 @@
 .servers {
-  @extend .row;
-
-  .server, .add-server {
-    @extend .col-md-3;
-    .panel {
-      min-height: 160px;
+  .server {
+    @extend .column;
+    @extend .is-3;
+    .box {
+      min-height: 180px;
     }
   }
 
-  .add-server {
-    text-align: center;
-    line-height: 150px;
-    font-size: 20px;
+  .ssh-key {
+    @extend .box;
+    background: $grey-lighter;
+    pre {
+      padding: 20px;
+      width: 100%;
+      overflow-x: scroll;
+    }
+    .table {
+      background: $grey-lighter;
+    }
+  }
+
+  .installing {
+    .step {
+      @extend .hero;
+      @extend .columns;
+    }
+  }
+}
+
+.highlight {
+  position: relative;
+  .copy {
+    background: white;
+    border: solid $border;;
+    border-width: 0 0 1px 1px;
+    color: $text-light;
+    position: absolute;
+    right: 0;
+    top: 0;
   }
 }

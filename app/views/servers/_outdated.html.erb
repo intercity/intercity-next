@@ -1,12 +1,16 @@
-<div class="alert alert-dismissible alert-warning">
-  <h4>Server out of date!</h4>
-  <div class="row">
-    <div class="col-md-10">
-      <p>The Dokku version installed on your server is not up to date. We highly recomment you update as soon as possible.
-        Keep in mind that updating does cause a short downtime.</p>
-    </div>
-    <div class="col-md-2">
-      <%= link_to "Update", manual_update_server_path(server), class: "pull-right btn-sm btn btn-default" %>
+<div class="message is-warning">
+  <div class="message-header">
+    <h4>Server out of date!</h4>
+  </div>
+  <div class="message-body">
+    <div class="columns">
+      <div class="column is-10">
+        <p>The Dokku version installed on your server is not up to date. We highly recomment you update as soon as possible.
+          Keep in mind that updating does cause a short downtime.</p>
+      </div>
+      <div class="column is-2">
+        <%= link_to "Update", manual_update_server_path(server), class: "pull-right button is-warning" %>
+      </div>
     </div>
   </div>
 </div>

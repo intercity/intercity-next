@@ -1,25 +1,30 @@
 <%= render "servers/heading", server: @server, tab: "deploy_keys" %>
-<div class="row">
-  <div class="col-md-8">
-    <table class="table table-striped">
+<div class="columns">
+  <div class="column is-8">
+    <table class="table is-striped">
       <% if @deploy_keys.count == 0 %>
         <tr>
           <td>There are no deploy keys yet</td>
         </tr>
       <% else %>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th></th>
+          </tr>
+        </thead>
         <%= render @deploy_keys %>
       <% end %>
     </table>
   </div>
-  <div class="col-md-4">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <%= bootstrap_form_for [@server, @deploy_key] do |f| %>
-          <%= f.text_field :name %>
-          <%= f.text_area :key %>
-          <%= f.submit "Create new deploy key", class: "btn btn-primary btn-block" %>
-        <% end %>
-      </div>
+  <div class="column is-4">
+    <div class="box">
+    <h1 class="subtitle">Add new deploy key</h1>
+      <%= form_for [@server, @deploy_key] do |f| %>
+        <%= f.text_field :name, class: "input control", placeholder: "Name" %>
+        <%= f.text_area :key, class: "textarea control", placeholder: "SSH Key" %>
+        <%= f.submit "Create new deploy key", class: "button is-primary control" %>
+      <% end %>
     </div>
   </div>
 </div>

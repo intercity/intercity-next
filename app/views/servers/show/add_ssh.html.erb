@@ -1,15 +1,21 @@
-<h1>Setup for <%= @server.name %></h1>
-<p>You need to add the following public SSH key to the "root" user of the server</p>
-<pre><%= @ssh_key %></pre>
-<div class="well text-center <%= "hidden" if @server.connected? %>" data-server-status="checking">
-  <p><i class="fa fa-circle-o-notch fa-spin"></i> Checking for the SSH key</p>
-  <p class="hint hidden"></p>
+<div class="columns servers">
+  <div class="column is-8 is-offset-2">
+    <h1 class="title">Setup for <%= @server.name %></h1>
+    <p>You need to add the following public SSH key to the "root" user of the server</p>
+    <div class="ssh-key highlight">
+      <button class="copy" data-clipboard-target="pre#sshkey">Copy</button>
+      <pre id="sshkey"><%= @ssh_key %></pre>
+    </div>
+    <div class="box has-text-centered <%= "is-hidden" if @server.connected? %>" data-server-status="checking">
+      <p><i class="fa fa-circle-o-notch fa-spin"></i> Checking for the SSH key</p>
+      <p class="hint is-hidden"></p>
+    </div>
+    <div class="box has-text-centered <%= "is-hidden" unless @server.connected? %>" data-server-status="connected">
+      <p>Server is up and we can connect to it!</p>
+      <%= link_to "Proceed with installation", start_installation_server_path(@server), method: :post, class: "button is-primary" %>
+    </div>
+  </div>
 </div>
-<div class="well text-center <%= "hidden" unless @server.connected? %>" data-server-status="connected">
-  <p>Server is up and we can connect to it!</p>
-  <%= link_to "Proceed with installation", start_installation_server_path(@server), method: :post, class: "btn btn-primary" %>
-</div>
-
 <script>
   <% if @server.fresh? %>
     var poller = new ServerPoller("<%= test_ssh_server_path(@server) %>");

@@ -1,7 +1,7 @@
 <%= render "apps/heading", app: @app, tab: "env_vars" %>
-<div class="row">
-  <div class="col-md-8">
-    <table class="table table-hover env-vars">
+<div class="columns">
+  <div class="column is-8">
+    <table class="table is-striped env-vars">
       <thead>
         <tr>
           <th>Key</th>
@@ -11,13 +11,13 @@
       </thead>
       <tbody>
         <%= render @app.env_vars %>
-        <tr class="<%= "hidden" if @app.env_vars.any? %>" data-role="empty-table">
-          <td colspan="3" class="text-muted text-center">There are no environment variables</td>
+        <tr class="<%= "is-hidden" if @app.env_vars.any? %>" data-role="empty-table">
+          <td colspan="3" class="has-text-centered">There are no environment variables</td>
         </tr>
       </tbody>
     </table>
   </div>
-  <div data-role="form" class="col-md-4">
+  <div data-role="form" class="column is-4">
     <%= render "form" %>
   </div>
 </div>

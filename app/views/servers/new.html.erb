@@ -1,6 +1,17 @@
-<h1>New server</h1>
-<%=  bootstrap_form_for @server do |f| %>
-  <%= f.text_field :name %>
-  <%= f.text_field :ip %>
-  <%= f.submit "Create server" %>
-<% end %>
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <h1 class="title">New server</h1>
+    <%=  form_for @server do |f| %>
+      <p class="control">
+        <%= f.text_field :name, class: "input", placeholder: "Name" %>
+      </p>
+      <p class="control">
+        <%= f.text_field :ip, class: "input", placeholder: "IP Address" %>
+      </p>
+      <p class="control">
+        <%= f.submit "Create server", class: "button is-primary" %>
+        <%= link_to "Cancel", root_path, class: "button is-link" %>
+      </p>
+    <% end %>
+  </div>
+</div>

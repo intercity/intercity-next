@@ -1,0 +1,31 @@
+<section class="header_section">
+  <header class="header">
+    <div class="container">
+      <!-- Left side -->
+      <div class="header-left">
+        <a class="header-item" href="/">
+          <%= image_tag "logo_icon.svg" %></a>
+        <%= link_to "Servers", root_path, class: "header-tab #{"is-active" if @active_menu.blank?}" %>
+        <%= link_to "Users", users_path, class: "header-tab #{"is-active" if @active_menu == "users"}" %>
+        <%= link_to "Help", help_path, class: "header-tab #{"is-active" if @active_menu == "help"}" %>
+      </div>
+
+      <!-- Hamburger menu (on mobile) -->
+      <span class="header-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+
+      <!-- Right side -->
+      <div class="header-right header-menu">
+        <span class="header-item">
+          <%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %>
+        </span>
+        <span class="header-item">
+          <%= link_to "Logout", logout_path, method: :delete %>
+        </span>
+      </div>
+    </div>
+  </header>
+</section>

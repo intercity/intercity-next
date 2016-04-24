@@ -1,10 +1,10 @@
 <% if @server.up? %>
-  $("[data-server-status~=checking]").addClass("hidden");
-  $("[data-server-status~=connected]").removeClass("hidden");
+  $("[data-server-status~=checking]").addClass("is-hidden");
+  $("[data-server-status~=connected]").removeClass("is-hidden");
 <% else %>
   <% for n in 1...@server.install_step %>
-    $(".step<%= n %>").removeClass("info").addClass("success").find("td:first-child").html("<%= j icon "check-square-o" %>");
+    $(".step<%= n %>").removeClass("is-info").addClass("is-success").find(".is-2").html("<%= j icon "check-square-o" %>");
   <% end %>
-  $(".step<%= @server.install_step %>").addClass("info").find("td:first-child").html("<%= j icon "circle-o-notch fa-spin" %>");
+  $(".step<%= @server.install_step %>").addClass("is-info").find(".is-2").html("<%= j icon "circle-o-notch fa-spin" %>");
   new ServerPoller("<%= check_installation_server_path(@server) %>").poll();
 <% end %>
