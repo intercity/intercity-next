@@ -15,3 +15,4 @@ production:
   <<: *default
   database: intercity
   host: <%= ENV["DB_SOCKET"] %>
+  pool: 50
