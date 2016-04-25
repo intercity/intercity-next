@@ -9,4 +9,5 @@ class AppTest < ActiveSupport::TestCase
   should have_many(:backups).dependent(:destroy)
 
   should validate_presence_of :name
+  should validate_uniqueness_of(:name).scoped_to(:server_id)
 end
