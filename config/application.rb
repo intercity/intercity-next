@@ -19,7 +19,7 @@ module IntercityNext
     config.generators.assets = false
     config.generators.helper = false
 
-    config.autoload_paths << Rails.root.join("lib")
+    config.eager_load_paths << Rails.root.join("lib")
 
     $redis = Redis.new
   end
