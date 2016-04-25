@@ -7,7 +7,7 @@ class App < ActiveRecord::Base
   has_many :domains, dependent: :destroy
   has_many :backups, dependent: :destroy
 
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true, uniqueness: { scope: :server_id }
 
   def clean_name
     name.parameterize
