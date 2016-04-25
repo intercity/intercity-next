@@ -3,6 +3,7 @@ class Server < ActiveRecord::Base
   has_many :active_services, dependent: :destroy
   has_many :services, through: :active_services
   has_many :deploy_keys, dependent: :destroy
+  has_many :server_load_readings, dependent: :destroy
 
   before_create :create_rsa_key
 

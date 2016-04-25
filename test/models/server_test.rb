@@ -5,6 +5,7 @@ class ServerTest < ActiveSupport::TestCase
   should have_many(:active_services).dependent(:destroy)
   should have_many(:services).through(:active_services)
   should have_many(:deploy_keys).dependent(:destroy)
+  should have_many(:server_load_readings).dependent(:destroy)
 
   test "It should create a RSA key on create" do
     server = Server.create!(name: "test", ip: "127.0.0.1")

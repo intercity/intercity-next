@@ -1,0 +1,46 @@
+<%= render "servers/heading", server: @server, tab: "readings" %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="body">
+      <div class="chart" id="server_load_history">
+        <svg></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+  .chart svg {
+    height: 250px;
+  }
+</style>
+
+<script type="text/javascript">
+  $(document).on('turbolinks:load', function() {
+    d3.json('<%= server_server_load_readings_path(@server, format: :json) %>', function(data) {
+      nv.addGraph(function() {
+        var chart = nv.models.lineChart()
+          .useInteractiveGuideline(true);
+
+        chart.xAxis
+          .axisLabel('Timeline')
+          .tickFormat(function(d) {
+            return d3.time.format("%H:%M")(new Date(d))
+          });
+        chart.forceY([0,100]);
+        chart.yAxis
+          .axisLabel('Usage (%)')
+          .range([0,100]);
+
+        d3.select('#server_load_history svg')
+          .datum(data)
+          .transition().duration(500)
+          .call(chart);
+
+        nv.utils.windowResize(chart.update);
+
+        return chart;
+      });
+    });
+})
+</script>
