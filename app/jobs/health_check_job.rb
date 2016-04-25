@@ -1,5 +1,5 @@
 class HealthCheckJob < ActiveJob::Base
-  queue_as :default
+  queue_as :health_checks
 
   def perform(server)
     return unless server.up? || server.down?

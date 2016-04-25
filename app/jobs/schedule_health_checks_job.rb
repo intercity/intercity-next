@@ -1,5 +1,5 @@
 class ScheduleHealthChecksJob < ActiveJob::Base
-  queue_as :health_cheacks
+  queue_as :health_checks
 
   def perform
     Server.all.each do |server|
