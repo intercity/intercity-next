@@ -5,6 +5,6 @@ schedule_automated_backups:
   active_job: true
 schedule_health_checks:
   cron: "0,30 * * * *"
-  class: "ScheduleHealthChecks"
+  class: "ScheduleHealthChecksJob"
   queue: health_checks
   active_job: true
