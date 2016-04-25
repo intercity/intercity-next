@@ -5,6 +5,8 @@ redis:
   active: true
   commands: <%= { install: "sudo dokku plugin:install https://github.com/dokku/dokku-redis.git redis",
     create: "dokku redis:create %app_name%_redis",
+    destroy: "dokku redis:destroy %app_name%_redis force",
+    unlink: "dokku redis:unlink %app_name%_redis",
     link: "dokku redis:link %app_name%_redis %app_name%",
     backup: false }.to_json %>
 
