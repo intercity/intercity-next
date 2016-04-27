@@ -29,10 +29,6 @@ class SshKeyMaintainer
     Rails.root.join("keys", key_filename)
   end
 
-  def command_aggregator
-    @command_aggregator ||= CommandAggregator.new
-  end
-
   def key_filename
     @key_filename ||= "#{server.id}_#{apply_stamp}_key_#{SecureRandom.hex(5)}"
   end
