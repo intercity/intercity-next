@@ -1,4 +1,7 @@
 class SshExecution
+  class_attribute :executioner
+  self.executioner = Net::SSH
+
   def initialize(server)
     @server = server
   end
@@ -19,11 +22,11 @@ class SshExecution
 
   def execute_with_block
     ssh_key_maintainer.create_key_for_connection
-    Net::SSH.start(@server.ip, "root",
-                   port: 22,
-                   keys: [ssh_key_maintainer.key], paranoid: false,
-                   timeout: ssh_timeout,
-                   number_of_password_prompts: 0) do |ssh|
+    executioner.start(@server.ip, "root",
+                      port: 22,
+                      keys: [ssh_key_maintainer.key], paranoid: false,
+                      timeout: ssh_timeout,
+                      number_of_password_prompts: 0) do |ssh|
       yield ssh
     end
   ensure
