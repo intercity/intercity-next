@@ -29,6 +29,7 @@ class ActiveSupport::TestCase
 
   def setup
     DatabaseCleaner.start
+    SshExecution.executioner = FakeSshExecutioner
   end
 
   def teardown
