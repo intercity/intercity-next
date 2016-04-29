@@ -18,9 +18,9 @@ class ServerLoadReadingJob < ApplicationJob
 
       ServerLoadReading.create!(
         server: server,
-        cpu: results[:cpu],
-        memory: results[:memory],
-        disk: results[:disk]
+        cpu: results[:cpu].to_f,
+        memory: results[:memory].to_f,
+        disk: results[:disk].to_f
       )
     end
   end
