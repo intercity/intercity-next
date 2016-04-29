@@ -3,8 +3,9 @@
   <p>To update your server, you need to manually SSH into the server, and run the following command:</p>
 
   <p>
-    <blockquote>
-      <code>
+    <blockquote class="highlight border">
+      <button class="copy" data-clipboard-target="code#update-server">Copy</button>
+      <code id="update-server">
         sudo echo 'dokku dokku/web_config boolean false' | debconf-set-selections && sudo echo 'dokku dokku/vhost_enable boolean false' | debconf-set-selections && sudo echo 'dokku dokku/skip_key_file boolean true' | debconf-set-selections && sudo apt-get install -qq -y dokku
       </code>
     </blockquote>
