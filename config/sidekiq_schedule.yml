@@ -5,8 +5,8 @@ schedule_automated_backups:
   active_job: true
 schedule_server_load_readings:
   cron: "*/15 * * * *"
-  class: "ScheduleServerLoadReadingsJob"
-  queue: default
+  class: "ServerLoadReadingJob"
+  queue: server_load_readings
   active_job: true
 schedule_health_checks:
   cron: "0,30 * * * *"

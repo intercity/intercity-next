@@ -5,7 +5,7 @@
       <li class="<%= "is-active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %></li>
       <li class="<%= "is-active" if tab == "services" %>"><%= link_to "Services", server_services_path(server) %></li>
       <li class="<%= "is-active" if tab == "deploy_keys" %>"><%= link_to "Deploy keys", server_deploy_keys_path(server) %></li>
-      <li class="<%= "is-active" if tab == "readings" %>"><%= link_to "Server load", server_server_load_readings_path(server) %></li>
+      <li class="<%= "is-active" if tab == "server_load" %>"><%= link_to "Server load", server_server_load_readings_path(server) %></li>
     </ul>
   </div>
 </div>

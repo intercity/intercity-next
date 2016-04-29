@@ -1,9 +1,16 @@
 class ServerLoadReadingsController < ServerBaseController
   def index
+    @server = Server.find(params[:server_id])
+    respond_to do |format|
+      format.html
+      format.json { render json: data(@server) }
+    end
   end
 
-  def data
-    data = Server.find(params[:server_id]).server_load_readings.where("created_at > ?", Time.now - 4.hours)
+  private
+
+  def data(server)
+    data = server.server_load_readings.where("created_at > ?", Time.now - 4.hours)
 
     result = []
     [:cpu, :memory, :disk].each do |type|
@@ -14,6 +21,7 @@ class ServerLoadReadingsController < ServerBaseController
         values: values
       }
     end
-    render json: result
+
+    result
   end
 end
