@@ -17,7 +17,7 @@
 
 <script type="text/javascript">
   $(document).on('turbolinks:load', function() {
-    d3.json('<%= server_server_load_readings_path(@server, format: :json) %>', function(data) {
+    d3.json('<%= data_server_server_load_readings_path(@server, format: :json) %>', function(data) {
       nv.addGraph(function() {
         var chart = nv.models.lineChart()
           .useInteractiveGuideline(true);

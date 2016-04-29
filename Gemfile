@@ -24,7 +24,6 @@ gem "redcarpet"
 gem "inline_svg", "~> 0.7"
 gem "rotp", "~> 3.0"
 gem "rqrcode", "~> 0.10"
-gem "jbuilder", "~> 2.4"
 
 group :development do
   gem "spring"
