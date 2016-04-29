@@ -11,6 +11,11 @@ class UsersController < ApplicationController
     UserMailer.activation(@user).deliver_later if @user.save
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy if User.count > 1
+  end
+
   def resend_activation_mail
     @user = User.where.not(activation_token: nil).find(params[:id])
     UserMailer.activation(@user).deliver_later
