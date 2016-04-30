@@ -1,6 +1,6 @@
 source "https://rubygems.org"
 
-gem "rails", ">= 5.0.0.beta3", "< 5.1"
+gem "rails", ">= 5.0.0.beta4", "< 5.1"
 gem "pg", "~> 0.18"
 gem "turbolinks", "~> 5.x"
 gem "coffee-rails", "~> 4.1.0"
