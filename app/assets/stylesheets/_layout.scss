@@ -20,3 +20,9 @@ table {
   @extend .section;
   padding: 0px;
 }
+
+blockquote.border {
+  border-top: 1px solid $grey-light;
+  border-right: 1px solid $grey-light;
+  border-bottom: 1px solid $grey-light;
+}
