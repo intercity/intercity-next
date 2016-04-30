@@ -10,6 +10,9 @@
 //= require turbolinks
 
 $(function() {
+});
+
+$(document).on("turbolinks:load", function() {
   FastClick.attach(document.body);
   hljs.initHighlightingOnLoad();
   new Clipboard('.copy');
