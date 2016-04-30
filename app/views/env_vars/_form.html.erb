@@ -1,8 +1,13 @@
 <div class="box">
   <h3 class="title">Add new env var</h3>
   <%= form_for [@app.server, @app, @env_var], remote: true do |f| %>
-    <%= f.text_field :key, placeholder: "Key", hide_label: true, class: "input control" %>
-    <%= f.text_field :value, placeholder: "Value", hide_label: true, class: "input control" %>
+    <div class="control">
+      <%= f.text_field :key, placeholder: "Key", hide_label: true, class: "input",
+        data: { error: @env_var.errors[:key].first } %>
+    </div>
+    <div class="control">
+      <%= f.text_field :value, placeholder: "Value", hide_label: true, class: "input" %>
+    </div>
     <%= f.submit "Add", class: "button is-primary" %>
   <% end %>
 </div>

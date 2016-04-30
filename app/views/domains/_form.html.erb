@@ -1,7 +1,9 @@
 <div class="box">
   <h3 class="title">Add a new domain</h3>
   <%= form_for [@app.server, @app, @domain], remote: true do |f| %>
-    <%= f.text_field :name, placeholder: "Domain name", hide_label: true, class: "input control" %>
+    <div class="control">
+      <%= f.text_field :name, placeholder: "Domain name", hide_label: true, class: "input" %>
+    </div>
     <%= f.submit "Add", class: "button control is-primary" %>
   <% end %>
 </div>

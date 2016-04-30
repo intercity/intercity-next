@@ -7,10 +7,8 @@
 //= require health_check
 //= require highlight
 //= require clipboard
+//= require form_errors
 //= require turbolinks
-
-$(function() {
-});
 
 $(document).on("turbolinks:load", function() {
   FastClick.attach(document.body);

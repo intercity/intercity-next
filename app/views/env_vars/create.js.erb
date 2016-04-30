@@ -5,3 +5,5 @@
 <% else %>
   $('body').find("[data-role~=form]").html("<%= j render "form" %>");
 <% end %>
+new FormErrorHandler().reset()
+new FormErrorHandler().execute()
