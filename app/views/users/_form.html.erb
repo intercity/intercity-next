@@ -1,10 +1,10 @@
 <div class="box">
   <h1 class="subtitle">Add a new user</h1>
   <%= form_for @user, remote: true do |f| %>
-    <p class="control">
+    <div class="control">
       <%= f.text_field :email, placeholder: "E-mail address", hide_label: true,
-        class: "input is-medium #{"is-danger" if @user.errors.include?(:email)}" %>
-    </p>
+        class: "input", data: { error: @user.errors[:email].first } %>
+    </div>
     <p class="control">
     <%= f.submit "Add new user", class: "button is-primary" %>
     </p>

@@ -2,7 +2,6 @@
     new ServerPoller("<%= status_server_service_path(@server, @service) %>").poll();
 <% else %>
     var service = $("#<%= dom_id(@service) %>");
-    console.log(service);
     service.find("[data-service-status~=installing]").addClass("hidden");
     service.find("[data-service-status~=installed]").removeClass("hidden");
     service.find(".panel").removeClass("service-installing").addClass("service-installed");
