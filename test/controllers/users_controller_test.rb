@@ -32,4 +32,14 @@ class UsersControllerTest < ActionController::TestCase
 
     assert_response :success
   end
+
+  test "DELETE destroy should destroy a user" do
+    login_user(users(:john))
+
+    assert_difference "User.count", -1 do
+      delete :destroy, xhr: true, params: { id: users(:jane).id }
+    end
+
+    assert_response :success
+  end
 end

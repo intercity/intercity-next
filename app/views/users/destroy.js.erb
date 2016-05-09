@@ -1,0 +1,3 @@
+<% if @user.destroyed? %>
+  $('body').find('#<%= dom_id(@user) %>').fadeOut();
+<% end %>
