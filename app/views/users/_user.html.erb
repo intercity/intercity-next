@@ -5,6 +5,8 @@
       resend_activation_mail_user_path(user), remote: true, method: :post if user.activation_token.present? %>
   </td>
   <td class="actions is-link is-danger">
-    <%= link_to "Destroy", user_path(user), remote: true, method: :delete, class: "is-danger", data: { confirm: "Are you sure?" } if user != current_user %>
+    <% if user != current_user %>
+      <%= link_to "Remove", user_path(user), remote: true, method: :delete, class: "is-danger", data: { confirm: "Are you sure?" } %>
+    <% end %>
   </td>
 <% end %>

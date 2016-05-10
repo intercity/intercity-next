@@ -11,6 +11,7 @@ require 'minitest/mock'
 require "mocha/mini_test"
 require "minitest/reporters"
 require "database_cleaner"
+require 'capybara/poltergeist'
 
 Sidekiq::Testing.fake!
 
@@ -53,7 +54,10 @@ class ActionDispatch::IntegrationTest
 
   use_transactional_fixtures = false
 
-  Capybara.javascript_driver = :webkit
+  Capybara.register_driver :poltergeist do |app|
+    Capybara::Poltergeist::Driver.new(app, js_errors: true)
+  end
+  Capybara.javascript_driver = :poltergeist
 
   setup do
     DatabaseCleaner.strategy = :truncation
@@ -73,5 +77,11 @@ class ActionDispatch::IntegrationTest
 
   def use_javascript
     Capybara.current_driver = Capybara.javascript_driver
+  end
+
+  def wait_for_ajax
+    Timeout.timeout(Capybara.default_max_wait_time) do
+      loop until page.evaluate_script('jQuery.active').zero?
+    end
   end
 end

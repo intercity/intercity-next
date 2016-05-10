@@ -77,10 +77,8 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    capybara-webkit (1.10.0)
-      capybara (>= 2.3.0, < 2.8.0)
-      json
     chronic (0.10.2)
+    cliver (0.3.2)
     codeclimate-test-reporter (0.5.0)
       simplecov (>= 0.7.1, < 1.0.0)
     coffee-rails (4.1.1)
@@ -167,6 +165,11 @@ GEM
     parser (2.3.0.7)
       ast (~> 2.2)
     pg (0.18.4)
+    poltergeist (1.9.0)
+      capybara (~> 2.1)
+      cliver (~> 0.3.1)
+      multi_json (~> 1.0)
+      websocket-driver (>= 0.2.0)
     powerpack (0.1.1)
     puma (3.4.0)
     quiet_assets (1.1.0)
@@ -304,7 +307,6 @@ DEPENDENCIES
   capistrano
   capistrano-rails
   capistrano-rails-console
-  capybara-webkit
   codeclimate-test-reporter
   coffee-rails (~> 4.1.0)
   daemon_controller
@@ -321,6 +323,7 @@ DEPENDENCIES
   mocha
   net-ssh (= 3.0.1)
   pg (~> 0.18)
+  poltergeist
   puma (~> 3.4)
   quiet_assets
   rails (>= 5.0.0.beta4, < 5.1)
