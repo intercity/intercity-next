@@ -1,0 +1,15 @@
+<h1 class="title">You have two step verification enabled</h1>
+<%= render "flashes" %>
+<div class="box has-text-centeredi content">
+  <p>If you want to disable two factor authentication, you need to enter your verification code below</p>
+  <div class="column is-4 is-offset-4">
+    <%= form_for :two_factor_auth, url: two_step_verification_path, method: :delete do |f| %>
+      <div class="control">
+        <%= f.text_field :code, placeholder: "6 digit code", class: "input" %>
+      </div>
+      <p class="has-text-centered">
+        <%= f.submit "Enable 2-step verification", class: "button is-primary" %>
+      </p>
+    <% end %>
+  </div>
+</div>

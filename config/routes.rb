@@ -11,10 +11,15 @@ Rails.application.routes.draw do
   post "welcome" => "onboarding#create"
   get "login" => "sessions#new", as: "login"
   post "login" => "sessions#create"
+  get "two_factor" => "two_factor_auths#new", as: "two_factor"
+  post "two_factor" => "two_factor_auths#create"
   delete "logout" => "sessions#destroy", as: "logout"
 
   resources :user_activation, only: [:edit, :update]
   resources :users, only: [:index, :create, :destroy] do
+    collection do
+      resource :two_step_verification, only: [:new, :create, :show, :destroy], module: "users"
+    end
     post :resend_activation_mail, on: :member
   end
 

@@ -20,7 +20,9 @@
       <!-- Right side -->
       <div class="header-right header-menu">
         <span class="header-item">
-          <%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %>
+          <%= link_to new_two_step_verification_path do %>
+            <%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %>
+          <% end %>
         </span>
         <span class="header-item">
           <%= link_to "Logout", logout_path, method: :delete %>

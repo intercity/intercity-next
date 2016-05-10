@@ -1,0 +1,28 @@
+<h1 class="title">Enable two factor authentication</h1>
+<%= render "flashes" %>
+
+<div class="box has-text-centered content">
+  <h1>1. Download app</h1>
+  <p>You can either pick Google Authenticator or Authy</p>
+</div>
+
+<div class="box has-text-centered content">
+  <h1>2. Scan QR code</h1>
+  <img src="data:image/png;base64,<%= Base64.encode64(@qrcode.as_png.to_s) %>" style="width: 140px; height: 140px;"/>
+  <p>If you can't scan the QR code, enter: <pre><%= current_user.totp_secret %></pre></p>
+</div>
+
+<div class="box content has-text-centered">
+  <h1>3. Enter your verification code</h1>
+  <div class="column is-4 is-offset-4 has-text-centered">
+    <%= form_for :two_factor_auth, url: two_step_verification_path, method: :post do |f| %>
+      <div class="control">
+        <%= f.text_field :code, placeholder: "6 digit code", class: "input" %>
+      </div>
+      <p class="has-text-centered">
+        <%= f.submit "Enable 2-step verification", class: "button is-primary" %>
+      </p>
+    <% end %>
+  </div>
+</div>
+
