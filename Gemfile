@@ -48,7 +48,7 @@ group :test do
   gem "shoulda"
   gem "mocha"
   gem "launchy"
-  gem "capybara-webkit"
+  gem "poltergeist"
   gem "database_cleaner"
   gem "codeclimate-test-reporter", require: nil
 end
