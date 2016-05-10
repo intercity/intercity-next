@@ -14,7 +14,6 @@ Intercity-Docker. This is an installation and update manager for Intercity.
 
 1. Clone Intercity-Docker to `/var/intercity`: `$ git clone https://github.com/intercity/intercity-docker.git /var/intercity`
 1. Go to the cloned folder: `cd /var/intercity`
-1. Check out the latest release: `git checkout tags/v0.2.0`
 1. Copy the sample container config: `cp samples/app.yml containers/`
 1. Open the app.yml and change the required params: `vi containers/app.yml`
 1. Save the file and run the bootstrap command: `./launcher bootstrap app`
