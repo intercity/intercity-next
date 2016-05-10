@@ -1,4 +1,19 @@
 .servers {
+  .empty-state {
+    .box {
+      h3, h4 {
+        color: $grey-dark;
+      }
+      .icon {
+        width: 100px;
+        height: 100px;
+        * {
+          fill: $grey-light;
+        }
+      }
+    }
+  }
+
   .server {
     @extend .column;
     @extend .is-3;

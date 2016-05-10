@@ -21,6 +21,7 @@ gem "puma", "~> 3.4"
 gem "whenever", "~> 0.9"
 gem "validates_email_format_of", "~> 1.6"
 gem "redcarpet"
+gem "inline_svg", "~> 0.7"
 
 group :development do
   gem "spring"
