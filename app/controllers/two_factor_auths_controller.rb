@@ -19,6 +19,6 @@ class TwoFactorAuthsController < ApplicationController
   private
 
   def totp
-    @totp ||= ROTP::TOTP.new(current_user.totp_secret, issuer: "Intercity")
+    ROTP::TOTP.new(current_user.totp_secret, issuer: "Intercity")
   end
 end

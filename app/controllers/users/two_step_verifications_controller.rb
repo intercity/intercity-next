@@ -24,7 +24,7 @@ class Users::TwoStepVerificationsController < ApplicationController
   private
 
   def ensure_totp_secret
-    return unless current_user.totp_secret.nil?
+    return if current_user.totp_secret.present?
     current_user.update_attribute(:totp_secret, ROTP::Base32.random_base32)
   end
 
