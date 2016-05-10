@@ -19,7 +19,8 @@ reporter_options = { color: true, slow_count: 5 }
 ENV["VIM"] = nil
 Minitest::Reporters.use!([Minitest::Reporters::DefaultReporter.new(reporter_options)], ENV)
 
-DatabaseCleaner.strategy = :transaction
+DatabaseCleaner.clean_with :truncation
+DatabaseCleaner.strategy = :truncation
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in test/support/ and its subdirectories.
@@ -29,12 +30,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   def setup
-    DatabaseCleaner.start
     SshExecution.executioner = FakeSshExecutioner
-  end
-
-  def teardown
-    DatabaseCleaner.clean
   end
 
   def self.check_for_valid_fixtures(name)
@@ -52,18 +48,15 @@ class ActionDispatch::IntegrationTest
   include Sorcery::TestHelpers::Rails::Integration
   include Capybara::DSL
 
-  use_transactional_fixtures = false
+  self.use_transactional_tests = false
 
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: true)
   end
   Capybara.javascript_driver = :poltergeist
 
-  setup do
-    DatabaseCleaner.strategy = :truncation
-  end
-
   teardown do
+    DatabaseCleaner.clean
     Capybara.reset_sessions!
     Capybara.use_default_driver
   end
