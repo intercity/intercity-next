@@ -1,14 +1,14 @@
 module FlashMessagesHelper
-  def bootstrap_class_for(flash_type)
+  def bulma_class_for(flash_type)
     case flash_type
     when "success"
-      "alert-success"
+      "is-success"
     when "error"
-      "alert-danger"
+      "is-danger"
     when "alert"
-      "alert-danger"
+      "is-danger"
     when "notice"
-      "alert-info"
+      "is-info"
     else
       flash_type
     end
@@ -16,8 +16,8 @@ module FlashMessagesHelper
 
   def flash_messages
     flash.map do |msg_type, message|
-      content_tag(:div, class: "alert #{bootstrap_class_for(msg_type)}") do
-        content_tag(:button, "x", class: "close", data: { dismiss: "alert" }) + message
+      content_tag(:div, class: "notification #{bulma_class_for(msg_type)}") do
+        content_tag(:button, "", class: "delete") + message
       end
     end.join.html_safe
   end
