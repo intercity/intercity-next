@@ -16,6 +16,11 @@ class EnvVarsController < ServerBaseController
     DeleteEnvVarJob.perform_later(@app, @env_var.key) if @env_var.destroy
   end
 
+  def sync
+    @app = App.find_by!(id: params[:app_id], server: params[:server_id])
+    SyncEnvVarsJob.perform_later(@app)
+  end
+
   private
 
   def env_var_params

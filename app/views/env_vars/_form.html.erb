@@ -9,5 +9,7 @@
       <%= f.text_field :value, placeholder: "Value", hide_label: true, class: "input" %>
     </div>
     <%= f.submit "Add", class: "button is-primary" %>
+
+    <%= link_to "Synchronize", sync_server_app_env_vars_path, method: :post, remote: true, class: "button is-link is-pulled-right", data: { role: "sync-link" } %>
   <% end %>
 </div>
