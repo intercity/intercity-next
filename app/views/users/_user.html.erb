@@ -1,5 +1,12 @@
 <%= content_tag :tr, id: dom_id(user), class: "user" do %>
   <td><%= user.email %></td>
+  <td>
+    <% unless user.two_factor_auth_enabled? %>
+      <span data-tooltip="Two-factor security not enabled">
+      <%= icon "warning" %>
+      </span>
+    <% end %>
+  </td>
   <td class="actions is-link">
     <%= link_to "Resend activation mail",
       resend_activation_mail_user_path(user), remote: true, method: :post if user.activation_token.present? %>
