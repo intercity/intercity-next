@@ -1,6 +1,7 @@
 class OnboardingController < ApplicationController
   skip_before_action :require_login
   skip_before_action :redirect_if_first_user
+  skip_before_action :validate_two_factor_key
 
   before_action :redirect_unless_first_user
 

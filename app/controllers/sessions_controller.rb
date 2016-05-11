@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: :destroy
+  skip_before_action :validate_two_factor_key
   layout "login"
 
   def new
@@ -17,6 +18,7 @@ class SessionsController < ApplicationController
 
   def destroy
     logout
+    session[:passed_two_factor_auth] = false
     redirect_to login_path
   end
 end

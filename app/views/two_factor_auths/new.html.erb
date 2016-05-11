@@ -1,0 +1,14 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <%= render "flashes" %>
+    <div class="has-text-centered">
+    <%= image_tag "logo.svg" %>
+    </div>
+    <div class="">
+      <%= form_for :two_factor_auth, url: two_factor_path do |f| %>
+        <%= f.text_field :code, class: "control input", placeholder: "Two factor auth code" %>
+        <%= f.submit "Unlock", class: "button is-primary is-fullwidth control" %>
+      <% end %>
+    </div>
+  </div>
+</div>

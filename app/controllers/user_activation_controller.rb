@@ -1,5 +1,6 @@
 class UserActivationController < ApplicationController
   skip_before_action :require_login
+  skip_before_action :validate_two_factor_key
 
   layout "login"
 
