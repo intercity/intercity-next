@@ -1,34 +1,34 @@
-<section class="header_section">
+<header class="nav has-shadow">
   <div class="container">
-    <header class="nav">
-        <!-- Left side -->
-        <div class="nav-left">
-          <a class="nav-item" href="/">
-            <%= image_tag "logo_icon.svg" %></a>
-          <%= link_to "Servers", root_path, class: "nav-item is-tab #{"is-active" if @active_menu.blank?}" %>
-          <%= link_to "Users", users_path, class: "nav-item is-tab #{"is-active" if @active_menu == "users"}" %>
-          <%= link_to "Help", help_path, class: "nav-item is-tab #{"is-active" if @active_menu == "help"}" %>
-        </div>
+    <!-- Left side -->
+    <div class="nav-left">
+      <a class="nav-item" href="/">
+        <%= image_tag "logo_icon.svg" %></a>
+      <%= link_to "Servers", root_path, class: "nav-item is-tab #{"is-active" if @active_menu.blank?}" %>
+      <%= link_to "Users", users_path, class: "nav-item is-tab #{"is-active" if @active_menu == "users"}" %>
+      <%= link_to "Help", help_path, class: "nav-item is-tab #{"is-active" if @active_menu == "help"}" %>
+    </div>
 
-        <!-- Hamburger menu (on mobile) -->
-        <span class="nav-toggle">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
+    <!-- Hamburger menu (on mobile) -->
+    <span class="nav-toggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </span>
 
-        <!-- Right side -->
-        <div class="nav-right nav-menu">
-          <span class="nav-item">
-            <%= link_to new_two_step_verification_path do %>
-              <%= image_tag gravatar_url(current_user.email), class: "img img-circle avatar" %>
-            <% end %>
-          </span>
-          <span class="nav-item">
-            <%= link_to "Logout", logout_path, method: :delete %>
-          </span>
-        </div>
-    </header>
+    <!-- Right side -->
+    <div class="nav-right nav-menu">
+      <span class="nav-item">
+        <%= link_to new_two_step_verification_path do %>
+          <%= image_tag gravatar_url(current_user.email, size: 30), class: "img img-circle" %>
+        <% end %>
+      </span>
+      <span class="nav-item">
+        <%= link_to logout_path, method: :delete, class: "button is-link", title: "Log out" do %>
+          <span class="icon"><%= icon("sign-out") %></span>
+        <% end %>
+      </span>
+    </div>
   </div>
-</section>
+</header>
 <hr class="is-marginless">
