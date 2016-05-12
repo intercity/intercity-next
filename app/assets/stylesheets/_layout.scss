@@ -1,10 +1,3 @@
-.navbar {
-  border-radius: 0px;
-  .avatar {
-    padding-top: 10px;
-  }
-}
-
 .heading {
   margin-bottom: 20px;
 }
@@ -16,10 +9,12 @@ table {
   }
 }
 
-.header_section {
-  @extend .section;
-  padding-top: 0px;
-  padding-bottom: 0px;
+.nav {
+  .container:first-child {
+    @extend .section;
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
 }
 
 blockquote.border {
