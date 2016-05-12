@@ -1,9 +1,11 @@
 <div class="servers">
   <div class="empty-state">
-    <div class="box content has-text-centered">
-      <%= inline_svg "logo_icon.svg", class: "icon" %>
-      <h3>Looks like you don’t have any servers.</h3>
-      <h4>Luckily adding one is easy as pie!</h4>
+    <div class="box has-text-centered">
+      <div class="content">
+        <%= inline_svg "logo_icon.svg", class: "icon" %>
+        <h3>Looks like you don’t have any servers.</h3>
+        <h4>Luckily adding one is easy as pie!</h4>
+      </div>
       <%= link_to "Add your first server", new_server_path, class: "button is-primary is-medium" %>
     </div>
   </div>
