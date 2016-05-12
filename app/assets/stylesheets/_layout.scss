@@ -18,7 +18,8 @@ table {
 
 .header_section {
   @extend .section;
-  padding: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
 }
 
 blockquote.border {
