@@ -1,0 +1,7 @@
+<% if @server.persisted? %>
+  Turbolinks.visit("<%= server_path(@server) %>")
+<% else %>
+  $("#new-server").html("<%= j render "servers/new" %>");
+<% end %>
+new FormErrorHandler().reset()
+new FormErrorHandler().execute()

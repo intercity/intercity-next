@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     post :resend_activation_mail, on: :member
   end
 
-  resources :servers, only: [:new, :create, :show, :destroy] do
+  resources :servers, only: [:create, :show, :destroy] do
     get :test_ssh, on: :member
     get :check_installation, on: :member
     get :updating, on: :member

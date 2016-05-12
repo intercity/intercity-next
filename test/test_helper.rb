@@ -77,4 +77,11 @@ class ActionDispatch::IntegrationTest
       loop until page.evaluate_script('jQuery.active').zero?
     end
   end
+
+  def interact_with_hidden_elements
+    return unless block_given?
+    Capybara.ignore_hidden_elements = false
+    yield
+    Capybara.ignore_hidden_elements = true
+  end
 end

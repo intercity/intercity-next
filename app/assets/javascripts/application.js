@@ -8,6 +8,7 @@
 //= require highlight
 //= require clipboard
 //= require form_errors
+//= require modal
 //= require turbolinks
 
 $(document).on("turbolinks:load", function() {
