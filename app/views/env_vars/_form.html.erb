@@ -9,7 +9,14 @@
       <%= f.text_field :value, placeholder: "Value", hide_label: true, class: "input" %>
     </div>
     <%= f.submit "Add", class: "button is-primary" %>
-
-    <%= link_to "Synchronize", sync_server_app_env_vars_path, method: :post, remote: true, class: "button is-link is-pulled-right", data: { role: "sync-link" } %>
   <% end %>
+</div>
+<div class="box">
+  <h3 class="title">Synchronize</h3>
+  <p>
+    You can synchronize your environment variables with your server if they are out of sync.
+    This can take a few minutes and you have to refresh to view the changes.
+  </p>
+  <br>
+  <%= link_to "Synchronize", server_app_sync_env_vars_path(app_id: @app), method: :post, remote: true, class: "button is-primary", data: { role: "sync-link" } %>
 </div>

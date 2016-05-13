@@ -6,6 +6,7 @@
 //= require server_poller
 //= require health_check
 //= require highlight
+//= require close_notification
 //= require clipboard
 //= require form_errors
 //= require turbolinks

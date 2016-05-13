@@ -35,9 +35,8 @@ Rails.application.routes.draw do
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
       end
-      resources :env_vars, only: [:index, :create, :destroy] do
-        post :sync, on: :collection
-      end
+      resources :env_vars, only: [:index, :create, :destroy]
+      resources :sync_env_vars, only: [:create]
       resources :domains, only: [:index, :create, :destroy]
       resources :backups, only: [:index, :create] do
         post :enable, on: :collection
