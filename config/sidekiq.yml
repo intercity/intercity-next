@@ -8,3 +8,4 @@ production:
   - default
   - mailers
   - health_checks
+  - server_load_readings

@@ -1,5 +1,5 @@
 class ServerLoadReadingJob < ApplicationJob
-  queue_as :default
+  queue_as :server_load_readings
 
   def perform
     Server.where(status: :up).each do |server|
