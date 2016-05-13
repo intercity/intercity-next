@@ -8,6 +8,9 @@
 //= require highlight
 //= require clipboard
 //= require form_errors
+//= require server_load_chart
+//= require d3
+//= require nvd3
 //= require turbolinks
 
 $(document).on("turbolinks:load", function() {

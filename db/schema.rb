@@ -81,6 +81,16 @@ ActiveRecord::Schema.define(version: 20160510143257) do
     t.index ["service_id"], name: "index_linked_services_on_service_id", using: :btree
   end
 
+  create_table "server_load_readings", force: :cascade do |t|
+    t.integer  "server_id"
+    t.decimal  "cpu",        precision: 4, scale: 2
+    t.decimal  "memory",     precision: 4, scale: 2
+    t.decimal  "disk",       precision: 4, scale: 2
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.index ["server_id"], name: "index_server_load_readings_on_server_id", using: :btree
+  end
+
   create_table "servers", force: :cascade do |t|
     t.string   "name"
     t.string   "ip"
@@ -91,17 +101,16 @@ ActiveRecord::Schema.define(version: 20160510143257) do
     t.boolean  "connected",       default: false
     t.integer  "status",          default: 0
     t.string   "dokku_version"
-    t.integer  "install_step",    default: 1
     t.boolean  "updating",        default: false
+    t.integer  "install_step",    default: 1
   end
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "active",          default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "active",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.json     "commands"
-    t.boolean  "install_default", default: false
   end
 
   create_table "users", force: :cascade do |t|

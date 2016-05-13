@@ -1,0 +1,17 @@
+<%= render "servers/heading", server: @server, tab: "server_load" %>
+<div class="row">
+  <div class="col-md-12">
+    <div class="body">
+      <div
+        class="chart" id="server_load_history" data-url="<%= server_server_load_readings_path(@server, format: :json) %>">
+        <svg></svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style media="screen">
+  .chart svg {
+    height: 250px;
+  }
+</style>

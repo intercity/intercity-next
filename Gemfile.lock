@@ -200,7 +200,10 @@ GEM
       railties (= 5.0.0.beta4)
       sprockets-rails (>= 2.0.0)
     rails-assets-clipboard (1.5.10)
+    rails-assets-d3 (3.5.16)
     rails-assets-fastclick (1.0.6)
+    rails-assets-nvd3 (1.8.2)
+      rails-assets-d3 (>= 3.4.4, < 4)
     rails-deprecated_sanitizer (1.0.3)
       activesupport (>= 4.2.0.alpha)
     rails-dom-testing (1.0.7)
@@ -337,7 +340,9 @@ DEPENDENCIES
   quiet_assets
   rails (>= 5.0.0.beta4, < 5.1)
   rails-assets-clipboard!
+  rails-assets-d3!
   rails-assets-fastclick!
+  rails-assets-nvd3!
   redcarpet
   redis (~> 3.2.0)
   rotp (~> 3.0)

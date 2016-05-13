@@ -62,4 +62,6 @@ end
 source "https://rails-assets.org" do
   gem "rails-assets-fastclick"
   gem "rails-assets-clipboard"
+  gem "rails-assets-d3"
+  gem "rails-assets-nvd3"
 end

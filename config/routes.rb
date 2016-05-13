@@ -46,6 +46,7 @@ Rails.application.routes.draw do
       post :create, on: :member
       get :status, on: :member
     end
+    resources :server_load_readings, only: [:index]
     resources :deploy_keys, only: [:index, :new, :create, :destroy]
   end
 
