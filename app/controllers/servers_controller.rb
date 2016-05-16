@@ -1,9 +1,6 @@
 class ServersController < ApplicationController
   def index
     @servers = Server.all.order(created_at: :desc)
-  end
-
-  def new
     @server = Server.new
   end
 
@@ -24,11 +21,7 @@ class ServersController < ApplicationController
 
   def create
     @server = Server.new(server_params)
-    if @server.save
-      redirect_to server_path(@server)
-    else
-      render :new
-    end
+    @server.save
   end
 
   def test_ssh

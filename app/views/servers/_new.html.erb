@@ -1,0 +1,23 @@
+<%= form_for @server, remote: true do |f| %>
+  <div class="modal-background"></div>
+  <div class="modal-card">
+    <header class="modal-card-head">
+      <p class="modal-card-title">Add a new server</p>
+      <a class="delete" data-behaviour="close-modal"></a>
+    </header>
+    <section class="modal-card-body">
+      <div class="control">
+        <%= f.text_field :name, class: "input", placeholder: "Name",
+          data: { error: @server.errors[:name].first } %>
+      </div>
+      <div class="control">
+        <%= f.text_field :ip, class: "input", placeholder: "IP Address",
+          data: { error: @server.errors[:ip].first } %>
+      </div>
+    </section>
+    <footer class="modal-card-foot">
+      <%= f.submit "Add server", class: "button is-primary" %>
+      <%= button_tag "Cancel", type: :reset, class: "button", data: { behaviour: "close-modal" } %>
+    </footer>
+  </div>
+<% end %>

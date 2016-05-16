@@ -8,7 +8,8 @@
     <p><span class="tag is-danger">Server is down</span> Server was unreachable in the last 30 minutes.</p>
   </div>
   <div class="column is-4">
-    <%= link_to "Add a new server", new_server_path, class: "button is-large is-success is-outlined" %>
+    <%= link_to "Add a new server", "#", class: "button is-large is-success is-outlined",
+      data: { behaviour: "open-modal", target_modal: "#new-server" } %>
   </div>
 </div>
 <hr/>
