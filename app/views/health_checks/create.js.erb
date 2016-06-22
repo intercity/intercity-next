@@ -1,7 +1,7 @@
-<% if @server.down? %>
-  $("[data-behaviour~=perform-health-check]").removeClass("hidden");
-  $("[data-behaviour~=performing-health-check]").addClass("hidden");
+<% if !@server.down? %>
+  $("[data-behaviour~=perform-health-check]").removeClass("is-hidden");
+  $("[data-behaviour~=performing-health-check]").addClass("is-hidden");
 <% else %>
-  $("[data-server-status~=down]").addClass("hidden");
-  $("[data-server-status~=up]").removeClass("hidden");
+  $("[data-server-status~=down]").addClass("is-hidden");
+  $("[data-server-status~=up]").removeClass("is-hidden");
 <% end %>
