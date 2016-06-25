@@ -3,9 +3,9 @@ class DockerBuilder
     @env_vars = ""
   end
 
-  def set_app(app)
+  def for_app(app)
     add_env_var("KEY", app.server.rsa_key_private).
-    add_env_var("HOST", "#{app.server.ip},")
+      add_env_var("HOST", "#{app.server.ip},")
     self
   end
 
