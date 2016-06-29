@@ -20,6 +20,7 @@
         <%= render(@backups) || render("no_backups") %>
       </tbody>
     </table>
+    <%= paginate @backups %>
   </div>
   <div data-role="form" class="column is-4">
     <div class="box">
