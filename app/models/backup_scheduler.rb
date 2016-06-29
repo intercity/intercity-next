@@ -6,6 +6,7 @@ class BackupScheduler
   def execute(type: :manual)
     app.services.each do |service|
       next unless service.commands["backup"]
+      next unless app.server.up?
       backup = app.backups.create!(service: service, running: true,
                                    backup_type: type.to_s)
       CreateBackupJob.perform_later(backup)
