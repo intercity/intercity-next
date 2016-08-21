@@ -2,7 +2,6 @@ Please view this file on the master branch, on stable branches it's out of date.
 
 v 0.0.1 (unreleased)
 * Move generation of SECRET_KEY_TOKEN to an initializer (jvanbaarsen)
-* Update to Dokku 0.5.6 (jvanbaarsen)
 * Brand new design (jvanbaarsen)
 * Scope app name uniqueness to server and not entire IC (jvanbaarsen)
 * Make sure service containers are destroyed when removing an app Fixes: #80 (jvanbaarsen)
@@ -15,3 +14,4 @@ v 0.0.1 (unreleased)
 * Ensure Healthcheck page has proper styling (jvanbaarsen)
 * Don't schedule backups when the server is marked as down (jvanbaarsen)
 * Add pagination to the backups page (jvanbaarsen)
+* Update to Dokku 0.7.0; Fixes: #158 (jvanbaarsen)
