@@ -1,4 +1,4 @@
 $("tr#<%= dom_id(@domain) %>").remove()
 <% unless @app.domains.any? %>
-  $('body').find("[data-role~=empty-table]").removeClass("hidden")
+  $('body').find("[data-role~=empty-table]").removeClass("is-hidden")
 <% end %>

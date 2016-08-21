@@ -1,7 +1,7 @@
 <% if @user.persisted? %>
   $('body').find('.users tbody').append("<%= j render "user", user: @user %>")
   $('body').find("[data-role~=form] form").trigger("reset")
-  $('body').find("[data-role~=empty-table]").addClass("hidden")
+  $('body').find("[data-role~=empty-table]").addClass("is-hidden")
 <% else %>
   $('body').find("[data-role~=form]").html("<%= j render "form" %>");
 <% end %>
