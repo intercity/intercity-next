@@ -31,7 +31,7 @@ class Server < ActiveRecord::Base
   end
 
   def latest_dokku_version
-    "v0.5.6".freeze
+    "v0.7.0".freeze
   end
 
   private
