@@ -1,6 +1,10 @@
 <%= render "apps/heading", app: @app, tab: "env_vars" %>
 <div class="columns">
   <div class="column is-8">
+    <div class="notification is-success is-hidden" data-role="sync-notification">
+      <button class="delete"></button>
+      We are syncing your env vars this can take a while.
+    </div>
     <table class="table is-striped env-vars">
       <thead>
         <tr>
