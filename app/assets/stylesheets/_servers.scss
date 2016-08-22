@@ -37,8 +37,31 @@
 
   .installing {
     .step {
-      @extend .hero;
-      @extend .columns;
+      text-align: center;
+      @extend .column;
+
+      @include tablet {
+        border-right: 1px solid $grey-lighter;
+
+        &:last-child {
+          border-right: 0px;
+        }
+      }
+
+      @include mobile {
+        border-bottom: 1px solid $grey-lighter;
+      }
+
+      .step-number {
+        font-size: 2em;
+        font-weight: bold;
+      }
+
+
+      &.is-success {
+        background: $green;
+        color: white;
+      }
     }
   }
 }

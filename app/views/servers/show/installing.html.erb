@@ -2,26 +2,29 @@
   <div class="column is-8 is-offset-2">
     <h1 class="title">Setup for <%= @server.name %></h1>
     <div class="<%= "is-hidden" if @server.up? %>" data-server-status="checking">
-      <p>We are installing your server. This can take around 10 minutes</p>
       <div class="box">
+      <p class="content">We are installing your server. This can take around 10 minutes</p>
         <div class="columns">
-          <div class="column is-half is-offset-one-quarter installing">
-            <div class="step step1 is-info">
-              <div class="column is-2"><%= icon "circle-o-notch fa-spin" %></div>
-              <div class="column auto">Updating packages</div>
-            </div>
-            <div class="step step2">
-              <div class="column is-2"><%= icon "square-o" %></div>
-              <div class="column auto">Installing Docker</div>
-            </div>
-            <div class="step step3">
-              <div class="column is-2"><%= icon "square-o" %></div>
-              <div class="column auto">Installing Dokku</div>
-            </div>
-            <div class="step step4">
-              <div class="column is-2"><%= icon "square-o" %></div>
-              <div class="column auto">Importing base image</div>
-            </div>
+          <div class="column">
+          <progress class="progress is-success" value="0" max="100"></progress>
+          </div>
+        </div>
+        <div class="columns installing">
+          <div class="step step1">
+            <div class="step-number">1.</div>
+            Updating packages
+          </div>
+          <div class="step step2">
+            <div class="step-number">2.</div>
+            Installing Docker
+          </div>
+          <div class="step step3">
+            <div class="step-number">3.</div>
+            Installing Dokku
+          </div>
+          <div class="step step4">
+            <div class="step-number">4.</div>
+            Importing base image
           </div>
         </div>
       </div>
