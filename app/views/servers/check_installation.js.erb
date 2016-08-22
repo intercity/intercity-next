@@ -2,7 +2,7 @@
   $("[data-server-status~=checking]").addClass("is-hidden");
   $("[data-server-status~=connected]").removeClass("is-hidden");
 <% else %>
-  $(".progress").val("<%= @server.install_step * 25 %>")
+  $(".progress").val("<%= (@server.install_step - 1) * 25 %>")
   <% for n in 1...@server.install_step %>
     $(".step<%= n %>").addClass("is-success").find(".step-number").html("<%= j icon "check-circle-o" %>");
   <% end %>
