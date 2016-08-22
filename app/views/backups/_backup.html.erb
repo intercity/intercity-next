@@ -6,6 +6,7 @@
     <td><%= backup.service.name %></td>
     <td><%= backup.created_at %></td>
     <td><%= backup.backup_type %></td>
+    <td><%= backup.rotated? ? "Rotated" : "Available" %></td>
     <td class="actions"></td>
   <% end %>
 <% end %>
