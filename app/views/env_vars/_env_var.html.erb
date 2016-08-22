@@ -1,7 +1,9 @@
 <%= content_tag :tr, id: dom_id(env_var), class: "env-var" do %>
-  <td><%= env_var.key %></td>
-  <td><%= env_var.value %></td>
-  <td class="actions"><%= link_to "delete",
+  <td><%= text_field_tag :key, env_var.key, readonly: true, class: "input disabled",
+    data: { behaviour: "select-text" } %></td>
+  <td><%= text_field_tag :value, env_var.value, readonly: true, class: "input disabled",
+    data: { behaviour: "select-text" } %></td>
+  <td class="actions"><%= link_to icon("trash"),
     server_app_env_var_path(env_var.app.server, env_var.app, env_var),
-    remote: true, method: :delete %></td>
+    remote: true, method: :delete, class: "button is-link" %></td>
 <% end %>

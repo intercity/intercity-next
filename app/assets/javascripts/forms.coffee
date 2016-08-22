@@ -1,3 +1,6 @@
+$(document).on "click", "[data-behaviour~=select-text]", ->
+  $(this).select()
+
 $(document).on "turbolinks:load", ->
   new FormErrorHandler().reset()
   new FormErrorHandler().execute()

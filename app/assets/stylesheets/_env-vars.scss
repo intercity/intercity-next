@@ -1,0 +1,23 @@
+.env-vars {
+  tr {
+    &:hover {
+      background: none;
+    }
+  }
+
+  .env-var {
+    .actions {
+      .button {
+        &.is-link {
+          text-decoration: none;
+          color: auto;
+          font-size: 1.2em;
+
+          &:hover {
+            background: darken($grey-lighter, 6.0);
+          }
+        }
+      }
+    }
+  }
+}

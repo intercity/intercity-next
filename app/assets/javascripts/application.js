@@ -7,7 +7,7 @@
 //= require health_check
 //= require highlight
 //= require clipboard
-//= require form_errors
+//= require forms
 //= require modal
 //= require turbolinks
 
