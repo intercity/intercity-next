@@ -1,0 +1,6 @@
+.input {
+  &.disabled {
+    background: lighten($grey-lighter, 1.5);
+    cursor: not-allowed;
+  }
+}
