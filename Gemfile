@@ -1,9 +1,9 @@
 source "https://rubygems.org"
 
-gem "rails", ">= 5.0.0.beta4", "< 5.1"
+gem "rails", "5.0.0.1"
 gem "pg", "~> 0.18"
 gem "turbolinks", "~> 5.x"
-gem "coffee-rails", "~> 4.1.0"
+gem "coffee-rails", "~> 4.2"
 gem "jquery-rails"
 gem "jquery-turbolinks"
 gem "bulma-rails", "~> 0.1.2"
@@ -15,7 +15,7 @@ gem "redis", "~> 3.2.0"
 gem "net-ssh", "3.0.1"
 gem "sshkey", "~> 1.5.1"
 gem "font-awesome-sass", "~> 4.4.0"
-gem "sinatra", require: nil, github: "jvanbaarsen/sinatra"
+gem "sinatra", "~> 2.0.0.beta2", require: nil
 gem "sorcery", "~> 0.9.1"
 gem "puma", "~> 3.4"
 gem "whenever", "~> 0.9"
@@ -33,7 +33,6 @@ group :development do
   gem "capistrano-rails"
   gem "capistrano-rails-console"
   gem "daemon_controller"
-  gem "quiet_assets"
   gem "letter_opener"
   gem "meta_request"
   gem "listen", "~> 3.0.5"
@@ -42,7 +41,7 @@ end
 
 group :development, :test do
   gem "awesome_print"
-  gem "dotenv-rails"
+  gem "dotenv-rails", "2.1.1"
   gem "rubocop"
 end
 

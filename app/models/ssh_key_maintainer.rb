@@ -4,7 +4,7 @@ class SshKeyMaintainer
   end
 
   def create_key_for_connection
-    File.open(key_path, "w+", 0600) do |f|
+    File.open(key_path, "w+", 0o600) do |f|
       f.write(server.rsa_key_private)
     end
 

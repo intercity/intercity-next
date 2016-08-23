@@ -36,6 +36,6 @@ class VersionParser
   end
 
   def valid?
-    @major >= 0 && @minor >= 0 && @patch >= 0 && @major + @minor + @patch > 0
+    @major >= 0 && @minor >= 0 && @patch >= 0 && (@major + @minor + @patch).positive?
   end
 end
