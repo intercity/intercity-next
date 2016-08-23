@@ -49,6 +49,10 @@ Rails.application.routes.draw do
     resources :deploy_keys, only: [:index, :new, :create, :destroy]
   end
 
+  resource :settings, only: [:edit, :update] do
+    root to: "settings#edit"
+  end
+
   # Help
   get 'help'                  => 'help#index'
   get 'help/:category/:file'  => 'help#show', as: :help_page, constraints: { category: /.*/, file: /[^\/\.]+/ }

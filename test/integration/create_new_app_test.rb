@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CreateNewAppTest < ActionDispatch::IntegrationTest
+class CreateNewAppTest < IntegrationTest
   test "User should be able to create a new app on a given server" do
     login_as users(:john)
     visit root_path

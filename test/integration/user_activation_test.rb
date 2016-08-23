@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserActivationTest < ActionDispatch::IntegrationTest
+class UserActivationTest < IntegrationTest
   test "User activation should be successfull" do
     user = users(:jane)
     visit edit_user_activation_path(user.activation_token)

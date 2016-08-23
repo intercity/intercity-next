@@ -13,6 +13,7 @@ class @window.FormErrorHandler
       $(this).find(".help.is-danger").remove()
   execute: ->
     $(".field_with_errors").each ->
+      return if $(this).first().children().first().attr("class") == "label"
       field = $(this).find(".input")
       error_message = field.data("error")
       parent_control = $(this).parent()

@@ -1,5 +1,6 @@
 class TwoFactorAuthsController < ApplicationController
   skip_before_action :validate_two_factor_key
+  skip_before_action :validate_settings
   layout "login"
 
   def new

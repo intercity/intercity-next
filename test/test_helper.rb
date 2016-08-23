@@ -45,7 +45,6 @@ class ActionController::TestCase
 end
 
 class ActionDispatch::IntegrationTest
-  include Sorcery::TestHelpers::Rails::Integration
   include Capybara::DSL
 
   self.use_transactional_tests = false
@@ -62,10 +61,7 @@ class ActionDispatch::IntegrationTest
   end
 
   def login_as(user)
-    visit login_path
-    fill_in "Email", with: user.email
-    fill_in "Password", with: "secret"
-    click_button "Login"
+    post login_path, params: { login: { email: user.email, password: "secret" } }
   end
 
   def use_javascript
@@ -83,5 +79,14 @@ class ActionDispatch::IntegrationTest
     Capybara.ignore_hidden_elements = false
     yield
     Capybara.ignore_hidden_elements = true
+  end
+end
+
+class IntegrationTest < ActionDispatch::IntegrationTest
+  def login_as(user)
+    visit login_path
+    fill_in "Email", with: user.email
+    fill_in "Password", with: "secret"
+    click_button "Login"
   end
 end

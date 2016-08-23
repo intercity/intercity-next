@@ -1,0 +1,30 @@
+<% @active_menu = "settings" %>
+<section class="hero is-small is-primary is-bold">
+  <div class="hero-body has-text-centered">
+    <div class="container">
+      <h1 class="title">
+        Settings
+      </h1>
+      <h2 class="subtitle">
+        On this page you can change the settings of your Intercity instance
+      </h2>
+    </div>
+  </div>
+</section>
+<section class="section">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <%= flash_messages %>
+      <%= form_for @settings, url: settings_path, method: :patch do |f| %>
+        <%= f.label :from_email, class: "label", value: "From email *" %>
+        <div class="control">
+          <%= f.text_field :from_email, class: "input", placeholder: "From email",
+            data: { error: @settings.errors[:from_email].first } %>
+        </div>
+        <p class="control">
+          <%= f.submit "Save settings", class: "button is-primary" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</section>
