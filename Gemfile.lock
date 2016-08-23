@@ -55,7 +55,7 @@ GEM
     awesome_print (1.6.1)
     bcrypt (3.1.11)
     builder (3.2.2)
-    bulma-rails (0.0.26)
+    bulma-rails (0.1.2)
       sass (~> 3.2)
     callsite (0.0.11)
     capistrano (3.4.0)
@@ -314,7 +314,7 @@ PLATFORMS
 
 DEPENDENCIES
   awesome_print
-  bulma-rails (~> 0.0.26)
+  bulma-rails (~> 0.1.2)
   capistrano
   capistrano-rails
   capistrano-rails-console
@@ -364,4 +364,4 @@ DEPENDENCIES
   whenever (~> 0.9)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5
