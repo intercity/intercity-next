@@ -15,6 +15,8 @@ AllCops:
   TargetRubyVersion: 2.3
 Rails:
   Enabled: true
+Rails/OutputSafety:
+  Enabled: false
 Style/AndOr:
   EnforcedStyle: always
   Enabled: true
