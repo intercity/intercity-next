@@ -6,6 +6,7 @@
         <%= image_tag "logo_icon.svg" %></a>
       <%= link_to "Servers", root_path, class: "nav-item is-tab #{"is-active" if @active_menu.blank?}" %>
       <%= link_to "Users", users_path, class: "nav-item is-tab #{"is-active" if @active_menu == "users"}" %>
+      <%= link_to "Settings", edit_settings_path, class: "nav-item is-tab #{"is-active" if @active_menu == "settings"}" %>
       <%= link_to "Help", help_path, class: "nav-item is-tab #{"is-active" if @active_menu == "help"}" %>
     </div>
 

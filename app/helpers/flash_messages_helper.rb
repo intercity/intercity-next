@@ -17,7 +17,7 @@ module FlashMessagesHelper
   def flash_messages
     flash.map do |msg_type, message|
       content_tag(:div, class: "notification #{bulma_class_for(msg_type)}") do
-        content_tag(:button, "", class: "delete") + message
+        message
       end
     end.join.html_safe
   end

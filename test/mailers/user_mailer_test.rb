@@ -6,7 +6,7 @@ class UserMailerTest < ActionMailer::TestCase
     user.activation_token = "1234"
     mail = UserMailer.activation(user)
     assert_equal "Welcome to Intercity", mail.subject
-    assert_equal [ENV['FROM_EMAIL']], mail.from
+    assert_equal [Setting.get(:from_email)], mail.from
     assert_equal [user.email], mail.to
   end
 end

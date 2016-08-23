@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
   skip_before_action :require_login, except: :destroy
   skip_before_action :validate_two_factor_key
+  skip_before_action :validate_settings
   layout "login"
 
   def new
