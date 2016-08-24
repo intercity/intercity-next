@@ -18,6 +18,7 @@ class SettingsController < ApplicationController
   private
 
   def settings_params
-    params.require(:setting).permit(:from_email)
+    params.require(:setting).permit(:from_email, :enable_smtp, :smtp_address, :smtp_port,
+                                    :smtp_username, :smtp_password, :smtp_domain)
   end
 end
