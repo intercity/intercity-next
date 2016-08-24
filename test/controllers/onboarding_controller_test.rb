@@ -9,6 +9,15 @@ class OnboardingControllerTest < ActionController::TestCase
     assert_response :success
   end
 
+  test "GET index should be successfull even when there are no settings yet" do
+    User.destroy_all
+    Setting.destroy_all
+
+    get :index
+
+    assert_response :success
+  end
+
   test "GET index should redirect to root path when there is a user in the system" do
     get :index
 
