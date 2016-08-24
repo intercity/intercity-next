@@ -5,7 +5,7 @@ schedule_automated_backups:
   active_job: true
 rotate_backups:
   cron: "0 0,12 * * *"
-  class: "RotateBackupsJOb"
+  class: "RotateBackupsJob"
   queue: default
   active_job: true
 schedule_health_checks:
