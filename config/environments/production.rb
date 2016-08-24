@@ -88,13 +88,7 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: ENV["HOSTNAME"] }
 
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = {
-    address: ENV["SMTP_ADDRESS"],
-    port: ENV["SMTP_PORT"],
-    enable_starttls_auto: ENV["SMTP_ENABLE_START_TLS"],
-    user_name: ENV["SMTP_USER_NAME"],
-    password: ENV["SMTP_PASSWORD"],
-    domain: ENV["SMTP_DOMAIN"].presence || ENV["HOSTNAME"]
-  }
+
+  config.x.default_email_delivery_method = :sendmail
 end
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160823133815) do
+ActiveRecord::Schema.define(version: 20160824073304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,8 +106,14 @@ ActiveRecord::Schema.define(version: 20160823133815) do
 
   create_table "settings", force: :cascade do |t|
     t.string   "from_email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.boolean  "enable_smtp",   default: false
+    t.string   "smtp_address"
+    t.integer  "smtp_port"
+    t.string   "smtp_username"
+    t.string   "smtp_password"
+    t.string   "smtp_domain"
   end
 
   create_table "users", force: :cascade do |t|

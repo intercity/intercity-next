@@ -16,11 +16,49 @@
     <div class="column is-half is-offset-one-quarter">
       <%= flash_messages %>
       <%= form_for @settings, url: settings_path, method: :patch do |f| %>
+
         <%= f.label :from_email, class: "label", value: "From email *" %>
         <div class="control">
           <%= f.text_field :from_email, class: "input", placeholder: "From email",
             data: { error: @settings.errors[:from_email].first } %>
         </div>
+
+        <%= f.label :enable_smtp, class: "label" %>
+        <div class="control">
+          <%= f.check_box :enable_smtp, class: "checkbox",
+            data: { error: @settings.errors[:enable_smtp].first } %>
+        </div>
+
+        <%= f.label :smtp_address, class: "label" %>
+        <div class="control">
+          <%= f.text_field :smtp_address, class: "input",
+            data: { error: @settings.errors[:smtp_address].first } %>
+        </div>
+
+        <%= f.label :smtp_port, class: "label" %>
+        <div class="control">
+          <%= f.text_field :smtp_port, class: "input",
+            data: { error: @settings.errors[:smtp_port].first } %>
+        </div>
+
+        <%= f.label :smtp_username, class: "label" %>
+        <div class="control">
+          <%= f.text_field :smtp_username, class: "input",
+            data: { error: @settings.errors[:smtp_username].first } %>
+        </div>
+
+        <%= f.label :smtp_password, class: "label" %>
+        <div class="control">
+          <%= f.text_field :smtp_password, class: "input",
+            data: { error: @settings.errors[:smtp_password].first } %>
+        </div>
+
+        <%= f.label :smtp_domain, class: "label" %>
+        <div class="control">
+          <%= f.text_field :smtp_domain, class: "input",
+            data: { error: @settings.errors[:smtp_domain].first } %>
+        </div>
+
         <p class="control">
           <%= f.submit "Save settings", class: "button is-primary" %>
         </p>
