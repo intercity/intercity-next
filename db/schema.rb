@@ -91,17 +91,16 @@ ActiveRecord::Schema.define(version: 20160824073304) do
     t.boolean  "connected",       default: false
     t.integer  "status",          default: 0
     t.string   "dokku_version"
-    t.integer  "install_step",    default: 1
     t.boolean  "updating",        default: false
+    t.integer  "install_step",    default: 1
   end
 
   create_table "services", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "active",          default: false
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
+    t.boolean  "active",     default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.json     "commands"
-    t.boolean  "install_default", default: false
   end
 
   create_table "settings", force: :cascade do |t|
