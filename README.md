@@ -5,10 +5,8 @@
 
 ## Requirements
 
-* Ruby 2.3
-* Postgresql 9.3+
 * Any Ubuntu 14.04 LTS server.
-* At least 512 MB ram, 1024 MB is recommended.
+* 1024 MB ram. 512 is possible, but requires swap of at least 1gb.
 
 ## Installation on production server
 
