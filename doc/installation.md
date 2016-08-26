@@ -1,12 +1,8 @@
 # Install Intercity Next on your production server
 
-## 1) Download and install Intercity CLI
+## Download and install Intercity CLI
 
 `curl https://raw.githubusercontent.com/intercity/intercity-server/master/scripts/installer | bash`
-
-## 2) Run the Intercity installer
-
-`intercity-server install`
 
 ## Done!
 
