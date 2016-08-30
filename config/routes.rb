@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
+        get :status, on: :member
       end
       resources :env_vars, only: [:index, :create, :destroy]
       resources :domains, only: [:index, :create, :destroy]

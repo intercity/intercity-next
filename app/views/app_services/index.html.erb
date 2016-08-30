@@ -5,6 +5,21 @@
     <p><%= link_to "Install a service", server_services_path(@app.server), class: "button is-primary" %>
   </div>
 <% else %>
+  <section class="hero is-small is-primary is-bold">
+    <div class="hero-body has-text-centered">
+      <div class="container">
+        <h1 class="title">
+          Linked services
+        </h1>
+        <h2 class="subtitle">
+          In order to use a service you installed on your server,
+          you need to link it to your app.<br/>
+          On this page you can see all the installed services for this server,
+          and if they are linked to your app.
+        </h2>
+      </div>
+    </div>
+  </section>
   <div class="services">
     <div class="columns">
     <%= render partial: "app_services/service", collection: @app.server.services,
