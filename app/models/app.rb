@@ -13,7 +13,19 @@ class App < ActiveRecord::Base
     name.parameterize
   end
 
-  def service?(service)
+  def linked_service?(service)
     services.include?(service)
+  end
+
+  def service_status(service)
+    if linked_service?(service)
+      linked_service(service).status
+    else
+      "new"
+    end
+  end
+
+  def linked_service(service)
+    linked_services.find_by!(service: service)
   end
 end

@@ -1,0 +1,7 @@
+<% if @app.service_status(@service) == "installing" %>
+    new ServerPoller("<%= status_server_app_service_path(@app.server, @app, @service) %>").poll();
+<% else %>
+    var service = $("#<%= dom_id(@service) %>");
+    service.find("[data-service-status~=installing]").addClass("is-hidden");
+    service.find("[data-service-status~=installed]").removeClass("is-hidden");
+<% end %>

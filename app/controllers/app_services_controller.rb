@@ -9,6 +9,11 @@ class AppServicesController < ServerBaseController
     @app.services << @service
 
     LinkServiceToAppJob.perform_later(@app, @service)
-    redirect_to server_app_path(@app.server, @app)
+    redirect_to server_app_services_path(@app.server, @app)
+  end
+
+  def status
+    @app = Server.find(params[:server_id]).apps.find(params[:app_id])
+    @service = Service.find(params[:id])
   end
 end

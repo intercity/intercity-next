@@ -4,11 +4,23 @@
     <p class="has-text-centered">
       <%= image_tag "services/#{service.name.downcase}.png", width: 100, height: 100 %>
     </p>
-    <% if app.service?(service) %>
-      <p class="has-text-centered"><span class="tag is-success">Linked</span></p>
-    <% else %>
-      <p class="has-text-centered"><%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
+    <p class="has-text-centered <%= "is-hidden" unless app.service_status(service) == "installed" %>" data-service-status="installed">
+      <span class="tag is-success">Linked</span>
+    </p>
+
+    <p class="has-text-centered <%= "is-hidden" unless app.service_status(service) == "installing" %>" data-service-status="installing">
+      <span class="tag is-warning">Linking</span>
+    </p>
+
+    <p class="has-text-centered <%= "is-hidden" unless app.service_status(service) == "new" %>" data-service-status="new">
+      <%= link_to "Link #{service.name}", server_app_service_path(app.server, app, service),
         method: :post, class: "button is-primary" %></p>
-    <% end %>
+    </p>
   </div>
 <% end %>
+
+<script>
+<% if app.service_status(service) == "installing" %>
+  new ServerPoller("<%= status_server_app_service_path(app.server, app, service) %>").poll();
+<% end %>
+</script>
