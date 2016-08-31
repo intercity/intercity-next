@@ -1,15 +1,17 @@
 <div class="columns">
   <div class="column is-4 is-offset-4">
+    <div class="has-text-centered content">
+      <%= image_tag "logo.svg" %>
+      <h1>Sign in to Intercity</h1>
+    </div>
     <%= flash_messages %>
-    <div class="has-text-centered">
-    <%= image_tag "logo.svg" %>
+    <div class="box">
+    <%= form_for :login, url: login_path do |f| %>
+      <%= f.text_field :email, class: "control input", placeholder: "Email" %>
+      <%= f.password_field :password, class: "control input", placeholder: "Password" %>
+      <%= f.submit "Login", class: "button is-primary is-fullwidth control" %>
+    <% end %>
     </div>
-    <div class="">
-      <%= form_for :login, url: login_path do |f| %>
-        <%= f.text_field :email, class: "control input", placeholder: "Email" %>
-        <%= f.password_field :password, class: "control input", placeholder: "Password" %>
-        <%= f.submit "Login", class: "button is-primary is-fullwidth control" %>
-      <% end %>
-    </div>
+    <p><%= link_to "Forgot password?", new_password_reset_path %></p>
   </div>
 </div>

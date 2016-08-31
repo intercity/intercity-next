@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     end
     post :resend_activation_mail, on: :member
   end
+  resources :password_resets, only: [:new, :create, :edit, :update]
 
   resources :servers, only: [:create, :show, :destroy] do
     get :test_ssh, on: :member

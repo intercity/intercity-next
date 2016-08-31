@@ -14,6 +14,7 @@ class OnboardingController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    @user.validate_password = true
     if @user.save
       auto_login(@user)
       redirect_to root_path

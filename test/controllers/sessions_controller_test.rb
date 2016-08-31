@@ -23,7 +23,6 @@ class SessionsControllerTest < ActionDispatch::IntegrationTest
   test "POST create should re-render when access token present" do
     user = users(:john)
     user.generate_activation_token
-    user.skip_password_validation = true
     user.save!
     post login_path, params: { login: { email: "john@example.com",
                                         password: "secret" }}

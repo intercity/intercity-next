@@ -1,11 +1,13 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
-  attr_accessor :skip_password_validation
+  has_secure_token :reset_password_token
+
+  attr_accessor :validate_password
 
   validates :email, presence: true
   validates :email, uniqueness: true, email_format: true, if: -> { email.present? }
-  validates :password, presence: true, unless: -> { skip_password_validation }
+  validates :password, presence: true, if: -> { validate_password }
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
 
   def email=(value)
@@ -16,8 +18,13 @@ class User < ActiveRecord::Base
     self[:activation_token] = SecureRandom.uuid
   end
 
+  def generate_reset_password_token
+    regenerate_reset_password_token
+    update(reset_password_token_expires_at: 1.day.from_now)
+  end
+
   def activate!
-    update(activation_token: nil, skip_password_validation: true)
+    update(activation_token: nil)
   end
 
   def self.load_from_activation_token(token)

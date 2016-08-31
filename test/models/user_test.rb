@@ -20,13 +20,13 @@ class UserTest < ActiveSupport::TestCase
     assert user.activation_token.present?
   end
 
-  test "If skip_password_validation is set it skips the password validation" do
+  test "If validate_password is set it validates the password" do
     user = users(:john)
     user.password = nil
-    refute user.valid?
-
-    user.skip_password_validation = true
     assert user.valid?
+
+    user.validate_password = true
+    refute user.valid?
   end
 
   test ".activate! unsets the activation_token" do

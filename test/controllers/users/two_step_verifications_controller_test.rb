@@ -20,7 +20,9 @@ class Users::TwoStepVerificationsControllerTest < ActionController::TestCase
   end
 
   test "DELETE destroy should disable 2fa if code is valid" do
-    user = users(:john).tap { |u| u.update(two_factor_auth_enabled: true) }
+    user = users(:john).tap { |u| u.update!(two_factor_auth_enabled: true) }
+    session[:passed_two_factor_auth] = true
+
     login_user user
 
     ROTP::TOTP.any_instance.stubs(:verify).returns(true)
@@ -28,6 +30,5 @@ class Users::TwoStepVerificationsControllerTest < ActionController::TestCase
     post :destroy, params: { two_factor_auth: { code: "123" } }
     assert_response :redirect
     refute users(:john).reload.two_factor_auth_enabled?, "2fa should be disabled"
-
   end
 end

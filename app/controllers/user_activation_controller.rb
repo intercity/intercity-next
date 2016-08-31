@@ -11,7 +11,9 @@ class UserActivationController < ApplicationController
 
   def update
     if @user = User.load_from_activation_token(params[:id])
+      @user.validate_password = true
       if @user.update(activation_params)
+        @user.validate_password = false
         @user.activate!
         flash[:success] = "Your account is now activated."
         redirect_to login_url
