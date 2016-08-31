@@ -1,0 +1,20 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="has-text-centered content">
+      <%= image_tag "logo.svg" %>
+      <h1>Change password for <%= @user.email %></h1>
+    </div>
+    <%= flash_messages %>
+    <div class="box">
+      <%= form_for @user, url: password_reset_path(@token), method: :patch do |f| %>
+        <%= f.label :password, class: "label" %>
+        <div class="control">
+          <%= f.password_field :password, class: "input", data: { error: @user.errors[:password].first } %>
+        </div>
+        <div class="control">
+          <%= f.submit "Change your password", class: "button is-primary is-fullwidth" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

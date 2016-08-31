@@ -1,0 +1,19 @@
+<div class="columns">
+  <div class="column is-4 is-offset-4">
+    <div class="has-text-centered content">
+      <%= image_tag "logo.svg" %>
+      <h1>Reset your password</h1>
+    </div>
+    <%= flash_messages %>
+    <div class="box">
+      <%= form_for :user, url: password_resets_path, method: :post do |f| %>
+        <p class="content">Enter your email address and we will send you a link to reset your password.</p>
+        <div class="control">
+          <%= f.text_field :email, class: "input", placeholder: "Your email address" %>
+        </div>
+        <%= f.submit "Send password reset email", class: "button is-primary is-fullwidth control" %>
+      <% end %>
+    </div>
+    <%= link_to "< Go back", root_path %>
+  </div>
+</div>

@@ -12,6 +12,18 @@ class ApplicationMailer < ActionMailer::Base
     end
   end
 
+  def activation(user)
+    @user = user
+    @url = edit_user_activation_url(user.activation_token)
+    mail(to: @user.email, subject: "Welcome to Intercity")
+  end
+
+  def reset_password(user)
+    @user = User.find user.id
+    @url  = edit_password_reset_url(@user.reset_password_token)
+    mail(to: user.email, subject: "Please reset your password")
+  end
+
   protected
 
   def smtp_settings

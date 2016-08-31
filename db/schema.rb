@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830114936) do
+ActiveRecord::Schema.define(version: 20160831120520) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,19 +120,22 @@ ActiveRecord::Schema.define(version: 20160830114936) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                                        null: false
+    t.string   "email",                                           null: false
     t.string   "crypted_password"
     t.string   "salt"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "activation_token"
     t.string   "totp_secret"
-    t.boolean  "two_factor_auth_enabled",      default: false
+    t.boolean  "two_factor_auth_enabled",         default: false
     t.string   "remember_me_token"
     t.datetime "remember_me_token_expires_at"
+    t.string   "reset_password_token"
+    t.datetime "reset_password_token_expires_at"
     t.index ["activation_token"], name: "index_users_on_activation_token", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", using: :btree
   end
 
   add_foreign_key "active_services", "servers"

@@ -13,9 +13,9 @@ class UsersControllerTest < ActionController::TestCase
     login_user(users(:john))
     assert_difference "User.count" do
       perform_enqueued_jobs do
-        post :create, xhr: true, params: {  user: { email: "example@mail.org" } }
+        post :create, xhr: true, params: {  user: { email: "example@example.com" } }
         delivered_email = ActionMailer::Base.deliveries.last
-        assert_includes delivered_email.to, "example@mail.org"
+        assert_includes delivered_email.to, "example@example.com"
       end
     end
 

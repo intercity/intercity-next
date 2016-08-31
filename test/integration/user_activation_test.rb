@@ -9,6 +9,6 @@ class UserActivationTest < IntegrationTest
     click_button "Finish your account"
 
     assert_equal login_path, current_path
-    assert user.reload.activation_token.blank?
+    assert user.reload.activation_token.blank?, "Activation token should be blank"
   end
 end
