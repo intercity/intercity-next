@@ -9,3 +9,10 @@ local_app:
   server: local
   name: Local app
   backups_enabled: false
+
+ssl_enabled_app:
+  server: example
+  name: SSL Enabled
+  ssl_enabled: true
+  ssl_key: "<%= File.read(Rails.root.join("test", "fixtures", "server.key")) %>"
+  ssl_cert: "<%= File.read(Rails.root.join("test", "fixtures", "server.crt")) %>"

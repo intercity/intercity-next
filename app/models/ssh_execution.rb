@@ -12,9 +12,14 @@ class SshExecution
     end
   end
 
-  def scp(from:, to:)
+  def scp(from:, to:, direction: :download)
     ssh_key_maintainer.create_key_for_connection
-    cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
+    case direction
+    when :upload
+      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} #{from} root@#{@server.ip}:#{to}"
+    else
+      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
+    end
     system(cmd)
   ensure
     ssh_key_maintainer.delete_ssh_key_for_connection

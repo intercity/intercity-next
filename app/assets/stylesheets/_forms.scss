@@ -3,4 +3,7 @@
     background: lighten($grey-lighter, 1.5);
     cursor: not-allowed;
   }
+  &[type=file] {
+    padding-top: 5px;
+  }
 }
