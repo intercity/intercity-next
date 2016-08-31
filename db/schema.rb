@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160830085425) do
+ActiveRecord::Schema.define(version: 20160830114936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(version: 20160830085425) do
     t.datetime "updated_at",                      null: false
     t.boolean  "busy",            default: false
     t.boolean  "backups_enabled", default: false
+    t.text     "ssl_key"
+    t.text     "ssl_cert"
+    t.boolean  "ssl_enabled",     default: false
     t.index ["server_id"], name: "index_apps_on_server_id", using: :btree
   end
 

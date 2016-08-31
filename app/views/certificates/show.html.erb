@@ -1,0 +1,52 @@
+<%= render "apps/heading", app: @app, tab: "certificate" %>
+
+<% if VersionParser.parse(@app.server.dokku_version) < VersionParser.parse("0.4.0")   %>
+  <div class="notification is-danger has-text-centered content">
+    <p>You can't enable SSL in the web interface since your Dokku version is out of date.</p>
+    <p><%= link_to "See upgrade instructions", manual_update_server_path(@app.server), class: "button" %></p>
+  </div>
+<% else %>
+  <section class="section">
+    <div class="columns">
+      <div class="column is-half is-offset-one-quarter">
+        <% if @app.ssl_enabled? %>
+          <div class="notification is-success has-text-centered">
+            <p>You have SSL enabled</p>
+          </div>
+          <%= link_to server_app_certificate_path(@app.server, @app), method: :delete, class: "button is-danger", 
+            data: { confirm: "Are you sure you want to disable SSL?" } do %>
+            <span class="icon"><%= icon("warning") %></span>
+            <span>Disable SSL</span>
+          <% end %>
+        <% else %>
+          <div class="notification is-warning">
+            <p>You don't have SSL enabled. <br>To enable SSL, select your key and cert file, and upload them.</p>
+          </div>
+          <% flash_messages %>
+          <%= form_for @app, url: server_app_certificate_path(@app.server, @app), method: :post do |f| %>
+            <%= f.hidden_field :ssl_enabled, value: 1 %>
+
+            <div class="columns">
+              <div class="column">
+                <%= f.label :ssl_key, class: "label" %>
+                <div class="control">
+                  <%= f.file_field :ssl_key, class: "input", data: { error: @app.errors[:ssl_key].first } %>
+                </div>
+              </div>
+
+              <div class="column">
+                <%= f.label :ssl_cert, class: "label" %>
+                <div class="control">
+                  <%= f.file_field :ssl_cert, class: "input", data: { error: @app.errors[:ssl_cert].first } %>
+                </div>
+              </div>
+            </div>
+            <p class="control">
+              <%= f.submit "Enable SSL", class: "button is-primary" %>
+            </p>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </section>
+<% end %>

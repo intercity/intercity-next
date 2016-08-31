@@ -42,6 +42,7 @@ Rails.application.routes.draw do
         post :enable, on: :collection
         get :status, on: :member
       end
+      resource :certificate, only: [:show, :create, :destroy]
     end
     resources :services, only: [:index] do
       post :create, on: :member

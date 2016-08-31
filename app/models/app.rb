@@ -9,6 +9,9 @@ class App < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: { scope: :server_id }
 
+  validate :valid_ssl, if: :ssl_enabled?
+  validates :ssl_cert, :ssl_key, presence: true, if: :ssl_enabled?
+
   def clean_name
     name.parameterize
   end
@@ -27,5 +30,16 @@ class App < ActiveRecord::Base
 
   def linked_service(service)
     linked_services.find_by!(service: service)
+  end
+
+  private
+
+  def valid_ssl
+    return unless ssl_enabled?
+    errors.add(:ssl_key, " is invalid") if ssl_key.present? &&
+                                           ssl_key.match(/-----BEGIN RSA PRIVATE KEY-----/).nil?
+
+    errors.add(:ssl_cert, " is invalid") if ssl_cert.present? &&
+                                            ssl_cert.match(/-----BEGIN CERTIFICATE-----/).nil?
   end
 end
