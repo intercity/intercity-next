@@ -1,0 +1,23 @@
+<%= render "servers/heading", server: @server, tab: "swap" %>
+
+<section class="section">
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <% if @server.swap_enabled? %>
+        <div class="notification is-success has-text-centered">
+          <p>Swap is enabled on this server</p>
+        </div>
+        <div class="has-text-centered">
+          <%= link_to "Disable swap", server_swap_path(@server), method: :delete, class: "button is-primary" %>
+        </div>
+      <% else %>
+        <div class="notification is-info has-text-centered">
+          <p>Swap is disabled on this server</p>
+        </div>
+        <div class="has-text-centered">
+          <%= link_to "Enable swap", server_swap_path(@server), method: :post, class: "button is-primary" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160831120520) do
+ActiveRecord::Schema.define(version: 20160901100859) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20160831120520) do
     t.string   "dokku_version"
     t.boolean  "updating",        default: false
     t.integer  "install_step",    default: 1
+    t.boolean  "swap_enabled",    default: false
   end
 
   create_table "services", force: :cascade do |t|

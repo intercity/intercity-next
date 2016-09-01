@@ -5,10 +5,9 @@
       <li class="<%= "is-active" if tab == "apps" %>"><%= link_to "Apps", server_apps_path(server) %></li>
       <li class="<%= "is-active" if tab == "services" %>"><%= link_to "Services", server_services_path(server) %></li>
       <li class="<%= "is-active" if tab == "deploy_keys" %>"><%= link_to "Deploy keys", server_deploy_keys_path(server) %></li>
+      <li class="<%= "is-active" if tab == "swap" %>"><%= link_to "Swap settings", server_swap_path(server) %></li>
     </ul>
-    </div>
-  <ul class="nav nav-tabs">
-  </ul>
+  </div>
 </div>
 <%= render("servers/outdated", server: server) unless server.up_to_date? %>
 <%= render "flashes" -%>
