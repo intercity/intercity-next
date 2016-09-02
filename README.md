@@ -5,7 +5,7 @@
 
 ## Requirements
 
-* Any Ubuntu 14.04 LTS server.
+* Any Ubuntu 14.04 or 16.04 LTS server.
 * 1024 MB ram. 512 is possible, but requires swap of at least 1gb.
 
 ## Installation on production server
