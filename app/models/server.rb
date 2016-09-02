@@ -27,7 +27,7 @@ class Server < ActiveRecord::Base
   end
 
   def up_to_date?
-    VersionParser.parse(dokku_version) == VersionParser.parse(latest_dokku_version)
+    VersionParser.parse(dokku_version) >= VersionParser.parse(latest_dokku_version)
   end
 
   def latest_dokku_version
