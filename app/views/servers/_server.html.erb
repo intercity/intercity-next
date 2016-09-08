@@ -1,13 +1,43 @@
 <%= content_tag :div, id: dom_id(server), class: "server" do %>
-  <div class="card">
+  <div class="card server-<%= server.formatted_status %>">
     <header class="card-header">
-      <p class="card-header-title"><%= link_to server.name, server %></p>
+      <div class="status">
+        <%= render "status", server: server %>
+      </div>
+      <p class="card-header-title"><%= link_to truncate(server.name, length: 25), server %></p>
     </header>
     <div class="card-content">
-      <p><strong>IP:</strong> <%= server.ip %></p>
-      <p><strong>Apps:</strong> <%= server.apps.count %></p>
-      <p><strong>Status:</strong>
-      <%= render "status", server: server %>
+      <div class="columns">
+        <div class="column has-text-centered address">
+          <%= server.ip %>
+        </div>
+      </div>
+      <div class="columns has-text-centered is-hidden-touch resources">
+        <div class="column">
+          <%= image_tag "cpu.svg" %><br>
+          <% if server.total_cpu.present? %>
+            <%= (server.total_cpu.to_f / 1000).round(2) %>GHz
+          <% else %>
+            ?
+          <% end %>
+        </div>
+        <div class="column">
+          <%= image_tag "ram.svg" %><br>
+          <% if server.total_ram.present? %>
+            <%= (server.total_ram.to_f / 1048576).round(2) %>GiB
+          <% else %>
+            ?
+          <% end %>
+        </div>
+        <div class="column">
+          <%= image_tag "disk.svg" %><br>
+          <% if server.total_disk.present? %>
+            <%= server.total_disk / 1048576 %>GiB
+          <% else %>
+            ?
+          <% end %>
+        </div>
+      </div>
     </div>
     <div class="card-footer">
       <%= link_to icon("trash"), server_path(server), method: :delete,

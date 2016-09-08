@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160902131047) do
+ActiveRecord::Schema.define(version: 20160908115429) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -98,6 +98,9 @@ ActiveRecord::Schema.define(version: 20160902131047) do
     t.boolean  "updating",        default: false
     t.integer  "install_step",    default: 1
     t.boolean  "swap_enabled",    default: false
+    t.integer  "total_ram"
+    t.integer  "total_disk"
+    t.integer  "total_cpu"
   end
 
   create_table "services", force: :cascade do |t|
