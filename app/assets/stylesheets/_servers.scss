@@ -19,6 +19,18 @@
     @extend .is-3;
     .card {
       border-top: 5px solid;
+
+      .resources {
+        img {
+          width: 32px;
+          opacity: 0.3;
+        }
+      }
+
+      .address {
+        font-size: 1.2em;
+      }
+
       &.server-up {
         border-color: $green;
 

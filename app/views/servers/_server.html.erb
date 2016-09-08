@@ -8,13 +8,13 @@
     </header>
     <div class="card-content">
       <div class="columns">
-        <div class="column has-text-centered">
-          <%= icon("link", server.ip) %>
+        <div class="column has-text-centered address">
+          <%= server.ip %>
         </div>
       </div>
-      <div class="columns has-text-centered is-hidden-touch">
+      <div class="columns has-text-centered is-hidden-touch resources">
         <div class="column">
-          CPU<br>
+          <%= image_tag "cpu.svg" %><br>
           <% if server.total_cpu.present? %>
             <%= (server.total_cpu.to_f / 1000).round(2) %>GHz
           <% else %>
@@ -22,7 +22,7 @@
           <% end %>
         </div>
         <div class="column">
-          Ram<br>
+          <%= image_tag "ram.svg" %><br>
           <% if server.total_ram.present? %>
             <%= (server.total_ram.to_f / 1048576).round(2) %>GiB
           <% else %>
@@ -30,7 +30,7 @@
           <% end %>
         </div>
         <div class="column">
-          Disk<br>
+          <%= image_tag "disk.svg" %><br>
           <% if server.total_disk.present? %>
             <%= server.total_disk / 1048576 %>GiB
           <% else %>
