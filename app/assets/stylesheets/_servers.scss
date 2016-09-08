@@ -17,8 +17,51 @@
   .server {
     @extend .column;
     @extend .is-3;
-    .box {
-      min-height: 180px;
+    .card {
+      border-top: 5px solid;
+      &.server-up {
+        border-color: $green;
+
+        .status {
+          background: $green;
+          color: #ffffff;
+        }
+      }
+
+      &.server-down {
+        border-color: $red;
+
+        .status {
+          background: $red;
+          color: #ffffff;
+        }
+      }
+
+      &.server-setup_not_finished {
+        border-color: $yellow;
+
+        .status {
+          background: $yellow;
+        }
+      }
+
+      .card-header {
+        padding-top: 20px;
+        .status {
+          position: absolute;
+          top: 0;
+          left: 0;
+          padding: 5px;
+          padding-top: 0px;
+          font-size: 0.8em;
+          border-radius: 0 0 5px 0px;
+        }
+
+        .card-header-title {
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 

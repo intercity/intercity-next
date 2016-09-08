@@ -34,6 +34,15 @@ class Server < ActiveRecord::Base
     "v0.7.0".freeze
   end
 
+  def formatted_status
+    case status
+    when "up", "down"
+      status
+    when "fresh", "installing", "connected"
+      "setup_not_finished"
+    end
+  end
+
   private
 
   def create_rsa_key
