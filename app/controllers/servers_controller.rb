@@ -1,11 +1,12 @@
 class ServersController < ApplicationController
+  before_action :set_server, except: [:index, :create]
+
   def index
     @servers = Server.all.order(created_at: :desc)
     @server = Server.new
   end
 
   def show
-    @server = Server.find(params[:id])
     case @server.status
     when "fresh", "connected"
       @ssh_key = SSHKey.new(@server.rsa_key_private, comment: "Intercity").ssh_public_key
@@ -25,28 +26,23 @@ class ServersController < ApplicationController
   end
 
   def test_ssh
-    @server = Server.find(params[:id])
-    begin
-      output = SshExecution.new(@server).execute(command: "sudo ls")
-      if output =~ /sudo/
-        @error = "We can connect, but don't have sudo access"
-        @connected = false
-      else
-        @connected = true
-        @server.update(status: "connected")
-      end
-    rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
-           Errno::ECONNREFUSED, Errno::EHOSTDOWN
+    output = SshExecution.new(@server).execute(command: "sudo ls")
+    if output =~ /sudo/
+      @error = "We can connect, but don't have sudo access"
       @connected = false
+    else
+      @connected = true
+      @server.update(status: "connected")
     end
+  rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
+         Errno::ECONNREFUSED, Errno::EHOSTDOWN
+    @connected = false
   end
 
   def check_installation
-    @server = Server.find(params[:id])
   end
 
   def start_installation
-    @server = Server.find(params[:id])
     if @server.connected?
       InstallServerJob.perform_later(@server)
       @server.update(status: "installing")
@@ -55,7 +51,6 @@ class ServersController < ApplicationController
   end
 
   def start_update
-    @server = Server.find(params[:id])
     if VersionParser.parse(@server.dokku_version) < VersionParser.parse("v0.4.11")
       redirect_to manual_update_server_path(@server)
     else
@@ -69,15 +64,12 @@ class ServersController < ApplicationController
   end
 
   def updating
-    @server = Server.find(params[:id])
   end
 
   def manual_update
-    @server = Server.find(params[:id])
   end
 
   def destroy
-    @server = Server.find(params[:id])
     @server.destroy
     redirect_to root_path
   end
@@ -86,5 +78,9 @@ class ServersController < ApplicationController
 
   def server_params
     params.require(:server).permit(:name, :ip)
+  end
+
+  def set_server
+    @server = Server.find(params[:id])
   end
 end

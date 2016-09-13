@@ -16,3 +16,4 @@ passenger.*
 .vagrant/
 /backups/
 /keys/
+/.idea
