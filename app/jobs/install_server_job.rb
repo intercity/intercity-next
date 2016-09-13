@@ -9,6 +9,9 @@ class InstallServerJob < ActiveJob::Base
 
     server.update(status: "up")
     ServerResourceGatherer.new(server).execute
+
+    # Ensure we give Curl enough time to download buildpacks
+    SshExecution.new(server).execute(command: "dokku config:set --global CURL_TIMEOUT=300")
   end
 
   private
