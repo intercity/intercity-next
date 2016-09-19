@@ -27,11 +27,20 @@ class Server < ActiveRecord::Base
   end
 
   def up_to_date?
-    VersionParser.parse(dokku_version) == VersionParser.parse(latest_dokku_version)
+    VersionParser.parse(dokku_version) >= VersionParser.parse(latest_dokku_version)
   end
 
   def latest_dokku_version
-    "v0.7.0".freeze
+    "v0.7.1".freeze
+  end
+
+  def formatted_status
+    case status
+    when "up", "down"
+      status
+    when "fresh", "installing", "connected"
+      "setup_not_finished"
+    end
   end
 
   private

@@ -54,5 +54,21 @@ class ServerTest < ActiveSupport::TestCase
     up_to_date = Server.new(dokku_version: "v0.4.10")
     up_to_date.stubs(:latest_dokku_version).returns("v0.4.10")
     assert up_to_date.up_to_date?, "Server should be marked as up to date"
+
+    newer_version = Server.new(dokku_version: "v0.5.0")
+    newer_version.stubs(:latest_dokku_version).returns("v0.4.10")
+    assert newer_version.up_to_date?, "Server should be marked as up to date"
+  end
+
+  test "#formatted_status should return a human status" do
+    server = Server.new(status: 0)
+
+    assert_equal "setup_not_finished", server.formatted_status
+
+    server.status = "up"
+    assert_equal "up", server.formatted_status
+
+    server.status = "down"
+    assert_equal "down", server.formatted_status
   end
 end
