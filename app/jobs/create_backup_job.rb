@@ -23,7 +23,7 @@ class CreateBackupJob < ActiveJob::Base
 
   def run_backup
     SshExecution.new(app.server).execute(command: backup_command)
-    SshExecution.new(app.server).scp(from: "/root/#{backup_name}",
+    SshExecution.new(app.server).scp(from: "/#{app.server.username}/#{backup_name}",
                                      to: Rails.root.join("backups", app.clean_name, backup_name))
     SshExecution.new(app.server).execute(command: "rm #{backup_name}")
   end

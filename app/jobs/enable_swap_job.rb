@@ -26,6 +26,6 @@ class EnableSwapJob < ApplicationJob
   end
 
   def swap_file
-    "/root/enable_swap.sh"
+    "/#{server.username}/enable_swap.sh"
   end
 end

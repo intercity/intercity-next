@@ -77,7 +77,7 @@ class ServersController < ApplicationController
   private
 
   def server_params
-    params.require(:server).permit(:name, :ip)
+    params.require(:server).permit(:name, :username, :ip)
   end
 
   def set_server

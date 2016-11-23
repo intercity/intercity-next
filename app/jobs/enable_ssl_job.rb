@@ -21,15 +21,15 @@ class EnableSSLJob < ApplicationJob
   end
 
   def server_cert_path
-    "/root/#{app.clean_name}.server.crt"
+    "/#{app.server.username}/#{app.clean_name}.server.crt"
   end
 
   def server_key_path
-    "/root/#{app.clean_name}.server.key"
+    "/#{app.server.username}/#{app.clean_name}.server.key"
   end
 
   def server_tar_path
-    "/root/#{app.clean_name}.cert.tar"
+    "/#{app.server.username}/#{app.clean_name}.cert.tar"
   end
 
   def copy_file(from:, to:)

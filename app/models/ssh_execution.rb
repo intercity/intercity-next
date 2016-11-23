@@ -16,9 +16,11 @@ class SshExecution
     ssh_key_maintainer.create_key_for_connection
     case direction
     when :upload
-      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} #{from} root@#{@server.ip}:#{to}"
+      # rubocop:disable Metrics/LineLength
+      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} #{from} #{@server.username}@#{@server.ip}:#{to}"
     else
-      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} root@#{@server.ip}:#{from} #{to}"
+      cmd = "scp -oStrictHostKeyChecking=no -i #{ssh_key_maintainer.key} #{@server.username}@#{@server.ip}:#{from} #{to}"
+      # rubocop:enable Metrics/LineLength
     end
     system(cmd)
   ensure
@@ -27,7 +29,7 @@ class SshExecution
 
   def execute_with_block
     ssh_key_maintainer.create_key_for_connection
-    executioner.start(@server.ip, "root",
+    executioner.start(@server.ip, @server.username,
                       port: 22,
                       keys: [ssh_key_maintainer.key], paranoid: false,
                       timeout: ssh_timeout,
