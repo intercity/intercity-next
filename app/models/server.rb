@@ -8,7 +8,7 @@ class Server < ActiveRecord::Base
 
   enum status: { fresh: 0, connected: 10, installing: 20, up: 30, down: 40 }
 
-  validates :name, :ip, presence: true
+  validates :name, :ip, :username, presence: true
 
   def service?(service)
     services.include?(service)

@@ -6,10 +6,19 @@
       <a class="delete" data-behaviour="close-modal"></a>
     </header>
     <section class="modal-card-body">
+      <%= f.label :name, class: "label" %>
       <div class="control">
         <%= f.text_field :name, class: "input", placeholder: "Name",
           data: { error: @server.errors[:name].first } %>
       </div>
+
+      <%= f.label :username, class: "label", value: "Username for the root user" %>
+      <div class="control">
+        <%= f.text_field :username, class: "input", placeholder: "Username",
+          data: { error: @server.errors[:username].first } %>
+      </div>
+
+      <%= f.label :ip, class: "label", value: "IP Address" %>
       <div class="control">
         <%= f.text_field :ip, class: "input", placeholder: "IP Address",
           data: { error: @server.errors[:ip].first } %>
