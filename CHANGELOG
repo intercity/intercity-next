@@ -1,6 +1,6 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
-Unreleased
+V 0.3.0 * 2017-01-27
 * Allow execution user to be set for a server, defaults to root Fixes: #94 (jvanbaarsen)
 
 V 0.2.0 * 2016-09-19
