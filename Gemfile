@@ -25,7 +25,7 @@ gem "inline_svg", "~> 0.7"
 gem "rotp", "~> 3.0"
 gem "rqrcode", "~> 0.10"
 gem "kaminari", "~> 0.17"
-gem "version_parser", "1.0.0"
+gem "version_parser", "1.0.2"
 
 group :development do
   gem "spring"

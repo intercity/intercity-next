@@ -295,7 +295,7 @@ GEM
     unicode-display_width (1.1.0)
     validates_email_format_of (1.6.3)
       i18n
-    version_parser (1.0.0)
+    version_parser (1.0.2)
     web-console (3.3.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -359,9 +359,9 @@ DEPENDENCIES
   turbolinks (~> 5.x)
   uglifier
   validates_email_format_of (~> 1.6)
-  version_parser (= 1.0.0)
+  version_parser (= 1.0.2)
   web-console
   whenever (~> 0.9)
 
 BUNDLED WITH
-   1.12.5
+   1.15.1
