@@ -10,7 +10,7 @@ gem "kaminari", "~> 0.17"
 gem "net-ssh", "3.0.1"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.4"
-gem "rails", "5.0.0.1"
+gem "rails", "5.1.4"
 gem "redcarpet"
 gem "redis", "~> 3.2.0"
 gem "rotp", "~> 3.0"
@@ -42,7 +42,7 @@ end
 
 group :development, :test do
   gem "awesome_print"
-  gem "dotenv-rails", "2.1.1"
+  gem "dotenv-rails", "2.2.1"
   gem "rubocop"
 end
 

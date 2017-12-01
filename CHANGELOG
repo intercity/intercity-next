@@ -1,5 +1,8 @@
 Please view this file on the master branch, on stable branches it's out of date.
 
+V 0.5.0 * TBD
+* Updated rails to 5.1 and ruby to 2.4.2 (jvanbaarsen)
+
 V 0.4.0 * 2017-12-01
 * When no Dokku installed, make sure version check is not breaking. Fixes #229 (jvanbaarsen)
 * Upgrade Dokku to latest version (0.10.5) (jvanbaarsen)
