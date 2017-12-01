@@ -1,4 +1,4 @@
-class DeleteDomainJob < ActiveJob::Base
+class DeleteDomainJob < ApplicationJob
   queue_as :default
 
   def perform(app, domain)

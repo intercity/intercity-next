@@ -6,7 +6,7 @@ class UserActivationController < ApplicationController
 
   def edit
     @user = User.load_from_activation_token(params[:id])
-    redirect_to root_path unless @user.present?
+    redirect_to root_path if @user.blank?
   end
 
   def update

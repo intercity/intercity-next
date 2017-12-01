@@ -17,7 +17,7 @@ class SshKeyMaintainer
   end
 
   def delete_ssh_key_for_connection
-    File.delete(key) unless key_filename.nil?
+    File.delete(key) if key_filename
   end
 
   private

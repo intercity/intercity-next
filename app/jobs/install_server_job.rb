@@ -1,4 +1,4 @@
-class InstallServerJob < ActiveJob::Base
+class InstallServerJob < ApplicationJob
   queue_as :default
 
   def perform(server)

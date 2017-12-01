@@ -5,11 +5,11 @@ class Redcarpet::IntercityHtml < Redcarpet::Render::HTML
   end
 
   def block_code(code, language)
-    <<-HTML
+    <<~HTML
 
-<div class="highlight">
-  <pre><code class="#{language}">#{code}</code></pre>
-</div>
+      <div class="highlight">
+        <pre><code class="#{language}">#{code}</code></pre>
+      </div>
 
     HTML
   end

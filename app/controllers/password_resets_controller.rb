@@ -4,8 +4,7 @@ class PasswordResetsController < ApplicationController
 
   layout "login"
 
-  def new
-  end
+  def new; end
 
   def create
     @user = User.find_by(email: params[:user][:email])
@@ -21,13 +20,13 @@ class PasswordResetsController < ApplicationController
 
   def edit
     @token = params[:id]
-    @user = User.where("reset_password_token_expires_at > ?", DateTime.now).
+    @user = User.where("reset_password_token_expires_at > ?", Time.now).
             find_by!(reset_password_token: params[:id])
   end
 
   def update
     @token = params[:id]
-    @user = User.where("reset_password_token_expires_at > ?", DateTime.now).
+    @user = User.where("reset_password_token_expires_at > ?", Time.now).
             find_by!(reset_password_token: params[:id])
     @user.validate_password = true
 

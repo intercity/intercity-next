@@ -3,6 +3,7 @@ Please view this file on the master branch, on stable branches it's out of date.
 V 0.4.0 * TBD
 * When no Dokku installed, make sure version check is not breaking. Fixes #229 (jvanbaarsen)
 * Upgrade Dokku to latest version (0.10.5) (jvanbaarsen)
+* Upgrade Rubocop to latest version due to security problem (jvanbaarsen)
 
 V 0.3.0 * 2017-01-27
 * Allow execution user to be set for a server, defaults to root Fixes: #94 (jvanbaarsen)
