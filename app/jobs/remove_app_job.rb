@@ -1,4 +1,4 @@
-class RemoveAppJob < ActiveJob::Base
+class RemoveAppJob < ApplicationJob
   queue_as :default
 
   def perform(server, app_name)

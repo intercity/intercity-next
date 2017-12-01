@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   authenticates_with_sorcery!
 
   has_secure_token :reset_password_token
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 8 }, if: -> { password.present? }
 
   def email=(value)
-    self[:email] = value.downcase unless value.nil?
+    self[:email] = value.downcase if value
   end
 
   def generate_activation_token

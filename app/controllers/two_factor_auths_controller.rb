@@ -3,8 +3,7 @@ class TwoFactorAuthsController < ApplicationController
   skip_before_action :validate_settings
   layout "login"
 
-  def new
-  end
+  def new; end
 
   def create
     code = params[:two_factor_auth][:code]

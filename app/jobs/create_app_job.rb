@@ -1,4 +1,4 @@
-class CreateAppJob < ActiveJob::Base
+class CreateAppJob < ApplicationJob
   queue_as :default
 
   def perform(app)

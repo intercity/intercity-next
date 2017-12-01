@@ -1,4 +1,4 @@
-class HealthCheckJob < ActiveJob::Base
+class HealthCheckJob < ApplicationJob
   queue_as :health_checks
 
   def perform(server)
@@ -7,7 +7,6 @@ class HealthCheckJob < ActiveJob::Base
     server.update(dokku_version: format_version(version), status: "up")
 
     ServerResourceGatherer.new(server).execute
-
   rescue Net::SSH::ConnectionTimeout, Net::SSH::AuthenticationFailed, Errno::EHOSTUNREACH,
          Errno::ECONNREFUSED, Errno::EHOSTDOWN
     server.update(status: "down")

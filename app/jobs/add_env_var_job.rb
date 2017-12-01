@@ -1,4 +1,4 @@
-class AddEnvVarJob < ActiveJob::Base
+class AddEnvVarJob < ApplicationJob
   queue_as :default
 
   def perform(app, env_var)

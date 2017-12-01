@@ -1,4 +1,4 @@
-class App < ActiveRecord::Base
+class App < ApplicationRecord
   belongs_to :server
 
   has_many :linked_services, dependent: :destroy

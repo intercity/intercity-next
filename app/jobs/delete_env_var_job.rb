@@ -1,4 +1,4 @@
-class DeleteEnvVarJob < ActiveJob::Base
+class DeleteEnvVarJob < ApplicationJob
   queue_as :default
 
   def perform(app, env_var_name)

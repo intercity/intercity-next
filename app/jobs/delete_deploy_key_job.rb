@@ -1,4 +1,4 @@
-class DeleteDeployKeyJob < ActiveJob::Base
+class DeleteDeployKeyJob < ApplicationJob
   queue_as :default
 
   def perform(server, deploy_key_name)

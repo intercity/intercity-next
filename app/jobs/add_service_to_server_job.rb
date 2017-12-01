@@ -1,4 +1,4 @@
-class AddServiceToServerJob < ActiveJob::Base
+class AddServiceToServerJob < ApplicationJob
   queue_as :default
 
   def perform(server, service)

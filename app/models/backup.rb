@@ -1,4 +1,4 @@
-class Backup < ActiveRecord::Base
+class Backup < ApplicationRecord
   belongs_to :service
   belongs_to :app
 

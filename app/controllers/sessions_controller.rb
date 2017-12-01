@@ -4,8 +4,7 @@ class SessionsController < ApplicationController
   skip_before_action :validate_settings
   layout "login"
 
-  def new
-  end
+  def new; end
 
   def create
     user = User.find_by(email: params[:login][:email], activation_token: nil)

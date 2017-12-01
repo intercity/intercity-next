@@ -1,4 +1,4 @@
-class UpdateServerJob < ActiveJob::Base
+class UpdateServerJob < ApplicationJob
   queue_as :default
 
   def perform(server)

@@ -1,4 +1,4 @@
-class Server < ActiveRecord::Base
+class Server < ApplicationRecord
   has_many :apps, dependent: :destroy
   has_many :active_services, dependent: :destroy
   has_many :services, through: :active_services

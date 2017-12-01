@@ -25,13 +25,13 @@ class Users::TwoStepVerificationsController < ApplicationController
 
   def ensure_totp_secret
     return if current_user.totp_secret.present?
-    current_user.update_attribute(:totp_secret, ROTP::Base32.random_base32)
+    current_user.update(totp_secret: ROTP::Base32.random_base32)
   end
 
   def verify_code_and_change_status(enabled:)
     code = params[:two_factor_auth][:code]
     if totp.verify(code)
-      current_user.update_attribute(:two_factor_auth_enabled, enabled)
+      current_user.update(two_factor_auth_enabled: enabled)
     else
       flash[:error] = "Verification code seems to be invalid"
     end
