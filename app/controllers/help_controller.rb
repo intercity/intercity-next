@@ -14,7 +14,7 @@ class HelpController < ApplicationController
     respond_to do |format|
       format.any(:md, :html) do
         # Note: We are purposefully NOT using `Rails.root.join`
-        path = File.join(Rails.root, "doc", @category, "#{@file}.md")
+        path = Rails.root.join("doc", @category, "#{@file}.md")
 
         if File.exist?(path)
           @markdown = File.read(path)

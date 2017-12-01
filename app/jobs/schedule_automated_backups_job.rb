@@ -1,4 +1,4 @@
-class ScheduleAutomatedBackupsJob < ActiveJob::Base
+class ScheduleAutomatedBackupsJob < ApplicationJob
   queue_as :default
 
   def perform

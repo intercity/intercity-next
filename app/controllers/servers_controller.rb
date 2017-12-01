@@ -1,5 +1,5 @@
 class ServersController < ApplicationController
-  before_action :set_server, except: [:index, :create]
+  before_action :set_server, except: %i[index create]
 
   def index
     @servers = Server.all.order(created_at: :desc)
@@ -39,8 +39,7 @@ class ServersController < ApplicationController
     @connected = false
   end
 
-  def check_installation
-  end
+  def check_installation; end
 
   def start_installation
     if @server.connected?
@@ -63,11 +62,9 @@ class ServersController < ApplicationController
     end
   end
 
-  def updating
-  end
+  def updating; end
 
-  def manual_update
-  end
+  def manual_update; end
 
   def destroy
     @server.destroy

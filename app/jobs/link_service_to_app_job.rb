@@ -1,4 +1,4 @@
-class LinkServiceToAppJob < ActiveJob::Base
+class LinkServiceToAppJob < ApplicationJob
   queue_as :default
 
   def perform(app, service)

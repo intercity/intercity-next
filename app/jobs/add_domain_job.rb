@@ -1,4 +1,4 @@
-class AddDomainJob < ActiveJob::Base
+class AddDomainJob < ApplicationJob
   queue_as :default
 
   def perform(app, domain)

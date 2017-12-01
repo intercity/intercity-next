@@ -1,4 +1,4 @@
-class Server < ActiveRecord::Base
+class Server < ApplicationRecord
   has_many :apps, dependent: :destroy
   has_many :active_services, dependent: :destroy
   has_many :services, through: :active_services
@@ -31,7 +31,7 @@ class Server < ActiveRecord::Base
   end
 
   def latest_dokku_version
-    "v0.7.1".freeze
+    "v0.10.5".freeze
   end
 
   def formatted_status

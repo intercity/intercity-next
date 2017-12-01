@@ -1,4 +1,4 @@
-class LinkedService < ActiveRecord::Base
+class LinkedService < ApplicationRecord
   belongs_to :app
   belongs_to :service
 

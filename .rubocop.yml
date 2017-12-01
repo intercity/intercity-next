@@ -10,6 +10,8 @@ AllCops:
     - "bin/**/*"
     - "**/Rakefile"
     - "**/config.ru"
+    - "lib/tasks/seed.rake"
+    - "Vagrantfile"
   DisplayCopNames: true
   StyleGuideCopsOnly: false
   TargetRubyVersion: 2.3
@@ -29,7 +31,7 @@ Style/CommentAnnotation:
     - OPTIMIZE
     - HACK
     - REVIEW
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 Style/For:
   EnforcedStyle: each
@@ -37,7 +39,7 @@ Style/For:
     - for
     - each
   Enabled: true
-Style/IndentationWidth:
+Layout/IndentationWidth:
   Width: 2
 Style/NonNilCheck:
   IncludeSemanticChanges: true
@@ -46,7 +48,7 @@ Style/StringLiterals:
   SupportedStyles:
     - single_quotes
     - double_quotes
-Style/TrailingBlankLines:
+Layout/TrailingBlankLines:
   EnforcedStyle: final_newline
   SupportedStyles:
     - final_newline

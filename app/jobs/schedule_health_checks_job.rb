@@ -1,4 +1,4 @@
-class ScheduleHealthChecksJob < ActiveJob::Base
+class ScheduleHealthChecksJob < ApplicationJob
   queue_as :health_checks
 
   def perform

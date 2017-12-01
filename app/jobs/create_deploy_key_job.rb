@@ -1,4 +1,4 @@
-class CreateDeployKeyJob < ActiveJob::Base
+class CreateDeployKeyJob < ApplicationJob
   queue_as :default
 
   def perform(server, deploy_key)

@@ -1,4 +1,4 @@
-class CreateBackupJob < ActiveJob::Base
+class CreateBackupJob < ApplicationJob
   queue_as :default
 
   def perform(backup)
@@ -18,7 +18,7 @@ class CreateBackupJob < ActiveJob::Base
   attr_accessor :backup, :service, :app
 
   def backup_name
-    @backup_name ||= "#{backup.app.clean_name}-#{service.name}-#{DateTime.now.to_s.parameterize}"
+    @backup_name ||= "#{backup.app.clean_name}-#{service.name}-#{Time.now.to_s.parameterize}"
   end
 
   def run_backup
