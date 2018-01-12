@@ -1,0 +1,18 @@
+version: '3'
+services:
+  db:
+    image: postgres
+  redis:
+    image: redis
+  web:
+    build: .
+    command: bundle exec rails s
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+      - redis
+    environment:
+      - RAILS_ENV=production
+      - DATABASE_URL=postgresql://postgres:@db:5432/intercity
+      - RAILS_SERVE_STATIC_FILES=true
