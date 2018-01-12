@@ -10,3 +10,4 @@ ADD . /myapp
 ENV APP_HOST=127.0.0.1
 RUN bundle exec rake assets:precompile
 CMD bundle exec rails s
+EXPOSE 3000

@@ -10,12 +10,14 @@ services:
       - redis-data:/data
   web:
     build: .
+    volumes:
+      - .:/myapp
     command: bundle exec rails s
     depends_on:
       - db
       - redis
     environment:
-      - RAILS_ENV=production
+      - RAILS_ENV=development
       - DATABASE_URL=postgresql://postgres:@db:5432/intercity
       - SECRET_KEY_BASE=a
       - RAILS_SERVE_STATIC_FILES=true
@@ -25,8 +27,10 @@ services:
   sidekiq:
     image: intercitynext_web
     command: bundle exec sidekiq -q default -q mailers -q health_checks
+    volumes:
+      - .:/myapp
     environment:
-      - RAILS_ENV=production
+      - RAILS_ENV=development
       - DATABASE_URL=postgresql://postgres:@db:5432/intercity
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY_BASE=a
