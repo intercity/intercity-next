@@ -1,10 +1,13 @@
 require 'securerandom'
 
-token = $redis.get("SECRET_KEY_BASE")
-if token.nil?
-  token = SecureRandom.hex(64)
-  $redis.set("SECRET_KEY_BASE", token)
-end
+token = SecureRandom.hex(64)
 
-Rails.application.config.secret_token = token
-Rails.application.config.secret_key_base = token
+begin
+  token = Redis.current.get("SECRET_KEY_BASE")
+  if token.nil?
+    Redis.current.set("SECRET_KEY_BASE", token)
+  end
+rescue
+  Rails.application.config.secret_token = token
+  Rails.application.config.secret_key_base = token
+end
