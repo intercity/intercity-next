@@ -74,8 +74,8 @@ $ docker-compose run --rm web /bin/bash
 
 ### Modifying Gemfile
 
-After you've made a change to the Gemfile, you need to rebuild the local
-image to install/remove/update the gems:
+After you've made a change to the Gemfile, you need to rebuild your local Docker
+container image via docker-compose and restart the local development server:
 
 ```
 $ docker-compose down
