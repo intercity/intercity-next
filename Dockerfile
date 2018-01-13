@@ -13,4 +13,3 @@ RUN bundle install
 ADD . /myapp
 ENV APP_HOST=127.0.0.1
 CMD bundle exec rails s
-EXPOSE 3000
