@@ -18,7 +18,8 @@ services:
       - redis
     environment:
       - RAILS_ENV=development
-      - DATABASE_URL=postgresql://postgres:@db:5432/intercity
+      - DB_HOST=db
+      - DB_USER=postgres
       - SECRET_KEY_BASE=a
       - RAILS_SERVE_STATIC_FILES=true
       - REDIS_URL=redis://redis:6379
@@ -31,7 +32,8 @@ services:
       - .:/myapp
     environment:
       - RAILS_ENV=development
-      - DATABASE_URL=postgresql://postgres:@db:5432/intercity
+      - DB_HOST=db
+      - DB_USER=postgres
       - REDIS_URL=redis://redis:6379
       - SECRET_KEY_BASE=a
       - RAILS_SERVE_STATIC_FILES=true
