@@ -75,7 +75,18 @@ $ docker-compose run web rails test
 You can run database migrations via:
 
 ```
-docker-compose run web rails db:migrate
+$ docker-compose run web rails db:migrate
+```
+
+### Modifying Gemfile
+
+After you've made a change to the Gemfile, you need to rebuild the local
+image to install/remove/update the gems:
+
+```
+$ docker-compose down
+$ docker-compose build
+$ docker-compose up
 ```
 
 ## Support
