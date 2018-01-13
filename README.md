@@ -32,7 +32,7 @@ First, install Docker for your workstation: https://www.docker.com/community-edi
 Then, use `docker-compose` commands to set up a local environment:
 
 ```
-$ docker-compose run web /bin/bash
+$ docker-compose run --rm web /bin/bash
 # rails db:create
 # rails db:schema:load
 ```
@@ -58,7 +58,7 @@ $ docker-compose up
 You can run tests via:
 
 ```
-$ docker-compose run web /bin/bash
+$ docker-compose run --rm web /bin/bash
 # rails test
 ```
 
@@ -67,7 +67,7 @@ $ docker-compose run web /bin/bash
 You can run database migrations via:
 
 ```
-$ docker-compose run web /bin/bash
+$ docker-compose run --rm web /bin/bash
 # rails g migration AddAColumnToATable column:string
 # rails db:migrate
 ```
