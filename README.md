@@ -56,12 +56,18 @@ You can start Sidekiq for background jobs via:
 $ docker-compose run sidekiq -q default -q mailers -q health_checks
 ```
 
+Or alternatively, to start everything in one go:
+
+```
+$ docker-compose up
+```
+
 ### Running tests
 
 You can run tests via:
 
 ```
-docker-compose run web rails test
+$ docker-compose run web rails test
 ```
 
 ### Running DB migrations
