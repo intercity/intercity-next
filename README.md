@@ -29,34 +29,25 @@ code as if you were running a local development server without Docker.
 
 First, install Docker for your workstation: https://www.docker.com/community-edition
 
-Then, use `docker-compose` commands to set up a local environment using Docker
-and run the development server:
+Then, use `docker-compose` commands to set up a local environment:
 
 ```
-$ docker-compose run web rails db:create
-$ docker-compose run web rails db:schema:load
+$ docker-compose run web /bin/bash
+# rails db:create
+# rails db:schema:load
 ```
 
 Optionally, run the seeds to already have an initial user and if you don't
 need to test the onboarding:
 
 ```
-$ docker-compose run web rake db:seed
+# rails db:seed
 ```
+
+Open up another tab in your terminal, or exit the shell session inside the
+container again via Control-D.
 
 Then, start the local development server:
-
-```
-$ docker-compose run web -p 3000:3000 rails s
-```
-
-You can start Sidekiq for background jobs via:
-
-```
-$ docker-compose run sidekiq -q default -q mailers -q health_checks
-```
-
-Or alternatively, to start everything in one go:
 
 ```
 $ docker-compose up
@@ -67,7 +58,8 @@ $ docker-compose up
 You can run tests via:
 
 ```
-$ docker-compose run web rails test
+$ docker-compose run web /bin/bash
+# rails test
 ```
 
 ### Running DB migrations
@@ -75,7 +67,9 @@ $ docker-compose run web rails test
 You can run database migrations via:
 
 ```
-$ docker-compose run web rails db:migrate
+$ docker-compose run web /bin/bash
+# rails g migration AddAColumnToATable column:string
+# rails db:migrate
 ```
 
 ### Modifying Gemfile
