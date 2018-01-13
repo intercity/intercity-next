@@ -31,7 +31,7 @@ class ManageUsersTest < IntegrationTest
 
     # We need to give jquery a bit of time to let the record fadeout and
     # disappear
-    sleep 0.4
+    sleep 1
 
     refute page.has_content?("jane@example.com"), "Page should not have Jane anymore"
   end
