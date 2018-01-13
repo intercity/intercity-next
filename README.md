@@ -14,10 +14,63 @@ For installation instructions, please see our [install manual][install]
 
 ## Set up your Dev environment
 
-1. Make sure you have Postgresql installed
-1. Clone this repo
-1. Run `bin/setup`
-1. Start the app with `foreman start`
+1. Make sure you have PostgreSQL and Redis installed
+2. Clone this repo
+3. Run `bin/setup`
+4. Start the app with `foreman start`
+
+## Set up your Dev environment using Docker
+
+You can also set up your local development environment without having to install
+any outside dependencies. For this, use the Docker Compose configuration that's
+available in this repository. This configuration automatically mounts your
+local code inside a container, so that you can make changes and commit your
+code as if you were running a local development server without Docker.
+
+First, install Docker for your workstation: https://www.docker.com/community-edition
+
+Then, use `docker-compose` commands to set up a local environment using Docker
+and run the development server:
+
+```
+$ docker-compose run web rails db:create
+$ docker-compose run web rails db:schema:load
+```
+
+Optionally, run the seeds to already have an initial user and if you don't
+need to test the onboarding:
+
+```
+$ docker-compose run web rake db:seed
+```
+
+Then, start the local development server:
+
+```
+$ docker-compose run web -p 3000:3000 rails s
+```
+
+You can start Sidekiq for background jobs via:
+
+```
+$ docker-compose run sidekiq -q default -q mailers -q health_checks
+```
+
+### Running tests
+
+You can run tests via:
+
+```
+docker-compose run web rails test
+```
+
+### Running DB migrations
+
+You can run database migrations via:
+
+```
+docker-compose run web rails db:migrate
+```
 
 ## Support
 
