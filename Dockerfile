@@ -1,9 +1,7 @@
 FROM ruby:2.4.1
 RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs libfreetype6 libfreetype6-dev libfontconfig1 libfontconfig1-dev
-RUN wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-2.1.1-linux-x86_64.tar.bz2
-RUN tar xvjf phantomjs-2.1.1-linux-x86_64.tar.bz2
-RUN mv phantomjs-2.1.1-linux-x86_64 /usr/local/share
-RUN ln -sf /usr/local/share/phantomjs-2.1.1-linux-x86_64/bin/phantomjs /usr/local/bin
+RUN wget -q https://github.com/ariya/phantomjs/releases/download/2.1.3/phantomjs
+RUN mv phantomjs /usr/local/bin
 RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 RUN mkdir /myapp
 WORKDIR /myapp
