@@ -53,6 +53,12 @@ Then, start the local development server:
 $ docker-compose up
 ```
 
+To stop your local development environment again where you're finished working:
+
+```
+$ docker-compose down
+```
+
 ### Running tests
 
 You can run tests via:
