@@ -3,6 +3,6 @@ class CreateDeployKeyJob < ApplicationJob
 
   def perform(server, deploy_key)
     SshExecution.new(server).execute(command: "echo '#{deploy_key.key}' | " \
-                                     "sshcommand acl-add dokku #{deploy_key.name}")
+                                     "sudo sshcommand acl-add dokku #{deploy_key.name}")
   end
 end
