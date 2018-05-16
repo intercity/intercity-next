@@ -18,7 +18,7 @@ class EnableSwapJob < ApplicationJob
   end
 
   def enable_swap
-    SshExecution.new(server).execute(command: "sh #{swap_file}")
+    SshExecution.new(server).execute(command: "sudo sh #{swap_file}")
   end
 
   def remove_swap_script
@@ -26,6 +26,6 @@ class EnableSwapJob < ApplicationJob
   end
 
   def swap_file
-    "/#{server.username}/enable_swap.sh"
+    "/#{'home/' unless server.username == 'root'}#{server.username}/enable_swap.sh"
   end
 end
