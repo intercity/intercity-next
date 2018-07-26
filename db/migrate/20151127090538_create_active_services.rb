@@ -1,4 +1,4 @@
-class CreateActiveServices < ActiveRecord::Migration
+class CreateActiveServices < ActiveRecord::Migration[5.0]
   def change
     create_table :active_services do |t|
       t.references :service, index: true, foreign_key: true

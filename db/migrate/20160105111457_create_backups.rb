@@ -1,4 +1,4 @@
-class CreateBackups < ActiveRecord::Migration
+class CreateBackups < ActiveRecord::Migration[5.0]
   def change
     create_table :backups do |t|
       t.string :filename
