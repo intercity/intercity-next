@@ -1,5 +1,7 @@
 require 'securerandom'
 
+$redis ||= Redis.new(url: ENV["REDIS_URL"])
+
 token = $redis.get("SECRET_KEY_BASE")
 if token.nil?
   token = SecureRandom.hex(64)
