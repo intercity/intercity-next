@@ -1,0 +1,41 @@
+version: '3'
+
+volumes:
+  postgres_data: {}
+  redis_data: {}
+
+networks:
+  internal_net: {}
+
+services:
+  app:
+    image: intercity_next
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    environment:
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      - db
+      - redis
+    networks:
+      - internal_net
+    ports: 
+      - 5000
+
+  redis:
+    image: redis
+    volumes:
+      - redis_data:/data
+    hostname: redis
+    networks:
+      - internal_net
+    
+  db:
+    image: postgres
+    volumes: 
+      - postgres_data:/var/lib/postgresql/data
+    hostname: redis
+    networks:
+      - internal_net
+

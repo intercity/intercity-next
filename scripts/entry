@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+echo "-- Welcome to Intercity Next"
+
+TMP_DIR=/app/tmp
+
+# Generate app assets if not already done
+if [ ! -f $TMP_DIR/generate_assets ]; then
+  echo "-- Generating app assets"
+  bundle exec rake assets:precompile
+  touch $TMP_DIR/generate_assets
+else
+  echo "-- Assets already generated"
+fi
+
+# Run database migrations
+echo "-- Setting up database"
+bundle exec rake db:create
+
+echo "-- Migrating app database"
+bundle exec rake db:migrate
+
+env
+
+foreman start
