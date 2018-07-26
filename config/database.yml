@@ -14,5 +14,7 @@ test:
 production:
   <<: *default
   database: intercity
-  host: <%= ENV["DB_SOCKET"] %>
+  host: db
+  username: postgres
+  password:
   pool: 50
