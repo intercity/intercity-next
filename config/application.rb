@@ -22,6 +22,7 @@ module IntercityNext
 
     config.eager_load_paths << Rails.root.join("lib")
 
-    $redis = Redis.new
+    config.autoload_paths += Dir[File.join(Rails.root, "lib", "redis.rb")].each {|l| require l }
   end
 end
+
