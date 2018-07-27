@@ -2,6 +2,12 @@
 
 echo "== Setting up Intercity Next"
 
+if [ ! -x "$(command -v curl)" ]; then
+  echo "!! You need to have 'curl' installed to proceed."
+  echo "   -> sudo apt-get install curl"
+  exit 1
+fi
+
 # Install docker if necessray
 if [ ! -x "$(command -v docker)" ]; then
   echo "-- Installing docker..."
@@ -34,8 +40,16 @@ echo "-- Deploying Intercity Next to https://$INTERCITY_FQDN"
 # Boot up with docker compose
 docker-compose up -d
 
+echo "-- Waiting for Intercity Next to fully boot up. This may take a few minutes."
+
+until $(curl --output /dev/null --silent --head --fail https://$INTERCITY_FQDN); do
+    printf '.'
+    sleep 5
+done
+
 echo
-echo "Intercity Next has been started and is now booting up. This may take a few moments."
+echo
+echo "Intercity Next has been started and is ready for departure!"
 echo 
 echo "Your Intercity is waiting for you at https://$INTERCITY_FQDN"
 echo
