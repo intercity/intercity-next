@@ -23,6 +23,8 @@ RUN bundle install --jobs 20 --retry 5 --without development test
 
 COPY . ./
 
+RUN bundle exec rake assets:precompile
+
 EXPOSE 5000
 
 CMD "/app/scripts/entrypoint"
