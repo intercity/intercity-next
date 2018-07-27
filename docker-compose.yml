@@ -9,9 +9,6 @@ volumes:
   certs:
 
 
-networks:
-  internal_net:
-
 services:
   nginx-proxy:
     container_name: nginx-proxy
@@ -63,22 +60,16 @@ services:
     depends_on:
       - db
       - redis
-    networks:
-      - internal_net
 
   redis:
     image: redis
     volumes:
       - redis_data:/data
     hostname: redis
-    networks:
-      - internal_net
     
   db:
     image: postgres
     volumes: 
       - postgres_data:/var/lib/postgresql/data
     hostname: redis
-    networks:
-      - internal_net
 
