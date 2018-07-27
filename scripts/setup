@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo "== Setting up Intercity Next"
+
+# Install docker if necessray
+if [ ! -x "$(command -v docker)" ]; then
+  echo "-- Installing docker..."
+  curl -fsSL get.docker.com -o get-docker.sh
+  sh get-docker.sh
+else
+  echo "-- $(docker -v)"
+fi
+
+# Install docker-compose
+if [ ! -x "$(command -v docker-compose)" ]; then
+  echo "-- Installing docker-compose"
+  curl -L https://github.com/docker/compose/releases/download/1.22.0/docker-compose-`uname -s`-`uname -m` -o /usr/local/bin/docker-compose
+  chmod +x /usr/local/bin/docker-compose
+else
+  echo "-- $(docker-compose -v)"
+fi
+
+# Validate and load .env
+if [ ! -f "./.env" ]; then
+  echo "!! No .env configuration file found. Please copy and edit env.example and re-run this script"
+  exit 1
+else
+  echo "-- Found .env, loading variables..."
+  source .env
+fi
+
+echo "-- Deploying Intercity Next to https://$INTERCITY_FQDN"
+
+# Boot up with docker compose
+docker-compose up -d
+
+echo
+echo "Intercity Next is now ready. See it in action at https://$INTERCITY_FQDN"
+echo "You can stop Intercity Next with:     docker-compose stop"
+echo "Logs can be viewed with:              docker-compose logs"
+echo

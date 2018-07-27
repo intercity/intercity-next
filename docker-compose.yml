@@ -33,7 +33,7 @@ services:
       - assets_data:/app/public
     environment:
       REDIS_URL: redis://redis:6379/0
-      VIRTUAL_HOST: localhost
+      VIRTUAL_HOST: ${INTERCITY_FQDN}
       VIRTUAL_ROOT: /app/public
     depends_on:
       - db

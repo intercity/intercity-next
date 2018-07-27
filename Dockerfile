@@ -6,7 +6,8 @@ RUN apt-get update -qq \
     ca-certificates \
     build-essential \
     libpq-dev \
-    nodejs
+    nodejs \
+    yarn
 
 ENV RAILS_ROOT=/app
 RUN mkdir -p $RAILS_ROOT
@@ -15,14 +16,13 @@ WORKDIR $RAILS_ROOT
 ENV RAILS_ENV=production
 ENV RACK_ENV=production
 
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile.lock ./
 
 RUN gem install foreman
 RUN bundle install --jobs 20 --retry 5 --without development test
 
-COPY . .
+COPY . ./
 
 EXPOSE 5000
 
-CMD "/app/scripts/entry"
+CMD "/app/scripts/entrypoint"
