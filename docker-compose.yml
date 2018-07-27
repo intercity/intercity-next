@@ -11,15 +11,11 @@ volumes:
 
 networks:
   internal_net:
-  app_net:
-
 
 services:
   nginx-proxy:
     container_name: nginx-proxy
     image: jwilder/nginx-proxy
-    networks:
-      - app_net
     volumes:
       - assets_data:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
@@ -65,7 +61,6 @@ services:
       - db
       - redis
     networks:
-      - app_net
       - internal_net
 
   redis:

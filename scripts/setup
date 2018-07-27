@@ -35,7 +35,10 @@ echo "-- Deploying Intercity Next to https://$INTERCITY_FQDN"
 docker-compose up -d
 
 echo
-echo "Intercity Next is now ready. See it in action at https://$INTERCITY_FQDN"
+echo "Intercity Next has been started and is now booting up. This may take a few moments."
+echo 
+echo "Your Intercity is waiting for you at https://$INTERCITY_FQDN"
+echo
 echo "You can stop Intercity Next with:     docker-compose stop"
 echo "Logs can be viewed with:              docker-compose logs"
 echo
