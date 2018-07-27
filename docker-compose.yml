@@ -4,6 +4,9 @@ volumes:
   postgres_data:
   redis_data:
   assets_data: 
+  vhost:
+  html:
+  certs:
 
 
 networks:
@@ -13,6 +16,7 @@ networks:
 
 services:
   nginx-proxy:
+    container_name: nginx-proxy
     image: jwilder/nginx-proxy
     networks:
       - app_net
@@ -20,9 +24,29 @@ services:
       - assets_data:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./config/nginx.conf:/etc/nginx/vhost.d/default
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
     ports: 
       - 80:80
       - 443:443
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+
+  letsencrypt:
+    container_name: letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+      NGINX_DOCKER_GEN_CONTAINER: nginx-proxy
+    volumes:
+      - vhost:/etc/nginx/vhost.d
+      - assets_data:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - nginx-proxy
 
   app:
     image: intercity_next
@@ -34,6 +58,8 @@ services:
     environment:
       REDIS_URL: redis://redis:6379/0
       VIRTUAL_HOST: ${INTERCITY_FQDN}
+      LETSENCRYPT_HOST: ${INTERCITY_FQDN}
+      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
       VIRTUAL_ROOT: /app/public
     depends_on:
       - db
