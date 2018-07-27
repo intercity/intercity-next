@@ -1,27 +1,46 @@
 version: '3'
 
 volumes:
-  postgres_data: {}
-  redis_data: {}
+  postgres_data:
+  redis_data:
+  assets_data: 
+
 
 networks:
-  internal_net: {}
+  internal_net:
+  app_net:
+
 
 services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    networks:
+      - app_net
+    volumes:
+      - assets_data:/app/public
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ./config/nginx.conf:/etc/nginx/vhost.d/default
+    ports: 
+      - 80:80
+      - 443:443
+
   app:
     image: intercity_next
     build:
       context: .
       dockerfile: ./Dockerfile
+    volumes:
+      - assets_data:/app/public
     environment:
       REDIS_URL: redis://redis:6379/0
+      VIRTUAL_HOST: localhost
+      VIRTUAL_ROOT: /app/public
     depends_on:
       - db
       - redis
     networks:
+      - app_net
       - internal_net
-    ports: 
-      - 5000
 
   redis:
     image: redis
