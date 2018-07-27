@@ -17,3 +17,4 @@ passenger.*
 /backups/
 /keys/
 /.idea
+/data

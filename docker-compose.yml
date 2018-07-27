@@ -1,13 +1,8 @@
 version: '3'
 
 volumes:
-  postgres_data:
-  redis_data:
-  assets_data: 
   vhost:
   html:
-  certs:
-
 
 services:
   nginx-proxy:
@@ -15,12 +10,12 @@ services:
     image: jwilder/nginx-proxy
     restart: always
     volumes:
-      - assets_data:/app/public
+      - ./data/public:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./config/nginx.conf:/etc/nginx/vhost.d/default
       - vhost:/etc/nginx/vhost.d
       - html:/usr/share/nginx/html
-      - certs:/etc/nginx/certs
+      - ./data/certs:/etc/nginx/certs
     ports: 
       - 80:80
       - 443:443
@@ -36,8 +31,8 @@ services:
       NGINX_DOCKER_GEN_CONTAINER: nginx-proxy
     volumes:
       - vhost:/etc/nginx/vhost.d
-      - assets_data:/usr/share/nginx/html
-      - certs:/etc/nginx/certs
+      - ./data/public:/usr/share/nginx/html
+      - ./data/certs:/etc/nginx/certs
       - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
@@ -50,7 +45,7 @@ services:
       context: .
       dockerfile: ./Dockerfile
     volumes:
-      - assets_data:/app/public
+      - ./data/public:/app/public
     environment:
       REDIS_URL: redis://redis:6379/0
       VIRTUAL_HOST: ${INTERCITY_FQDN}
@@ -64,11 +59,11 @@ services:
   redis:
     image: redis
     volumes:
-      - redis_data:/data
+      - ./data/redis:/data
     hostname: redis
     
   db:
     image: postgres
     volumes: 
-      - postgres_data:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data
 
