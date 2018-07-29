@@ -1,4 +1,4 @@
-FROM ruby:2.5-slim
+FROM ruby:2.4.2-slim
 
 # Install dependencies
 RUN apt-get update -qq \
@@ -6,8 +6,7 @@ RUN apt-get update -qq \
     ca-certificates \
     build-essential \
     libpq-dev \
-    nodejs \
-    yarn
+    nodejs
 
 ENV RAILS_ROOT=/app
 RUN mkdir -p $RAILS_ROOT
