@@ -2,11 +2,13 @@
 
 echo "-- Welcome to Intercity Next"
 
-# Run database migrations
 echo "-- Setting up database"
 bundle exec rake db:create
 
-echo "-- Migrating app database"
+echo "-- Running pending database migrations"
 bundle exec rake db:migrate
+
+echo "-- Populating services"
+bundle exec rake intercity:seed_plugins
 
 foreman start
