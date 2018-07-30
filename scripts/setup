@@ -28,12 +28,20 @@ fi
 
 # Validate and load .env
 if [ ! -f "./.env" ]; then
-  echo "!! No .env configuration file found. Please copy and edit env.example and re-run this script"
-  exit 1
-else
-  echo "-- Found .env, loading variables..."
-  source .env
+  echo "!! No .env found, generating one for you now."
+  secret_key_base=`tr -dc 'a-f0-9' < /dev/urandom | head -c32`
+  read -p 'Intercity Next FQDN (e.g. intercity.example.com): ' intercity_fqdn
+  read -p 'Letsencrypt email address (e.g. user@example.com): ' letsencrypt_email
+
+  echo INTERCITY_FQDN=$intercity_fqdn >> .env
+  echo LETSENCRYPT_EMAIL=$letsencrypt_email >> .env
+  echo SECRET_KEY_BASE=$secret_key_base >> .env
+
+  echo "-- Written configuration to .env"
 fi
+
+echo "-- Loading configuration from .env"
+source .env
 
 echo "-- Deploying Intercity Next to https://$INTERCITY_FQDN"
 
