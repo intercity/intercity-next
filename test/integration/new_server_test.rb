@@ -14,10 +14,7 @@ class NewServerTest < IntegrationTest
     interact_with_hidden_elements do
       fill_in "server[name]", with: "Example server"
       fill_in "server[ip]", with: "127.0.0.1"
-      assert_difference "Server.count" do
-        find("input[type=submit]").trigger("click")
-        wait_for_ajax
-      end
+      click_button "Add server"
     end
   end
 end
