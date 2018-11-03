@@ -8,7 +8,6 @@ require 'minitest/mock'
 require "mocha/mini_test"
 require "minitest/reporters"
 require "database_cleaner"
-require 'capybara/poltergeist'
 
 Sidekiq::Testing.fake!
 
@@ -18,6 +17,18 @@ Minitest::Reporters.use!([Minitest::Reporters::DefaultReporter.new(reporter_opti
 
 DatabaseCleaner.clean_with :truncation
 DatabaseCleaner.strategy = :truncation
+
+Capybara.register_driver :headless_chrome do |app|
+  capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
+    chromeOptions: { args: %w(headless window-size=1024,768 no-sandbox) }
+  )
+
+  Capybara::Selenium::Driver.new app,
+    browser: :chrome,
+    desired_capabilities: capabilities
+end
+
+Capybara.javascript_driver = :headless_chrome
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in test/support/ and its subdirectories.
@@ -45,11 +56,6 @@ class ActionDispatch::IntegrationTest
   include Capybara::DSL
 
   self.use_transactional_tests = false
-
-  Capybara.register_driver :poltergeist do |app|
-    Capybara::Poltergeist::Driver.new(app, js_errors: true)
-  end
-  Capybara.javascript_driver = :poltergeist
 
   teardown do
     DatabaseCleaner.clean

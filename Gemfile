@@ -44,6 +44,9 @@ group :development, :test do
   gem "awesome_print"
   gem "dotenv-rails", "2.2.1"
   gem "rubocop"
+  gem "selenium-webdriver"
+  gem "capybara"
+  gem "chromedriver-helper"
 end
 
 group :test do
@@ -52,7 +55,6 @@ group :test do
   gem "launchy"
   gem "minitest-reporters"
   gem "mocha"
-  gem "poltergeist"
   gem "shoulda"
   gem "timecop"
 end
