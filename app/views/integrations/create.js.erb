@@ -1,0 +1,10 @@
+<% if @integration.persisted? %>
+  $("[data-role=empty-state]").hide()
+  $('body').find('.integrations tbody').append("<%= j render @integration %>")
+  $('body').find("[data-role~=form] form").trigger("reset")
+  $('body').find("[data-role~=empty-table]").addClass("is-hidden")
+<% else %>
+  $('body').find("[data-role~=form]").html("<%= j render "form" %>");
+<% end %>
+new FormErrorHandler().reset()
+new FormErrorHandler().execute()

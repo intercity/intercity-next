@@ -1,0 +1,7 @@
+<%= content_tag :tr, id: dom_id(integration), class: "integration" do %>
+  <td><%= integration.name %></td>
+  <td><%= integration.access_token %></td>
+  <td class="actions is-link is-danger">
+    <%= link_to "Remove", integration_path(integration), remote: true, method: :delete, class: "is-danger", data: { confirm: "Are you sure you want to fully remove this integration?" } %>
+  </td>
+<% end %>

@@ -1,0 +1,3 @@
+<% if @integration.destroyed? %>
+$("tr#<%= dom_id(@integration) %>").remove()
+<% end %>

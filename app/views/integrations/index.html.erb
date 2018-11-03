@@ -3,7 +3,7 @@
 <h1 class="title">Applications</h1>
 <div class="columns">
   <div class="column is-8">
-    <table class="table is-striped users">
+    <table class="table is-striped integrations">
       <thead>
         <tr>
           <th>Name</th>
@@ -12,9 +12,15 @@
         </tr>
       </thead>
       <tbody>
+        <%= render @integrations %>
       </tbody>
     </table>
+
+    <% if @integrations.blank? %>
+      <p data-role="empty-state">You don't have any application access tokens yet. To obtain an access token to interact with your Intercity instance API, please add an application first.</p>
+    <% end %>
   </div>
   <div data-role="form" class="column is-4">
+    <%= render "form" %>
   </div>
 </div>
