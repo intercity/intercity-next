@@ -26,7 +26,9 @@ class ManageUsersTest < IntegrationTest
     click_link "Users"
 
     within "#user_#{user.id}" do
-      click_link "Remove"
+      accept_confirm do
+        click_link "Remove"
+      end
     end
 
     # We need to give jquery a bit of time to let the record fadeout and
