@@ -10,37 +10,27 @@ services:
       - redis-data:/data
   web:
     build: .
+    image: intercitynext_web
     volumes:
-      - .:/myapp
+      - .:/app
     command: bundle exec rails s
     ports:
-      - "3000:3000"
+      - "3000"
     depends_on:
       - db
       - redis
-    environment:
-      - RAILS_ENV=development
-      - DB_HOST=db
-      - DB_USER=postgres
+    environment: &ENV
+      - DATABASE_URL=postgres://postgres@db/
       - SECRET_KEY_BASE=a
       - RAILS_SERVE_STATIC_FILES=true
-      - REDIS_URL=redis://redis:6379
-      - HOSTNAME=intercity.example.com
       - RAILS_LOG_TO_STDOUT=true
+      - REDIS_URL=redis://redis:6379
   sidekiq:
     image: intercitynext_web
     command: bundle exec sidekiq -q default -q mailers -q health_checks
     volumes:
-      - .:/myapp
-    environment:
-      - RAILS_ENV=development
-      - DB_HOST=db
-      - DB_USER=postgres
-      - REDIS_URL=redis://redis:6379
-      - SECRET_KEY_BASE=a
-      - RAILS_SERVE_STATIC_FILES=true
-      - HOSTNAME=intercity.example.com
-      - RAILS_LOG_TO_STDOUT=true
+      - .:/app
+    environment: *ENV
     depends_on:
       - db
       - redis
