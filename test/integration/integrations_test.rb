@@ -8,7 +8,7 @@ class IntegrationsTest < ActionDispatch::IntegrationTest
     visit root_path
     click_link "Integrations"
     fill_in "integration[name]", with: "My API"
-    click_button "Add new integration"
+    click_button "Add new application"
 
     within ".integrations" do
       assert page.has_content? "My API"
