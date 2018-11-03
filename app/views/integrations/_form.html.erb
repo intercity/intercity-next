@@ -1,0 +1,12 @@
+<div class="box">
+  <h1 class="subtitle">Add a application</h1>
+  <%= form_for @integration, remote: true do |f| %>
+    <div class="control">
+      <%= f.text_field :name, placeholder: "My API application", hide_label: true,
+        class: "input", data: { error: @integration.errors[:name].first } %>
+    </div>
+    <p class="control">
+    <%= f.submit "Add new integration", class: "button is-primary" %>
+    </p>
+  <% end %>
+</div>
