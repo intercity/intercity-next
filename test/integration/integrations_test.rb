@@ -14,4 +14,20 @@ class IntegrationsTest < ActionDispatch::IntegrationTest
       assert page.has_content? "My API"
     end
   end
+
+  test "User should be able to reveal an integration access token" do
+    use_javascript
+    login_as users(:john)
+
+    visit root_path
+    click_link "Integrations"
+
+    integration = integrations(:api_application)
+
+    within "tr#integration_#{integration.id}" do
+      click_on "Click to reveal"
+    end
+
+    assert page.has_content?(integration.access_token)
+  end
 end
