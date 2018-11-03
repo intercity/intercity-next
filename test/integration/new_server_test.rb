@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class NewServerTest < IntegrationTest
+class NewServerTest < ActionDispatch::IntegrationTest
   test "User should be able to create a new server" do
     use_javascript
 

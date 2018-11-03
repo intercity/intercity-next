@@ -1,6 +1,6 @@
 require "test_helper"
 
-class EmptyStateTest < IntegrationTest
+class EmptyStateTest < ActionDispatch::IntegrationTest
   test "When there are no users in the system, you should see the onboarding page" do
     User.destroy_all
 

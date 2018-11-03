@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ManageSettingsTest < IntegrationTest
+class ManageSettingsTest < ActionDispatch::IntegrationTest
   test "User should be able to alter the FROM_EMAIL on the settings page" do
     login_as users(:john)
 

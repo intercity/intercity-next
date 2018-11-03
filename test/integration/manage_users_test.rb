@@ -1,6 +1,6 @@
 require "test_helper"
 
-class ManageUsersTest < IntegrationTest
+class ManageUsersTest < ActionDispatch::IntegrationTest
   test "I want to be able to add new users to the system" do
     use_javascript
 

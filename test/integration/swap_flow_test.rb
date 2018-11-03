@@ -1,6 +1,6 @@
 require "test_helper"
 
-class SwapFlowTest < IntegrationTest
+class SwapFlowTest < ActionDispatch::IntegrationTest
   test "A user should be able to enable swap on a server" do
     login_as users(:john)
     visit server_path(servers(:example))

@@ -1,6 +1,6 @@
 require "test_helper"
 
-class UserLoginTest < IntegrationTest
+class UserLoginTest < ActionDispatch::IntegrationTest
   test "User login should be successfull" do
     visit root_path
 

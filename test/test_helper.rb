@@ -88,9 +88,7 @@ class ActionDispatch::IntegrationTest
     yield
     Capybara.ignore_hidden_elements = true
   end
-end
 
-class IntegrationTest < ActionDispatch::IntegrationTest
   def login_as(user)
     visit login_path
     fill_in "Email", with: user.email
