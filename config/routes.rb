@@ -3,7 +3,6 @@ require 'sidekiq/cron/web'
 require "user_constraint"
 
 Rails.application.routes.draw do
-
   mount Sidekiq::Web => "/sidekiq", constraints: UserConstraint.new
   root to: "servers#index"
 
@@ -56,6 +55,8 @@ Rails.application.routes.draw do
   resource :settings, only: [:edit, :update] do
     root to: "settings#edit"
   end
+
+  resources :integrations
 
   # Help
   get 'help'                  => 'help#index'
