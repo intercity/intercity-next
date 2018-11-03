@@ -18,6 +18,11 @@ Minitest::Reporters.use!([Minitest::Reporters::DefaultReporter.new(reporter_opti
 DatabaseCleaner.clean_with :truncation
 DatabaseCleaner.strategy = :truncation
 
+Capybara.register_server :puma do |app, port, host|
+  require 'rack/handler/puma'
+  Rack::Handler::Puma.run(app, Host: host, Port: port, Threads: "0:1")
+end
+
 Capybara.register_driver :headless_chrome do |app|
   capabilities = Selenium::WebDriver::Remote::Capabilities.chrome(
     chromeOptions: { args: %w(headless window-size=1024,768 no-sandbox) }
