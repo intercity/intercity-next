@@ -1,0 +1,2 @@
+class Integration < ApplicationRecord
+end
