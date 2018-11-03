@@ -14,6 +14,10 @@ class IntegrationsController < ApplicationController
     @integration.destroy
   end
 
+  def reveal
+    @integration = Integration.find(params[:id])
+  end
+
   private
 
   def integration_params

@@ -56,7 +56,11 @@ Rails.application.routes.draw do
     root to: "settings#edit"
   end
 
-  resources :integrations
+  resources :integrations do
+    member do
+      get :reveal
+    end
+  end
 
   # Help
   get 'help'                  => 'help#index'
