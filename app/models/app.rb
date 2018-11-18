@@ -35,9 +35,8 @@ class App < ApplicationRecord
   private
 
   def valid_ssl
-    return unless ssl_enabled?
     errors.add(:ssl_key, " is invalid") if ssl_key.present? &&
-                                           ssl_key.match(/-----BEGIN RSA PRIVATE KEY-----/).nil?
+                                           ssl_key.match(/-----BEGIN( RSA)? PRIVATE KEY-----/).nil?
 
     errors.add(:ssl_cert, " is invalid") if ssl_cert.present? &&
                                             ssl_cert.match(/-----BEGIN CERTIFICATE-----/).nil?
