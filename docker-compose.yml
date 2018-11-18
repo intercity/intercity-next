@@ -1,0 +1,39 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    volumes:
+      - pg-data:/var/lib/postgresql/data
+  redis:
+    image: redis
+    volumes:
+      - redis-data:/data
+  web:
+    build: .
+    image: intercitynext_web
+    volumes:
+      - .:/app
+    command: bundle exec rails s
+    ports:
+      - "3000"
+    depends_on:
+      - db
+      - redis
+    environment: &ENV
+      - DATABASE_URL=postgres://postgres@db/
+      - SECRET_KEY_BASE=a
+      - RAILS_SERVE_STATIC_FILES=true
+      - RAILS_LOG_TO_STDOUT=true
+      - REDIS_URL=redis://redis:6379
+  sidekiq:
+    image: intercitynext_web
+    command: bundle exec sidekiq -q default -q mailers -q health_checks
+    volumes:
+      - .:/app
+    environment: *ENV
+    depends_on:
+      - db
+      - redis
+volumes:
+  pg-data:
+  redis-data:
