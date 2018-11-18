@@ -25,6 +25,7 @@ services:
       - RAILS_SERVE_STATIC_FILES=true
       - RAILS_LOG_TO_STDOUT=true
       - REDIS_URL=redis://redis:6379
+      - DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true
   sidekiq:
     image: intercitynext_web
     command: bundle exec sidekiq -q default -q mailers -q health_checks
