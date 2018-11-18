@@ -2,11 +2,10 @@ development: &default
   adapter: postgresql
   database: intercity-next_development
   encoding: utf8
-  host: <%= ENV["DB_HOST"] || "localhost" %>
+  host: localhost
   min_messages: warning
   pool: 2
   timeout: 5000
-  username: <%= ENV["DB_USER"] || "root" %>
 
 test:
   <<: *default
