@@ -1,3 +1,3 @@
 <div class="box">
-  <%= button_to "Apply changes and restart app",  server_app_restarts_path(@app), remote: true, class: "button is-fullwidth is-light", data: { disable_with: "Restarting..." }  %>
+  <%= button_to "Apply changes and restart app",  server_app_restarts_path(@app.server, @app), remote: true, class: "button is-fullwidth is-light", data: { disable_with: "Restarting..." }  %>
 </div>
