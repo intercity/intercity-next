@@ -35,7 +35,7 @@ Rails.application.routes.draw do
     resource :swap, only: [:show, :create, :destroy]
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
       scope module: :apps do
-        resources :restarts
+        resources :restarts, only: :create
       end
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
