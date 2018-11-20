@@ -19,6 +19,6 @@ class EnvVarsController < ServerBaseController
   private
 
   def env_var_params
-    params.require(:env_var).permit(:key, :value)
+    params.require(:env_var).permit(:key, :value, :apply_immediately)
   end
 end
