@@ -1,8 +1,8 @@
 class AddEnvVarJob < ApplicationJob
   queue_as :default
 
-  def perform(app, env_var)
-    @apply_immediately = env_var.apply_immediately
+  def perform(app, env_var, apply_immediately = false)
+    @apply_immediately = apply_immediately
 
     SshExecution.new(app.server).
       execute(command: "dokku config:set #{no_restart_argument}"\
