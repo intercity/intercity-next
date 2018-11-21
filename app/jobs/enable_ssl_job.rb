@@ -40,7 +40,7 @@ class EnableSSLJob < ApplicationJob
     SshExecution.new(app.server).
       execute(command: "tar -cvf #{server_tar_path} #{server_cert_path} #{server_key_path}")
     SshExecution.new(app.server).
-      execute(command: "dokku certs:add #{app.clean_name} < #{server_tar_path}")
+      execute(command: "sudo dokku certs:add #{app.clean_name} < #{server_tar_path}")
   end
 
   def clean_certificate_files
