@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20181122210927) do
     t.text "ssl_cert"
     t.boolean "ssl_enabled", default: false
     t.string "letsencrypt_email"
+    t.boolean "letsencrypt_enabled"
     t.index ["server_id"], name: "index_apps_on_server_id"
   end
 
