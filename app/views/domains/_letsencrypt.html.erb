@@ -1,11 +1,15 @@
 <div class="box" >
-  <h3 class="title">Enable LetsEncrypt SSL</h3>
-  <p>Enable LetsEncrypt for all domains you add to this application.</p>
-  <%= form_for @app, url: server_app_letsencrypt_path(@server, @app) do |f| %>
-  <div class="control">
-    <%= f.label :letsencrypt_email, class: "label" %>
-    <%= f.email_field :letsencrypt_email, class: "input" %>
-  </div>
-  <%= f.submit "Enable LetsEncrypt", class: "button control" %>
+  <h3 class="title">LetsEncrypt SSL</h3>
+  <% unless @app.letsencrypt_enabled? %>
+    <p>Enable LetsEncrypt for all domains you add to this application.</p>
+    <%= form_for @app, url: server_app_letsencrypt_path(@server, @app), method: :post do |f| %>
+    <div class="control">
+      <%= f.label :letsencrypt_email, class: "label" %>
+      <%= f.email_field :letsencrypt_email, class: "input" %>
+    </div>
+    <%= f.submit "Enable LetsEncrypt", class: "button control" %>
+    <% end %>
+  <% else %>
+  LetsEncrypt is enabled for this app
   <% end %>
 </div>
