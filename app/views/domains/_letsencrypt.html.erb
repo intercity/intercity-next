@@ -11,6 +11,10 @@
     <% end %>
   <% else %>
     <%= button_to "Update/refresh certificates", server_app_letsencrypt_path(@server, @app), class: "button control", method: :put, remote: true %>
-    <%= button_to "Disable LetsEncrypt", server_app_letsencrypt_path(@server, @app), class: "button control", method: :delete %>
+    <%= button_to "Disable LetsEncrypt on this app", 
+      server_app_letsencrypt_path(@server, @app), 
+      class: "button is-danger control", 
+      method: :delete,
+      data: { confirm: "Are you sure you want to disable LetsEncrypt for this application?" } %>
   <% end %>
 </div>
