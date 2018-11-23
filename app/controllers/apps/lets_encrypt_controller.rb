@@ -10,6 +10,11 @@ class Apps::LetsEncryptController < ServerBaseController
     redirect_to server_app_domains_path(@app.server, @app)
   end
 
+  def destroy
+    @app = server.apps.find(params[:app_id])
+    DisableLetsEncryptJob.perform_later(@app)
+  end
+
   private
 
   def letsencrypt_params

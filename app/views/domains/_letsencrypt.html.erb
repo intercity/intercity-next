@@ -10,6 +10,6 @@
     <%= f.submit "Enable LetsEncrypt", class: "button control" %>
     <% end %>
   <% else %>
-  LetsEncrypt is enabled for this app
+    <%= button_to "Disable LetsEncrypt", server_app_letsencrypt_path(@server, @app), class: "button control", method: :delete %>
   <% end %>
 </div>
