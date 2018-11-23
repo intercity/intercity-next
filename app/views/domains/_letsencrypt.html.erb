@@ -10,6 +10,7 @@
     <%= f.submit "Enable LetsEncrypt", class: "button control" %>
     <% end %>
   <% else %>
+    <%= button_to "Update/refresh certificates", server_app_letsencrypt_path(@server, @app), class: "button control", method: :put, remote: true %>
     <%= button_to "Disable LetsEncrypt", server_app_letsencrypt_path(@server, @app), class: "button control", method: :delete %>
   <% end %>
 </div>
