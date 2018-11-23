@@ -15,6 +15,11 @@ class Apps::LetsEncryptController < ServerBaseController
     DisableLetsEncryptJob.perform_later(@app)
   end
 
+  def update
+    @app = server.apps.find(params[:app_id])
+    RefreshLetsEncryptCertificateJob.perform_later(@app)
+  end
+
   private
 
   def letsencrypt_params
