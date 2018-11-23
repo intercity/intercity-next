@@ -7,7 +7,7 @@ class Apps::LetsEncryptController < ServerBaseController
       EnableLetsEncryptJob.perform_later(@app) if @app.save
     end
 
-    redirect_to server_app_domains(@app.server, @app)
+    redirect_to server_app_domains_path(@app.server, @app)
   end
 
   private
