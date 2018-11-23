@@ -1,4 +1,4 @@
-class EnableLetsencryptJob < ApplicationJob
+class EnableLetsEncryptJob < ApplicationJob
   queue_as :default
 
   def perform(app)
@@ -16,6 +16,9 @@ class EnableLetsencryptJob < ApplicationJob
   private
 
   def install_letsencrypt_plugin_if_needed
+    installed_plugins = SshExecution.new(@app.server).execute(command: "dokku plugin")
+    return if "letsencrypt".in?(installed_plugins)
+    
     SshExecution.new(@app.server).
       execute(command: "dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git")
     # TODO enable cronjob
