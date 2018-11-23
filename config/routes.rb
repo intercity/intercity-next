@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
       scope module: :apps do
         resources :restarts, only: :create
-        resource :letsencrypt, controller: "letsencrypt"
+        resource :letsencrypt, controller: "lets_encrypt"
       end
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
