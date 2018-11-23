@@ -21,6 +21,7 @@ class EnableLetsEncryptJob < ApplicationJob
     
     SshExecution.new(@app.server).
       execute(command: "dokku plugin:install https://github.com/dokku/dokku-letsencrypt.git")
-    # TODO enable cronjob
+    SshExecution.new(@app.server).
+      execute(command: "dokku letsencrypt:cron-job --add")
   end
 end
