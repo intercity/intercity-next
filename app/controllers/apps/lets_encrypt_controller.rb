@@ -3,8 +3,7 @@ class Apps::LetsEncryptController < ServerBaseController
     @app = server.apps.find(params[:app_id])
     @app.fetch_letsencrypt_status_from_server!
     unless @app.letsencrypt_enabled?
-      @app.assign_attributes(letsencrypt_params)
-      EnableLetsEncryptJob.perform_later(@app) if @app.save
+      EnableLetsEncryptJob.perform_later(@app) if @app.update(letsencrypt_params)
     end
 
     redirect_to server_app_domains_path(@app.server, @app)
