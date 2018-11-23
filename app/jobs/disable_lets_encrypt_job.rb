@@ -3,8 +3,8 @@ class DisableLetsEncryptJob < ApplicationJob
 
   def perform(app)
     SshExecution.new(app.server).
-      execute(command: "dokku config:unset -no-restart #{app.clean_name} DOKKU_LETSENCRYPT_EMAIL")
+      execute(command: "sudo dokku config:unset -no-restart #{app.clean_name} DOKKU_LETSENCRYPT_EMAIL")
     SshExecution.new(app.server).
-      execute(command: "dokku letsencrypt:revoke #{app.clean_name}")
+      execute(command: "sudo dokku letsencrypt:revoke #{app.clean_name}")
   end
 end
