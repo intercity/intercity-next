@@ -12,7 +12,7 @@ class Apps::LetsEncryptController < ServerBaseController
 
   def destroy
     @app = server.apps.find(params[:app_id])
-    DisableLetsEncryptJob.perform_later(@app)
+    DisableLetsEncryptJob.perform_now(@app)
   end
 
   def update
