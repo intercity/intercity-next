@@ -36,7 +36,7 @@ class App < ApplicationRecord
 
   def fetch_letsencrypt_status_from_server!
     letsencrypt_email = SshExecution.new(server).
-        execute(command: "dokku config:get #{clean_name} DOKKU_LETSENCRYPT_EMAIL")
+                        execute(command: "dokku config:get #{clean_name} DOKKU_LETSENCRYPT_EMAIL")
 
     if letsencrypt_email.present?
       update(letsencrypt_email: letsencrypt_email, letsencrypt_enabled: true)
