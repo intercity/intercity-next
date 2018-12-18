@@ -18,7 +18,7 @@ class EnableLetsEncryptJob < ApplicationJob
   private
 
   def install_letsencrypt_plugin_if_needed
-    installed_plugins = SshExecution.new(@app.server).execute(command: "dokku plugin")
+    installed_plugins = SshExecution.new(@app.server).execute(command: "sudo dokku plugin")
     return if "letsencrypt".in?(installed_plugins)
 
     SshExecution.new(@app.server).
