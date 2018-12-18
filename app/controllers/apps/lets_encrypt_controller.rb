@@ -12,7 +12,7 @@ class Apps::LetsEncryptController < ServerBaseController
   def destroy
     @app = server.apps.find(params[:app_id])
     DisableLetsEncryptJob.new.perform(@app)
-    
+
     redirect_to server_app_domains_path(@app.server, @app)
   end
 
