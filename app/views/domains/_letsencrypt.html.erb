@@ -1,20 +1,23 @@
 <div class="box">
   <h3 class="title">LetsEncrypt SSL</h3>
-  <% unless @app.letsencrypt_enabled? %>
-    <p>Enable LetsEncrypt for all domains you add to this application.</p>
-    <%= form_for @app, url: server_app_letsencrypt_path(@server, @app), method: :post do |f| %>
-      <div class="control">
-        <%= f.label :letsencrypt_email, class: "label" %>
-        <%= f.email_field :letsencrypt_email, class: "input" %>
-      </div>
-      <%= f.submit "Enable LetsEncrypt", class: "button control" %>
+  <div class="content">
+    <% unless @app.letsencrypt_enabled? %>
+      <p>Enable LetsEncrypt for all domains you add to this application.</p>
+      <%= form_for @app, url: server_app_letsencrypt_path(@server, @app), method: :post do |f| %>
+        <div class="control">
+          <%= f.label :letsencrypt_email, class: "label" %>
+          <%= f.email_field :letsencrypt_email, class: "input" %>
+        </div>
+        <%= f.submit "Enable LetsEncrypt", class: "button control" %>
+      <% end %>
+    <% else %>
+      <p>LetsEncrypt is enabled for the domains on this app.</p>
+      <%= button_to "Update/refresh certificates", server_app_letsencrypt_path(@server, @app), class: "button control", method: :put, remote: true %>
+      <%= button_to "Disable LetsEncrypt on this app", 
+        server_app_letsencrypt_path(@server, @app), 
+        class: "button is-danger control", 
+        method: :delete,
+        data: { confirm: "Are you sure you want to disable LetsEncrypt for this application?" } %>
     <% end %>
-  <% else %>
-    <%= button_to "Update/refresh certificates", server_app_letsencrypt_path(@server, @app), class: "button control", method: :put, remote: true %>
-    <%= button_to "Disable LetsEncrypt on this app", 
-      server_app_letsencrypt_path(@server, @app), 
-      class: "button is-danger control", 
-      method: :delete,
-      data: { confirm: "Are you sure you want to disable LetsEncrypt for this application?" } %>
-  <% end %>
+  </div>
 </div>
