@@ -3,7 +3,7 @@ class Apps::LetsEncryptController < ServerBaseController
     @app = server.apps.find(params[:app_id])
     @app.fetch_letsencrypt_status_from_server!
     unless @app.letsencrypt_enabled?
-      EnableLetsEncryptJob.perform_later(@app) if @app.update(letsencrypt_params)
+      EnableLetsEncryptJob.new.perform(@app) if @app.update(letsencrypt_params)
     end
 
     redirect_to server_app_domains_path(@app.server, @app)
@@ -11,7 +11,7 @@ class Apps::LetsEncryptController < ServerBaseController
 
   def destroy
     @app = server.apps.find(params[:app_id])
-    DisableLetsEncryptJob.perform_now(@app)
+    DisableLetsEncryptJob.new.perform(@app)
   end
 
   def update
