@@ -10,6 +10,7 @@ class EnableLetsEncryptJob < ApplicationJob
     SshExecution.new(app.server).
       execute(command: "sudo dokku config:set -no-restart " \
                         "#{app.clean_name} DOKKU_LETSENCRYPT_EMAIL=#{app.letsencrypt_email}")
+    app.update(letsencrypt_enabled: true)
     SshExecution.new(app.server).
       execute(command: "sudo dokku letsencrypt #{app.clean_name}")
   end
