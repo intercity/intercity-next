@@ -12,7 +12,10 @@ class ManageUsersTest < IntegrationTest
     fill_in "user[email]", with: "testemail@example.com"
     click_button "Add new user"
 
-    assert page.has_content?("testemail@example.com")
+    # Sleep here to give the assert more time before database_cleaner clears the fixture
+    sleep 1
+
+    assert page.has_content?("email@example.com")
   end
 
   test "I want to be able to remove a user from the system" do
