@@ -7,8 +7,18 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
-       - image: circleci/postgres:9.4
+      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/postgres:9.4
+        environment:
+          POSTGRES_USER: circleci-app
+          POSTGRES_DB: intercitynext_test
+          POSTGRES_PASSWORD: ""
+          
+      
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+       
 
     working_directory: ~/repo
 
