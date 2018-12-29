@@ -8,6 +8,10 @@ jobs:
     docker:
       # specify the version you desire here
       - image: circleci/ruby:2.4.1-node-browsers
+        environment:
+          PGHOST: 127.0.0.1
+          PGUSER: circleci-app
+          RAILS_ENV: test
       - image: circleci/postgres:9.4
         environment:
           POSTGRES_USER: circleci-app
