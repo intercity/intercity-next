@@ -70,6 +70,6 @@ jobs:
           command: bundle exec rails test
 
       - store_artifacts:
-        path: tmp/screenshots
+          path: tmp/screenshots
       - store_artifacts:
-        path: log/test.log
+          path: log/test.log
