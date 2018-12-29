@@ -17,6 +17,7 @@ jobs:
           POSTGRES_USER: circleci-app
           POSTGRES_DB: intercitynext_test
           POSTGRES_PASSWORD: ""
+      - image: circleci/redis
           
       
       # Specify service dependencies here if necessary
