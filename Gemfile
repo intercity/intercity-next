@@ -59,6 +59,7 @@ group :test do
   gem "mocha"
   gem "shoulda"
   gem "timecop"
+  gem "minitest-fail-fast"
 end
 
 group :staging, :production do

@@ -12,6 +12,7 @@ jobs:
           PGHOST: 127.0.0.1
           PGUSER: circleci-app
           RAILS_ENV: test
+          TESTOPTS: "--fail-fast"
           BUNDLE_JOBS: 3
           BUNDLE_RETRY: 3
           BUNDLE_PATH: vendor/bundle

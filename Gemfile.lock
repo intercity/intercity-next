@@ -153,6 +153,8 @@ GEM
     mini_mime (1.0.1)
     mini_portile2 (2.3.0)
     minitest (5.11.3)
+    minitest-fail-fast (0.1.0)
+      minitest (~> 5)
     minitest-reporters (1.1.19)
       ansi
       builder
@@ -356,6 +358,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   loofah (>= 2.2.3)
   meta_request
+  minitest-fail-fast
   minitest-reporters
   mocha
   net-ssh (= 3.0.1)
