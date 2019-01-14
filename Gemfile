@@ -55,6 +55,7 @@ group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
   gem "launchy"
+  gem "minitest-fail-fast"
   gem "minitest-reporters"
   gem "mocha"
   gem "shoulda"
