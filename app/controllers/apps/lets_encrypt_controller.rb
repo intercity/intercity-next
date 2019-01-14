@@ -1,7 +1,7 @@
 class Apps::LetsEncryptController < ServerBaseController
   def create
     @app = server.apps.find(params[:app_id])
-    @app.fetch_letsencrypt_status_from_server!
+    RefreshAppLetsencryptStatusJob.new.perform(@app)
     unless @app.letsencrypt_enabled?
       EnableLetsEncryptJob.new.perform(@app) if @app.update(letsencrypt_params)
     end

@@ -34,19 +34,6 @@ class App < ApplicationRecord
     linked_services.find_by!(service: service)
   end
 
-  def fetch_letsencrypt_status_from_server!
-    letsencrypt_email = SshExecution.new(server).
-                        execute(command: "sudo dokku config:get #{clean_name} DOKKU_LETSENCRYPT_EMAIL")
-
-    if letsencrypt_email.present?
-      update(letsencrypt_email: letsencrypt_email, letsencrypt_enabled: true)
-    else
-      update(letsencrypt_email: nil, letsencrypt_enabled: false)
-    end
-
-    letsencrypt_enabled
-  end
-
   private
 
   def valid_ssl
