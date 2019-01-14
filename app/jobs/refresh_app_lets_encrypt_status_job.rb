@@ -1,4 +1,4 @@
-class RefreshAppLetsencryptStatusJob < ApplicationJob
+class RefreshAppLetsEncryptStatusJob < ApplicationJob
   queue_as :default
 
   def perform(app)
