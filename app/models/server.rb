@@ -31,7 +31,7 @@ class Server < ApplicationRecord
   end
 
   def latest_dokku_version
-    "v0.12.13".freeze
+    "v0.15.5".freeze
   end
 
   def formatted_status
