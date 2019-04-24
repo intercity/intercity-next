@@ -1,4 +1,4 @@
-FROM ruby:2.4.2-slim
+FROM ruby:2.4.6
 
 # Install dependencies
 RUN apt-get update -qq \
