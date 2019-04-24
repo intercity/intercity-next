@@ -23,7 +23,7 @@ class InstallServerJob < ApplicationJob
       "sudo echo 'dokku dokku/vhost_enable boolean false' | sudo debconf-set-selections && " \
       "sudo echo 'dokku dokku/hostname string intercity.dokku' | sudo debconf-set-selections && " \
       "sudo echo 'dokku dokku/skip_key_file boolean true' | sudo debconf-set-selections && " \
-      "wget https://raw.githubusercontent.com/dokku/dokku/#{server.latest_dokku_version}/bootstrap.sh && "\
+      "wget -O bootstrap.sh https://raw.githubusercontent.com/dokku/dokku/#{server.latest_dokku_version}/bootstrap.sh && "\
       "sudo DOKKU_TAG=#{server.latest_dokku_version} bash bootstrap.sh"
   end
 
@@ -43,6 +43,8 @@ class InstallServerJob < ApplicationJob
           end
         end
       end
+
+      ch.wait
     end
   end
 end
