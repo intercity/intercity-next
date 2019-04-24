@@ -31,4 +31,21 @@ class AppTest < ActiveSupport::TestCase
 
     assert_equal redis_example, app.linked_service(redis)
   end
+
+  test "SSL certificate is valid without RSA in key header" do
+    app = apps(:example)
+    app.ssl_enabled = true
+
+    app.ssl_key = "-----BEGIN PRIVATE KEY-----\nblabla\n-----END PRIVATE KEY-----"
+    app.valid?
+    refute app.errors.messages[:ssl_key].present?, "Expected no validation error for SSL key"
+
+    app.ssl_key = "-----BEGIN RSA PRIVATE KEY-----\nblabla\n-----END RSA PRIVATE KEY-----"
+    app.valid?
+    refute app.errors.messages[:ssl_key].present?, "Expected no validation error for SSL key"
+
+    app.ssl_key = "not something like an SSL key"
+    app.valid?
+    assert app.errors.messages[:ssl_key].present?, "Expected validation error for SSL key"
+  end
 end

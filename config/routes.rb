@@ -34,6 +34,10 @@ Rails.application.routes.draw do
     resource :health_check, only: [:create]
     resource :swap, only: [:show, :create, :destroy]
     resources :apps, only: [:index, :new, :create, :destroy, :show] do
+      scope module: :apps do
+        resources :restarts, only: :create
+        resource :letsencrypt, controller: "lets_encrypt", except: :edit
+      end
       resources :services, controller: "app_services", only: :index do
         post :create, on: :member
         get :status, on: :member

@@ -3,20 +3,19 @@ source "https://rubygems.org"
 gem "bulma-rails", "~> 0.1.2"
 gem "coffee-rails", "~> 4.2"
 gem "font-awesome-sass", "~> 4.4.0"
-gem "inline_svg", "~> 0.7"
+gem "inline_svg", "~> 1.3.1"
 gem "jquery-rails"
 gem "jquery-turbolinks"
 gem "kaminari", "~> 0.17"
-gem "net-ssh", "3.0.1"
+gem "net-ssh", "~> 5.2.0"
 gem "pg", "~> 0.18"
 gem "puma", "~> 3.4"
-gem "rails", "5.1.4"
+gem "rails", "5.1.6"
 gem "redcarpet"
-gem "redis", "~> 3.2.0"
 gem "rotp", "~> 3.0"
 gem "rqrcode", "~> 0.10"
 gem "sass-rails", "~> 5.0"
-gem "sidekiq", "~> 4.0"
+gem "sidekiq", "~> 5.2.7"
 gem "sidekiq-cron", "~> 0.4.0"
 gem "sinatra", "~> 2.0.0.beta2", require: nil
 gem "sorcery", "~> 0.9.1"
@@ -26,6 +25,8 @@ gem "uglifier"
 gem "validates_email_format_of", "~> 1.6"
 gem "version_parser", "1.0.2"
 gem "whenever", "~> 0.9"
+
+gem "loofah", ">= 2.2.3"
 
 group :development do
   gem "capistrano"
@@ -42,17 +43,20 @@ end
 
 group :development, :test do
   gem "awesome_print"
+  gem "capybara"
+  gem "webdrivers"
   gem "dotenv-rails", "2.2.1"
   gem "rubocop"
+  gem "selenium-webdriver"
 end
 
 group :test do
   gem "codeclimate-test-reporter", require: nil
   gem "database_cleaner"
   gem "launchy"
+  gem "minitest-fail-fast"
   gem "minitest-reporters"
   gem "mocha"
-  gem "poltergeist"
   gem "shoulda"
   gem "timecop"
 end

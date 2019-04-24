@@ -12,7 +12,10 @@ class ManageUsersTest < IntegrationTest
     fill_in "user[email]", with: "testemail@example.com"
     click_button "Add new user"
 
-    assert page.has_content?("testemail@example.com")
+    # Sleep here to give the assert more time before database_cleaner clears the fixture
+    sleep 1
+
+    assert page.has_content?("email@example.com")
   end
 
   test "I want to be able to remove a user from the system" do
@@ -26,12 +29,14 @@ class ManageUsersTest < IntegrationTest
     click_link "Users"
 
     within "#user_#{user.id}" do
-      click_link "Remove"
+      accept_confirm do
+        click_link "Remove"
+      end
     end
 
     # We need to give jquery a bit of time to let the record fadeout and
     # disappear
-    sleep 0.4
+    sleep 1
 
     refute page.has_content?("jane@example.com"), "Page should not have Jane anymore"
   end

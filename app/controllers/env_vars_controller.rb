@@ -7,7 +7,7 @@ class EnvVarsController < ServerBaseController
   def create
     @app = App.find_by!(id: params[:app_id], server: params[:server_id])
     @env_var = @app.env_vars.new(env_var_params)
-    AddEnvVarJob.perform_later(@app, @env_var) if @env_var.save
+    AddEnvVarJob.perform_later(@app, @env_var, @env_var.apply_immediately?) if @env_var.save
   end
 
   def destroy
@@ -19,6 +19,6 @@ class EnvVarsController < ServerBaseController
   private
 
   def env_var_params
-    params.require(:env_var).permit(:key, :value)
+    params.require(:env_var).permit(:key, :value, :apply_immediately)
   end
 end
