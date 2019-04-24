@@ -5,8 +5,7 @@ V 0.5.0 * TBD
 * Fix typo bug in production.rb preventing the app to start (jvanbaarsen)
 * Add Docker Compose setup for local development (michiels)
 * Make sure we run certain commands as sudo (jvanbaarsen)
-* Update standard Dokku version to 0.12.13
-* Add beta feature for enabling/disabling/refreshing SSL certificates via LetsEncrypt
+* Add initial LetsEncrypt controls (beta) (michiels)
 * Update standard Dokku version to 0.15.15 (michiels)
 * Update net-ssh to fix an issue with command execution (michiels)
 * Update sidekiq to 5.x to make use of autoloading in Rails 5 (michiels)
