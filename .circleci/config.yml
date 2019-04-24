@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.4.1-node-browsers
+      - image: circleci/ruby:2.4.2-node-browsers
         environment:
           PGHOST: 127.0.0.1
           PGUSER: circleci-app
@@ -34,13 +34,7 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "Gemfile.lock" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
+              
       - run:
           name: Install Chrome
           command: |
@@ -51,13 +45,26 @@ jobs:
             rm google-chrome.deb
 
       - run:
-          name: install dependencies
+          name: Configure Bundler
           command: |
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+            source $BASH_ENV
+            gem install bundler
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "Gemfile.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run:
+          name: install dependencies
+          command: bundle check || bundle install
 
       - save_cache:
           paths:
-            - ./vendor/bundle
+            - vendor/bundle
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
         
       # Database setup
@@ -67,7 +74,7 @@ jobs:
       # run tests!
       - run:
           name: run tests
-          command: bundle exec rails test
+          command: bundle exec rake test
 
       - store_artifacts:
           path: tmp/screenshots
