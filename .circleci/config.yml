@@ -35,12 +35,11 @@ jobs:
       - checkout
 
       - run:
-          name: Which bundler?
-          command: bundle -v
-
-      - run:
-          name: Install bundler
-          command: gem install bundler
+        name: Configure Bundler
+        command: |
+          echo 'export BUNDLER_VERSION=$(cat Gemfile.lock | tail -1 | tr -d " ")' >> $BASH_ENV
+          source $BASH_ENV
+          gem install bundler
 
       # Download and cache dependencies
       - restore_cache:
