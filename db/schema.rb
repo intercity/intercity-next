@@ -77,13 +77,6 @@ ActiveRecord::Schema.define(version: 20181122210927) do
     t.index ["app_id"], name: "index_env_vars_on_app_id"
   end
 
-  create_table "integrations", force: :cascade do |t|
-    t.string "name"
-    t.string "access_token"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "linked_services", force: :cascade do |t|
     t.integer "app_id"
     t.integer "service_id"
