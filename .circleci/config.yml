@@ -7,7 +7,7 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-      - image: circleci/ruby:2.4.2-node-browsers
+      - image: circleci/ruby:2.4.2-node
         environment:
           PGHOST: 127.0.0.1
           PGUSER: circleci-app
@@ -33,6 +33,16 @@ jobs:
 
     steps:
       - checkout
+
+              
+      - run:
+          name: Install Chrome
+          command: |
+            sudo apt-get install -y libappindicator3-1
+            curl -L -o google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+            sudo dpkg -i google-chrome.deb
+            sudo sed -i 's|HERE/chrome\"|HERE/chrome\" --disable-setuid-sandbox|g' /opt/google/chrome/google-chrome
+            rm google-chrome.deb
 
       - run:
           name: Configure Bundler
