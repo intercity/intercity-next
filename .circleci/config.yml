@@ -73,7 +73,7 @@ jobs:
       # run tests!
       - run:
           name: run tests
-          command: bundle exec rails test
+          command: bundle exec rake test
 
       - store_artifacts:
           path: tmp/screenshots
