@@ -8,6 +8,7 @@ RUN apt-get update -qq \
     libpq-dev \
     nodejs
 
+ENV LANG C.UTF-8
 ENV RAILS_ROOT=/app
 RUN mkdir -p $RAILS_ROOT
 WORKDIR $RAILS_ROOT
