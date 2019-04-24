@@ -44,7 +44,7 @@ end
 group :development, :test do
   gem "awesome_print"
   gem "capybara"
-  gem "chromedriver-helper"
+  gem "webdrivers"
   gem "dotenv-rails", "2.2.1"
   gem "rubocop"
   gem "selenium-webdriver"
