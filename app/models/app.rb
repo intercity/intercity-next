@@ -12,6 +12,8 @@ class App < ApplicationRecord
   validate :valid_ssl, if: :ssl_enabled?
   validates :ssl_cert, :ssl_key, presence: true, if: :ssl_enabled?
 
+  validates :letsencrypt_email, presence: true, if: :letsencrypt_enabled?
+
   def clean_name
     name.parameterize
   end

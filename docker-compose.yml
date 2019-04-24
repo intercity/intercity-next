@@ -13,7 +13,7 @@ services:
     image: intercitynext_web
     volumes:
       - .:/app
-    command: bundle exec rails s
+    command: bash -c "rm  -f tmp/pids/server.pid && bundle exec rails s"
     ports:
       - "3000"
     depends_on:
