@@ -29,17 +29,28 @@ class InstallServerJob < ApplicationJob
 
   def perform_installation
     SshExecution.new(server).execute_with_block do |ssh|
-      ssh.open_channel do |channel|
-        channel.exec install_dokku
-        channel.on_data do |_, data|
-          if data =~ /Initial apt-get update/
-            server.update(install_step: 1)
-          elsif data =~ /Installing docker/
-            server.update(install_step: 2)
-          elsif data =~ /Installing dokku/
-            server.update(install_step: 3)
-          elsif data =~ /Importing herokuish into docker/
-            server.update(install_step: 4)
+      ch = ssh.open_channel do |channel|
+        logger.debug("Executing #{install_dokku}")
+        channel.exec install_dokku do |_, success|
+
+          channel.on_extended_data do |_, type, data|
+            # noop yet. will store this in log
+          end
+
+          channel.on_data do |_, data|
+            if data =~ /Initial apt-get update/
+              server.update(install_step: 1)
+            elsif data =~ /Installing docker/
+              server.update(install_step: 2)
+            elsif data =~ /Installing dokku/
+              server.update(install_step: 3)
+            elsif data =~ /Importing herokuish into docker/
+              server.update(install_step: 4)
+            end
+          end
+
+          channel.on_close do
+            logger.debug("Command finished")
           end
         end
       end
