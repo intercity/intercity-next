@@ -46,9 +46,6 @@ services:
       dockerfile: ./Dockerfile
     environment:
       REDIS_URL: redis://redis:6379/0
-      VIRTUAL_HOST: ${INTERCITY_FQDN}
-      LETSENCRYPT_HOST: ${INTERCITY_FQDN}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
       VIRTUAL_ROOT: /app/public
     env_file:
       - intercity.env
