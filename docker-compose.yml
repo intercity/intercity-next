@@ -3,6 +3,7 @@ version: '3'
 volumes:
   vhost:
   html:
+  app_public:
 
 services:
   nginx-proxy:
@@ -10,7 +11,7 @@ services:
     image: jwilder/nginx-proxy
     restart: always
     volumes:
-      - ./data/public:/app/public
+      - app_public:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./config/nginx.conf:/etc/nginx/vhost.d/default
       - ./data/vhost:/etc/nginx/vhost.d
@@ -21,6 +22,8 @@ services:
       - 443:443
     labels:
       com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    depends_on:
+      - app
 
   letsencrypt:
     container_name: letsencrypt
@@ -31,7 +34,6 @@ services:
       NGINX_DOCKER_GEN_CONTAINER: nginx-proxy
     volumes:
       - ./data/vhost:/etc/nginx/vhost.d
-      - ./data/public:/usr/share/nginx/html
       - ./data/certs:/etc/nginx/certs
       - ./data/html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
@@ -46,6 +48,8 @@ services:
       dockerfile: ./Dockerfile
     env_file:
       - intercity.env
+    volumes:
+      - app_public:/app/public
     environment:
       - REDIS_URL=redis://redis:6379/0
       - VIRTUAL_ROOT=/app/public
