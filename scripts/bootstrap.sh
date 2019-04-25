@@ -34,7 +34,7 @@ else
   echo "-- docker-compose.yml"
 fi
 
-# Validate and load .env
+# Validate and load intercity.env
 if [ ! -f "./intercity.env" ]; then
   echo "!! No intercity.env found, generating one for you now."
   secret_key_base=`tr -dc 'a-f0-9' < /dev/urandom | head -c32`
@@ -45,11 +45,11 @@ if [ ! -f "./intercity.env" ]; then
   echo LETSENCRYPT_EMAIL=$letsencrypt_email >> intercity.env
   echo SECRET_KEY_BASE=$secret_key_base >> intercity.env
 
-  echo "-- Written configuration to .env"
+  echo "-- Written configuration to intercity.env"
 fi
 
-echo "-- Loading configuration from .env"
-source .env
+echo "-- Loading configuration from intercity.env"
+source intercity.env
 
 echo "-- Deploying Intercity Next to https://$INTERCITY_FQDN"
 
