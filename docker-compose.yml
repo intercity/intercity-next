@@ -45,14 +45,12 @@ services:
     restart: always
     volumes:
       - app_public:/app/public
+    env_file:
+      - intercity.env
     environment:
       REDIS_URL: redis://redis:6379/0
       VIRTUAL_ROOT: /app/public
       RAILS_LOG_TO_STDOUT: "true"
-      LETSENCRYPT_HOST: ${INTERCITY_FQDN}
-      VIRTUAL_HOST: ${INTERCITY_FQDN}
-      SECRET_KEY_BASE: ${SECRET_KEY_BASE}
-      LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
 
     depends_on:
       - db
