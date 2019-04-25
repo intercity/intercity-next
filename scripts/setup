@@ -27,15 +27,15 @@ else
 fi
 
 # Validate and load .env
-if [ ! -f "./.env" ]; then
-  echo "!! No .env found, generating one for you now."
+if [ ! -f "./intercity.env" ]; then
+  echo "!! No intercity.env found, generating one for you now."
   secret_key_base=`tr -dc 'a-f0-9' < /dev/urandom | head -c32`
   read -p 'Intercity Next FQDN (e.g. intercity.example.com): ' intercity_fqdn
   read -p 'Letsencrypt email address (e.g. user@example.com): ' letsencrypt_email
 
-  echo INTERCITY_FQDN=$intercity_fqdn >> .env
-  echo LETSENCRYPT_EMAIL=$letsencrypt_email >> .env
-  echo SECRET_KEY_BASE=$secret_key_base >> .env
+  echo INTERCITY_FQDN=$intercity_fqdn >> intercity.env
+  echo LETSENCRYPT_EMAIL=$letsencrypt_email >> intercity.env
+  echo SECRET_KEY_BASE=$secret_key_base >> intercity.env
 
   echo "-- Written configuration to .env"
 fi
