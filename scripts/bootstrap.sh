@@ -29,7 +29,7 @@ fi
 # Fetching docker-compose.yml
 if [ ! -f "./docker-compose.yml"]; then
   echo "!! No docker-compose.yml yet, fetching from GitHub."
-  curl -L https://github.com/intercity/intercity-next/docker-compose.yml -o ./docker-compose.yml
+  curl -L https://raw.githubusercontent.com/intercity/intercity-next/pr/242/docker-compose.yml -o ./docker-compose.yml
 else
   echo "-- docker-compose.yml"
 fi
