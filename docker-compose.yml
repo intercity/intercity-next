@@ -13,9 +13,9 @@ services:
       - ./data/public:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ./config/nginx.conf:/etc/nginx/vhost.d/default
-      - vhost:/etc/nginx/vhost.d
-      - html:/usr/share/nginx/html
-      - ./data/certs:/etc/nginx/certs
+      - ./data/vhost:/etc/nginx/vhost.d
+      - ./data/html:/usr/share/nginx/html
+      - ./data/certs:/etc/nginx/certs:ro
     ports: 
       - 80:80
       - 443:443
@@ -30,16 +30,16 @@ services:
       NGINX_PROXY_CONTAINER: nginx-proxy
       NGINX_DOCKER_GEN_CONTAINER: nginx-proxy
     volumes:
-      - vhost:/etc/nginx/vhost.d
+      - ./data/vhost:/etc/nginx/vhost.d
       - ./data/public:/usr/share/nginx/html
       - ./data/certs:/etc/nginx/certs
-      - html:/usr/share/nginx/html
+      - ./data/html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
       - nginx-proxy
 
   app:
-    image: intercity_next
+    image: intercity/intercity_next
     restart: always
     build:
       context: .
@@ -52,6 +52,8 @@ services:
       LETSENCRYPT_HOST: ${INTERCITY_FQDN}
       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
       VIRTUAL_ROOT: /app/public
+    env_file:
+      - intercity.env
     depends_on:
       - db
       - redis
