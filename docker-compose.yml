@@ -44,8 +44,6 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    volumes:
-      - ./data/public:/app/public
     environment:
       REDIS_URL: redis://redis:6379/0
       VIRTUAL_HOST: ${INTERCITY_FQDN}
