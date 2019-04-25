@@ -5,6 +5,8 @@ volumes:
   vhost:
   html:
   app_public:
+  postgres:
+  redis:
 
 services:
   nginx-proxy:
@@ -59,11 +61,11 @@ services:
   redis:
     image: redis
     volumes:
-      - ./data/redis:/data
+      - redis:/data
     hostname: redis
     
   db:
     image: postgres
     volumes: 
-      - ./data/postgres:/var/lib/postgresql/data
+      - postgres:/var/lib/postgresql/data
 
