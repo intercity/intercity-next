@@ -26,6 +26,14 @@ else
   echo "-- $(docker-compose -v)"
 fi
 
+# Fetching docker-compose.yml
+if [ ! -f "./docker-compose.yml"]; then
+  echo "!! No docker-compose.yml yet, fetching from GitHub."
+  curl -L https://github.com/intercity/intercity-next/docker-compose.yml -o ./docker-compose.yml
+else
+  echo "-- docker-compose.yml"
+fi
+
 # Validate and load .env
 if [ ! -f "./intercity.env" ]; then
   echo "!! No intercity.env found, generating one for you now."
