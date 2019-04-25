@@ -1,6 +1,7 @@
 version: '3'
 
 volumes:
+  certs:
   vhost:
   html:
   app_public:
@@ -13,12 +14,9 @@ services:
     volumes:
       - app_public:/app/public
       - /var/run/docker.sock:/tmp/docker.sock:ro
-      - ./config/nginx.conf:/etc/nginx/vhost.d/default
-      - ./data/vhost:/etc/nginx/vhost.d
-      - ./data/html:/usr/share/nginx/html
-      - ./data/certs:/etc/nginx/certs:ro
-    environment:
-      - DHPARAM_GENERATION=false
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
     ports: 
       - 80:80
       - 443:443
@@ -35,9 +33,9 @@ services:
       NGINX_PROXY_CONTAINER: nginx-proxy
       NGINX_DOCKER_GEN_CONTAINER: nginx-proxy
     volumes:
-      - ./data/vhost:/etc/nginx/vhost.d
-      - ./data/certs:/etc/nginx/certs
-      - ./data/html:/usr/share/nginx/html
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
       - /var/run/docker.sock:/var/run/docker.sock:ro
     depends_on:
       - nginx-proxy
