@@ -17,6 +17,8 @@ services:
       - ./data/vhost:/etc/nginx/vhost.d
       - ./data/html:/usr/share/nginx/html
       - ./data/certs:/etc/nginx/certs:ro
+    environment:
+      - DHPARAM_GENERATION=false
     ports: 
       - 80:80
       - 443:443
