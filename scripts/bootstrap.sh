@@ -42,6 +42,8 @@ if [ ! -f "./intercity.env" ]; then
   read -p 'Letsencrypt email address (e.g. user@example.com): ' letsencrypt_email
 
   echo INTERCITY_FQDN=$intercity_fqdn >> intercity.env
+  echo VIRTUAL_HOST=$intercity_fqdn >> intercity.env
+  echo LETSENCRYPT_HOST=$intercity_fqdn >> intercity.env
   echo LETSENCRYPT_EMAIL=$letsencrypt_email >> intercity.env
   echo SECRET_KEY_BASE=$secret_key_base >> intercity.env
 
