@@ -43,9 +43,6 @@ services:
   app:
     image: intercity/intercity_next
     restart: always
-    build:
-      context: .
-      dockerfile: ./Dockerfile
     volumes:
       - app_public:/app/public
     environment:
