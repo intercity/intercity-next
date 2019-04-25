@@ -8,7 +8,7 @@ volumes:
 services:
   nginx-proxy:
     container_name: nginx-proxy
-    image: jwilder/nginx-proxy
+    image: jwilder/nginx-proxy:alpine
     restart: always
     volumes:
       - app_public:/app/public
