@@ -44,11 +44,13 @@ services:
     build:
       context: .
       dockerfile: ./Dockerfile
-    environment:
-      REDIS_URL: redis://redis:6379/0
-      VIRTUAL_ROOT: /app/public
     env_file:
       - intercity.env
+    environment:
+      - REDIS_URL=redis://redis:6379/0
+      - VIRTUAL_ROOT=/app/public
+      - RAILS_LOG_TO_STDOUT=true
+      - RAILS_SERVE_STATIC_FILES=true
     depends_on:
       - db
       - redis
