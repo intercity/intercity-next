@@ -26,7 +26,7 @@ else
   echo "-- $(docker-compose -v)"
 fi
 
-# Fetching docker-compose.yml
+# Fetching docker-compose.yml that includes the stack to deploy
 if [ ! -f "./docker-compose.yml" ]; then
   echo "!! No docker-compose.yml yet, fetching from GitHub."
   curl -L https://raw.githubusercontent.com/intercity/intercity-next/pr/242/docker-compose.yml -o ./docker-compose.yml
