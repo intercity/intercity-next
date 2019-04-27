@@ -1,4 +1,4 @@
-class CreateDeployKeys < ActiveRecord::Migration
+class CreateDeployKeys < ActiveRecord::Migration[5.0]
   def change
     create_table :deploy_keys do |t|
       t.string :name

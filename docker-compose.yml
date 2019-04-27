@@ -1,40 +1,70 @@
 version: '3'
+
+volumes:
+  certs:
+  vhost:
+  html:
+  app_public:
+  postgres:
+  redis:
+
 services:
-  db:
-    image: postgres
+  nginx-proxy:
+    container_name: nginx-proxy
+    image: jwilder/nginx-proxy:alpine
+    restart: always
     volumes:
-      - pg-data:/var/lib/postgresql/data
+      - app_public:/app/public
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+    ports: 
+      - 80:80
+      - 443:443
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+
+  letsencrypt:
+    container_name: letsencrypt
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    environment:
+      - NGINX_PROXY_CONTAINER=nginx-proxy
+      - NGINX_DOCKER_GEN_CONTAINER=nginx-proxy
+    volumes:
+      - certs:/etc/nginx/certs
+      - vhost:/etc/nginx/vhost.d
+      - html:/usr/share/nginx/html
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    depends_on:
+      - nginx-proxy
+
+  app:
+    image: intercity/intercity_next
+    restart: always
+    volumes:
+      - app_public:/app/public
+    env_file:
+      - intercity.env
+    environment:
+      REDIS_URL: redis://redis:6379/0
+      VIRTUAL_ROOT: /app/public
+      RAILS_LOG_TO_STDOUT: "true"
+      RAILS_SERVE_STATIC_ASSETS: "true"
+
+    depends_on:
+      - db
+      - redis
+
   redis:
     image: redis
     volumes:
-      - redis-data:/data
-  web:
-    build: .
-    image: intercitynext_web
-    volumes:
-      - .:/app
-    command: bash -c "rm  -f tmp/pids/server.pid && bundle exec rails s"
-    ports:
-      - "3000"
-    depends_on:
-      - db
-      - redis
-    environment: &ENV
-      - DATABASE_URL=postgres://postgres@db/
-      - SECRET_KEY_BASE=a
-      - RAILS_SERVE_STATIC_FILES=true
-      - RAILS_LOG_TO_STDOUT=true
-      - REDIS_URL=redis://redis:6379
-      - DATABASE_CLEANER_ALLOW_REMOTE_DATABASE_URL=true
-  sidekiq:
-    image: intercitynext_web
-    command: bundle exec sidekiq -q default -q mailers -q health_checks
-    volumes:
-      - .:/app
-    environment: *ENV
-    depends_on:
-      - db
-      - redis
-volumes:
-  pg-data:
-  redis-data:
+      - redis:/data
+    hostname: redis
+    
+  db:
+    image: postgres
+    volumes: 
+      - postgres:/var/lib/postgresql/data
+

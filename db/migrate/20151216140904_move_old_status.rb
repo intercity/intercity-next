@@ -1,4 +1,4 @@
-class MoveOldStatus < ActiveRecord::Migration
+class MoveOldStatus < ActiveRecord::Migration[5.0]
   class Server < ActiveRecord::Base; end
 
   def up

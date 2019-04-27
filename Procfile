@@ -1,2 +1,2 @@
-web: bundle exec rails s
-sidekiq: bundle exec sidekiq
+web: bundle exec puma -t 5:5 -p ${PORT:-3000} -e ${RACK_ENV:-development}
+sidekiq: bundle exec sidekiq -e ${RACK_ENV:-development}

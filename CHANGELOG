@@ -10,6 +10,8 @@ V 0.5.0 * TBD
 * Update net-ssh to fix an issue with command execution (michiels)
 * Update sidekiq to 5.x to make use of autoloading in Rails 5 (michiels)
 * Fix that output of SSH wasn't captured in server installer job (michiels)
+* Update to Bundler 2.0.1 (michiels)
+* Add setup for easily boostrapping and updating a new Intercity installation via Docker (ariejan, michiels)
 
 V 0.4.0 * 2017-12-01
 * When no Dokku installed, make sure version check is not breaking. Fixes #229 (jvanbaarsen)

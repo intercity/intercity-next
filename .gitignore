@@ -17,3 +17,5 @@ passenger.*
 /backups/
 /keys/
 /.idea
+/data
+intercity.env

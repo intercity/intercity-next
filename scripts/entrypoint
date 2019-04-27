@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+echo "-- Welcome to Intercity Next"
+
+echo "-- Setting up database"
+bundle exec rake db:create
+
+echo "-- Running pending database migrations"
+bundle exec rake db:migrate
+
+echo "-- Populating services"
+bundle exec rake intercity:seed_plugins
+
+foreman start
